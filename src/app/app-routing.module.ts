@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { MapsComponent } from './maps/maps.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -21,6 +22,9 @@ const routes: Routes = [
       {
         path: 'search',
         component: SearchComponent
+      },{
+        path: 'admin-login',
+        component: AdminLoginComponent
       }
     ]
   },

@@ -8,6 +8,7 @@ import { MapsComponent } from './maps/maps.component';
 import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HomepageComponent } from './homepage/homepage.component';
     MapsComponent,
     SearchComponent,
     NavbarComponent,
-    HomepageComponent
+    HomepageComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
