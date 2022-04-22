@@ -1,0 +1,58 @@
+<div class="row" style="width: 100%; padding-bottom: 15px;">
+    <div class="container-fluid" style="height: 100px;">
+        <div class="d-flex justify-content-between bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+
+                <div style="padding-left: 15px;">
+                    <img src="../../assets/emblem.svg" alt="Emblem of Nepal" style="height: 100px; width: 100px;">
+                </div>
+
+
+            </div>
+            <div class="p-2 bd-highlight" style="margin-top: 20px;">
+
+                <h2>Nepal Health Workforce Registry</h2>
+
+            </div>
+            <div class="p-2 bd-highlight">
+
+                <div style="padding-left: 15px;">
+                    <img src="../../assets/flag.svg" alt="Flag of Nepal" style="height: 90px; width: 90px;">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="hr"></div>
+
+
+<div class="container">
+    <header class="d-flex justify-content-center py-3">
+        <ul class="nav nav-pills">
+            <li class="nav-item 1"><a href="javascript:void(0)" class="nav-link active" aria-current="page"
+                    (click)="changeContent($event)" routerLink ="/">Home</a></li>
+            <li class="nav-item 2"><a href="javascript:void(0)" class="nav-link"
+                    (click)="changeContent($event)" routerLink="/search">Search</a></li>
+            <li class="nav-item 3"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink="/map">Map</a>
+            </li>
+            <li class="nav-item 4"><a href="javascript:void(0)" class="nav-link"
+                    (click)="changeContent($event)">Dashboard</a></li>
+            <li class="nav-item 5"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)">API</a>
+            </li>
+            <li class="nav-item 6"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)">Admin
+                    Login</a></li>
+        </ul>
+    </header>
+</div>
+
+<div class="row">
+    <div class="container-fluid" style="padding: 60px;">
+
+        <div class="1 page-body">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
