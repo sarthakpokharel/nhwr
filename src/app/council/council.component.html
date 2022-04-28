@@ -1,0 +1,141 @@
+<!-- <div id="oas_reading" class="oas-reading"> -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header"><strong>Create council</strong></div>
+                <div class="card-body">
+                    <form class="form-signin" [formGroup]= "groupForm" (ngSubmit)= "groupFormSubmit()">
+                        <input type="hidden" class="form-control" name="id" formControlName="id"> 
+                      
+                        <div class="row input-group col-md-12">
+                            <div class="col-md-4 forRequired">
+                                <label>Name English</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="nameen" formControlName="nameen">
+                                <span style="color: red;"
+                                    *ngIf="groupForm.controls.nameen && groupForm.controls.nameen.invalid && groupForm.controls.nameen.touched">Required</span>
+                            </div>
+                        </div>
+                        <br>
+
+                          
+                        <div class="row input-group col-md-12">
+                            <div class="col-md-4 forRequired">
+                                <label>Name Nepali</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="namenp" formControlName="namenp">
+                                <span style="color: red;"
+                                *ngIf="groupForm.controls.namenp && groupForm.controls.namenp.invalid && groupForm.controls.namenp.touched">Required</span>
+                            </div>
+                        </div>
+                        <br>
+
+                        
+                    <div class="row input-group col-md-12">
+                        <div class="col-md-4 forRequired">
+                            <label>Status</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" name="status" formControlName="status">
+                                <option value="1" >Approved</option>
+                                <option value="0">Disabled</option>
+                            </select>
+                            <span style="color: red;"
+                                *ngIf="groupForm.controls.status && groupForm.controls.status.invalid && groupForm.controls.status.touched">*Required
+                                Field
+                            </span>
+
+                        </div>
+                    </div><br>
+
+                        
+                   
+                   
+    
+                      
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary px-4">Save</button>
+                            </div>
+                            <div class="col-6 text-right">
+                                <button type="button" (click)= "resetForm()" class="btn btn-danger px-4">Reset</button>
+                            </div>
+                        </div>
+    
+    
+    
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="col-md-6">
+            <div class="card">
+    
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> council List
+                </div>
+    
+                <div class="card-body">
+                    <form class="form-srch" [formGroup]="srchForm">
+
+                        <div class="input-group">
+                            
+                            <input class="form-control" placeholder="search" id="srch_term" name="srch_term" type="text" formControlName="srch_term" (keyup.enter)="search()">
+    
+                            <button class="btn btn-default" type="button" (click)="search()"><i class="fa fa-search"></i></button>
+    
+                        </div>
+                    </form>
+                    <hr />
+    
+                    <table class="table table-bordered table-striped table-sm tbl-sortable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name English</th>
+                                <th>Name Nepali</th>
+                                <th>Actions</th>
+    
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor=" let item of lists; let i = index; ">
+                                <td>{{item.id}}</td>
+                                <td>{{item.nameen}}</td>
+                                <td>{{item.namenp}}</td>
+                                <td><a (click)="getUpdateItem(item.id)" href="javascript:void(0)"><i
+                                            class="fa fa-edit alert-danger"></i>Edit</a>&nbsp;&nbsp;<a href="javascript:void(0)"
+                                        (click)="deleteItem(item.id)"><i class="fa fa-trash"></i>Delete</a></td>
+                            </tr>
+        
+                        </tbody>
+                    </table>
+
+                    <form [formGroup]="srchForm">
+                        <div class="row" style="float:right">
+                            <div class="col-md-12 smallbr">
+                                Entries <select name="entries" id="entries" formControlName="entries" (change)="search()">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select> &nbsp;&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+    
+                    <div class="col-md-6">
+                        <pagination [rotate]="true" [maxSize]="5" [totalItems]="pagination.total" [(ngModel)]="pagination.currentPage" [boundaryLinks]="true" [itemsPerPage]="pagination.perPage" (pageChanged)="paginatedData($event)"
+                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                        ></pagination>
+                      </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->

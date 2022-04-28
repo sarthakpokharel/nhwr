@@ -1,0 +1,121 @@
+<!-- <div id="oas_reading" class="oas-reading"> -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><strong>दरबन्दी विवरण </strong></div>
+                <div class="card-body">
+                    <form class="form-signin" [formGroup]= "regForm" (ngSubmit)= "groupFormSubmit()">
+                        <input type="hidden" class="form-control" name="id" formControlName="id"> 
+                       
+                      
+                        <div class="col-sm-12">                                  
+                            <table id="darbandiTable" class="table table-striped table-bordered" width="100%">
+                                                           
+                
+                              <thead style="background-color:#F2F3F4;">
+                                  <tr>
+                                      <td>पुरा नाम  </td>
+                                      <td>ठेगाना  </td>
+                                      <td>इमेल   </td>
+                                      <td>फोन नं  </td>
+                                      <td>नियुक्ति किसिम  </td>
+                                      <td>तह   </td>
+                                      <td>नियुक्ति मिति   </td>
+                                      <td>हाजिर भएको मिति   </td>
+                                      <td>शैक्षिक योग्यता   </td>
+                                      <td> काउन्सिल  </td>
+                                      <td> काउन्सिल नं  </td>
+                                  </tr>
+                              </thead>
+                              <tbody id="tbody">
+                                  
+                                  <tr *ngFor=" let item of aid " id="row{{item}}">
+                                      <td width="13%">
+                                         
+                                        <textarea  class="form-control" name="postname[]" required id='postname0'  ></textarea></td>
+                                        <td>
+                                            <input type="text" class="form-control" name="postname[]" required id='postname0'  ></td>
+                                               
+                                    <td>
+                                        <input type="text" class="form-control" name="postname[]" required id='postname0'  >
+                                  </td>
+                                      <!-- </td> -->
+                                      <!-- <td></td> -->
+                                      <td>
+                
+                                        <input type="text" class="form-control" name="postname[]" required id='postname0'  >
+                                  </td>
+                                  <td>
+                
+                                    <select class="form-control" name="posttype[]"  id='posttype0' >
+                                         <option value="">-- छान्नुहोस् --</option>
+                                         <option *ngFor=" let item of emptype " [value]="item.id">{{ item.namenp}}</option>
+                                     </select>	
+                       </td>
+                       <td>
+                
+                        <select class="form-control" name="posttype[]"  id='posttype0' >
+                             <option value="">-- छान्नुहोस् --</option>
+                             <option *ngFor=" let item of levl " [value]="item.id">{{ item.namenp}}</option>
+                         </select>	
+           </td>
+                       <td>
+                
+                        <input type="text" class="form-control" name="postname[]" required id='postname0' placeholder="" >
+                  </td>
+                  <td>
+                
+                    <input type="text" class="form-control" name="postname[]" required id='postname0'  >
+                </td>
+                                      <td >
+                                          <input type="text" style=" text-align: right;" id="post_count0" name="post_count[]" class="form-control" >
+                                      </td>
+                                      <td>
+                
+                                        <select class="form-control" name="posttype[]"  id='posttype0' >
+                                             <option value="">--    छान्नुहोस् --</option>
+                                             <option *ngFor=" let item of council " [value]="item.id">{{ item.namenp}}</option>
+                                         </select>	
+                           </td>
+                           <td>
+                
+                            <input type="text" class="form-control" name="postname[]" required id='postname0'  >
+                      </td>
+                                      
+                                     
+                                      
+                                     
+                                  </tr></tbody>
+                                  <tfoot id="foots">
+                                    <tr style="align-content: center;">
+                                        <td >
+                                            <input type="button" class="btn btn-warning px-4" id="addrow" value="Add Row" onclick="addRow(0)">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    </tr>
+                                </tfoot>
+                                
+                                </table></div>
+    
+                      
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary px-4">Save</button>
+                            </div>
+                            <div class="col-6 text-right">
+                                <button type="button" class="btn btn-danger px-4">Reset</button>
+                            </div>
+                        </div>
+    
+    
+    
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+    
+       
+    </div>
+    <!-- </div> -->

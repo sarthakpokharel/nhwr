@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ToastrModule } from 'ngx-toastr';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,6 +10,24 @@ import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { RegistryComponent,AddDetailsComponent } from './registry/registry.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ApiService } from './api.service';
+import { LoginService } from './admin-login/login.service';
+import { AuthInterceptor } from './auth-interceptor';
+import { AuthGuard, LoginGuard } from './auth.guard';
+import { GroupComponent } from './group/group.component';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { SubGroupComponent } from './subgroup/subgroup.component';
+import { LevelComponent } from './level/level.component';
+import { PostComponent } from './post/post.component';
+import { DarbandiComponent } from './darbandi/darbandi.component';
+import { EmptypeComponent } from './emptype/emptype.component';
+import { CouncilComponent } from './council/council.component';
+import { TrialComponent } from './trial/trial.component';
+
+
 
 @NgModule({
   declarations: [
@@ -17,14 +36,37 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     SearchComponent,
     NavbarComponent,
     HomepageComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    RegistryComponent,
+    AddDetailsComponent,
+    GroupComponent,
+    SubGroupComponent,
+    LevelComponent,
+    PostComponent,
+    DarbandiComponent,
+    EmptypeComponent,
+    CouncilComponent,
+    TrialComponent
+
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ModalModule.forRoot(),
+    ToastrModule.forRoot(),
+    PaginationModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    LoginService,
+    AuthGuard,
+    LoginGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

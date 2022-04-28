@@ -1,0 +1,107 @@
+
+<div class="container" style="width: 100% !important;">
+    <br>
+<div class="modal-header">
+    
+    <h4 style="float: left;" class="modal-title pull-left">Add Details</h4>
+    <button type="button" style="float: right;" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button><br> <br>
+    
+    
+  </div>
+  <div class="modal-body">
+      
+  <br>
+      <form >
+          <input type="hidden" formControlName="userid" >
+          <div class="col-sm-12">                                  
+            <table id="darbandiTable" class="table table-striped table-bordered" width="100%">
+                                           
+
+              <thead style="background-color:#F2F3F4;">
+                  <tr>
+                      <td>पुरा नाम  </td>
+                      <td>ठेगाना  </td>
+                      <td>इमेल   </td>
+                      <td>फोन नं  </td>
+                      <td>नियुक्ति किसिम  </td>
+                      <td>नियुक्ति मिति   </td>
+                      <td>हाजिर भएको मिति   </td>
+                      <td>शैक्षिक योग्यता   </td>
+                      <td> काउन्सिल  </td>
+                      <td> काउन्सिल नं  </td>
+                  </tr>
+              </thead>
+              <tbody id="tbody">
+                  
+                  <tr *ngFor=" let item of aid " id="row{{item}}">
+                      <td width="15%">
+                         
+                        <textarea  class="form-control" name="postname[]" required id='postname0'  ></textarea></td>
+                        <td>
+                            <input type="text" class="form-control" name="postname[]" required id='postname0'  ></td>
+                               
+                    <td>
+                        <input type="text" class="form-control" name="postname[]" required id='postname0'  >
+                  </td>
+                      <!-- </td> -->
+                      <!-- <td></td> -->
+                      <td>
+
+                        <input type="text" class="form-control" name="postname[]" required id='postname0'  >
+                  </td>
+                  <td>
+
+                    <select class="form-control" name="posttype[]"  id='posttype0' >
+                         <option value="">-- छान्नुहोस् --</option>
+                         <option value=""> स्थायी </option>
+                         <option value=""> अस्थायी</option>
+                         <option value=""> छात्रबृत्ति करार</option>
+                         <option value=""> कार्यक्रम करार</option>
+                     </select>	
+       </td>
+       <td>
+
+        <input type="text" class="form-control" name="postname[]" required id='postname0' placeholder="" >
+  </td>
+  <td>
+
+    <input type="text" class="form-control" name="postname[]" required id='postname0'  >
+</td>
+                      <td >
+                          <input type="text" style=" text-align: right;" id="post_count0" name="post_count[]" class="form-control" >
+                      </td>
+                      <td>
+
+                        <select class="form-control" name="posttype[]"  id='posttype0' >
+                             <option value="">--    छान्नुहोस् --</option>
+                             <option value=""> NMC </option>
+                             <option value=""> NAMC</option>
+                             <option value="">  NHPC</option>
+                             <option value=""> NPC</option>
+                         </select>	
+           </td>
+           <td>
+
+            <input type="text" class="form-control" name="postname[]" required id='postname0'  >
+      </td>
+                      
+                     
+                      
+                     
+                  </tr></tbody></table></div>
+  
+          <div class="col-md-12 row">
+              <div class="col-6">
+             
+              </div>
+              <div class="col-6 text-right">
+                  <button type="submit" class="btn btn-success px-4" (click)="modalRef?.hide()">Save</button>
+              </div>
+          </div>
+  
+      </form>
+  </div>
+</div>
+  
