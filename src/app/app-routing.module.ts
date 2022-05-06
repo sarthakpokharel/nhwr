@@ -14,6 +14,7 @@ import { DarbandiComponent } from './darbandi/darbandi.component';
 import { EmptypeComponent } from './emptype/emptype.component';
 import { CouncilComponent } from './council/council.component';
 import { TrialComponent } from './trial/trial.component';
+import { OfficeComponent } from './office/office.component';
 
 
 
@@ -24,7 +25,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomepageComponent
+        component: AdminLoginComponent
       },
       {
         path: 'map',
@@ -59,7 +60,7 @@ const routes: Routes = [
       },
       {
         path: 'darbandi',
-        component: DarbandiComponent
+        component: OfficeComponent
       },
       {
         path: 'emptype',

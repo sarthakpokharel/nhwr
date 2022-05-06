@@ -1,0 +1,128 @@
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+/**
+   * Framework starts from here ...
+   * ------------------------------
+   */
+
+.tree,
+.tree ul {
+  margin: 0 0 0 1em;
+  /* indentation */
+  padding: 0;
+  list-style: none;
+  color: black;
+  position: relative;
+}
+
+.tree ul {
+  margin-left: .5em
+}
+
+/* (indentation/2) */
+
+.tree:before,
+.tree ul:before {
+  content: "";
+  display: block;
+  width: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid;
+}
+
+.tree li {
+  margin: 0;
+  padding: 0 1.5em;
+  /* indentation + .5em */
+  line-height: 2em;
+  /* default list item's `line-height` */
+  font-weight: bold;
+  position: relative;
+}
+
+.tree li:before {
+  content: "";
+  display: block;
+  width: 20px;
+  /* same with indentation */
+  height: 0;
+  border-top: 1px solid;
+  margin-top: -1px;
+  /* border top width */
+  position: absolute;
+  top: 1em;
+  /* (line-height/2) */
+  left: 0;
+}
+
+.tree li:last-child:before {
+  background: white;
+  /* same with body background */
+  height: auto;
+  top: 1em;
+  /* (line-height/2) */
+  bottom: 0;
+}
+
+.modal-content {
+  width: 110% !important;
+}
+
+
+.custom-file-input.selected:lang(en)::after {
+  content: "" !important;
+}
+
+.custom-file {
+  overflow: hidden;
+}
+
+.custom-file-input {
+  white-space: nowrap;
+}
+
+
+// .file-upload-input {
+//   position: absolute;
+//   margin: 0;
+//   padding: 0;
+//   width: 100%;
+//   height: 100%;
+//   outline: none;
+//   opacity: 0;
+// }
+
+// .image-upload-wrap {
+//   margin-bottom: 10px;
+//   height: 50px;
+//   width: 240px;
+//   border: 2px dashed #8ca7d9;
+//   position: relative;
+// }
+
+// .drag-text {
+//   text-align: center;
+// }
+
+// .drag-text p {
+//   font-weight: 100;
+//   text-transform: uppercase;
+//   color: #231d58;
+//   padding: 2px 5px;
+//   overflow: hidden;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+// }
+
+// .image-upload-wrap:hover {
+//   border: 2.5px dashed #8ca7d9;
+// }

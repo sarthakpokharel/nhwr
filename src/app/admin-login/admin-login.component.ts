@@ -32,7 +32,11 @@ export class AdminLoginComponent implements OnInit {
         // alert("hellpo");
         
         this.ls.storeUserData(data.data);
-        this.router.navigate(['/registry']);
+        // this.router.navigate(['/registry']);
+        this.router.navigate(['/registry'])
+  .then(() => {
+    window.location.reload();
+  });
       },err=>{
         console.log(err);
 
