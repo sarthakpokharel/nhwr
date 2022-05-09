@@ -40,14 +40,23 @@
             </li> -->
             <li class="nav-item 4"><a href="javascript:void(0)" class="nav-link"
                     (click)="changeContent($event)">Dashboard</a></li>
-            <li class="nav-item 5" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink ="/registry">Workforce Registry</a>
+            <!-- <li class="nav-item 5" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink ="/registry">Workforce Registry</a>
+            </li> -->
+
+            <li class="nav-item dropdown" *ngIf="islogedin==1">
+                <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Workforce Registry</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/registry">Registry</a>
+                  <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/reglist">Workforce List</a>
+                 
+                </div>
+     </li>
+
+
+            <li class="nav-item 5" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink ="/darbandi/0">Darbandi</a>
             </li>
-            <li class="nav-item 5" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink ="/darbandi">Darbandi</a>
-            </li>
-            <li class="nav-item 6"  *ngIf="islogedin==0"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink ="/admin-login">Admin
-                    Login</a></li>
-           <li class="nav-item 6"  *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link" (click)="logout()" >Logout
-                        </a></li>
+            
+           
             <li class="nav-item dropdown" *ngIf="islogedin==1">
                         <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Setup</a>
                         <div class="dropdown-menu">
@@ -59,6 +68,10 @@
                           <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/council">Council</a>
                         </div>
              </li>
+             <li class="nav-item 6"  *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link" (click)="logout()" >Logout
+            </a></li>
+            <li class="nav-item 6"  *ngIf="islogedin==0"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink ="/admin-login">Admin
+                Login</a></li>
         </ul>
     </header>
 </div>

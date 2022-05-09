@@ -9,7 +9,7 @@
                     <form class="form-srch" [formGroup]="srchForm">
                     <select #orgchange class="form-control" name="orgid" formControlName="orgid" (change)="getSections()">
                       <option value="">Select one</option>
-                      <option *ngFor=" let item of orglists " [value]="item.id">{{item.hfname}} {{item.hfcode}}</option>
+                      <option *ngFor=" let item of orglists " [value]="item.id">{{item.hfname}} {{item.hfcode}} {{item.orgname}}</option>
                         
                     </select>
                 </form>

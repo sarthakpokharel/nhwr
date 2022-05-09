@@ -15,6 +15,7 @@ import { EmptypeComponent } from './emptype/emptype.component';
 import { CouncilComponent } from './council/council.component';
 import { TrialComponent } from './trial/trial.component';
 import { OfficeComponent } from './office/office.component';
+import { ReglistComponent } from './reglist/reglist.component';
 
 
 
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'registry',
         component: RegistryComponent
+      },
+      {
+        path: 'reglist',
+        component: ReglistComponent
       },
       {
         path: 'search',
@@ -59,7 +64,7 @@ const routes: Routes = [
         component: PostComponent
       },
       {
-        path: 'darbandi',
+        path: 'darbandi/:id',
         component: OfficeComponent
       },
       {

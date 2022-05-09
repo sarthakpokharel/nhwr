@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { DarbandiService } from './darbandi.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-darbandi',
@@ -19,8 +20,9 @@ export class DarbandiComponent implements OnInit {
   aid:any;
   levl:any;
   council:any;
+  darid:any;
   
-  constructor(private modalService: BsModalService,private fb: FormBuilder,private RS: DarbandiService,private toastr: ToastrService,private router:Router) { 
+  constructor(private modalService: BsModalService,private fb: FormBuilder,private RS: DarbandiService,private toastr: ToastrService,private router:Router,private _Activatedroute:ActivatedRoute) { 
     this.formLayout = {
       id:[],
       // provinceid: ['',Validators.required],
@@ -46,6 +48,8 @@ export class DarbandiComponent implements OnInit {
     this.getEmptype();
     this.getLevel();
     this.getcouncil();
+    // this.darid=this._Activatedroute.snapshot.paramMap.get("id");
+    // alert(this.darid);
     // this.getHftype();
     // this.getSamuha();
     
@@ -57,7 +61,7 @@ export class DarbandiComponent implements OnInit {
   }
 
   getEmptype() {
-    
+    alert("hi");
     this.RS.getEmptype().subscribe(
       (result: any) => {
         this.emptype = result.data;
@@ -103,6 +107,7 @@ getcouncil() {
 
 
   addDetails(aid:any) {
+   
     var items: number[] = [];
   for(var i = 1; i <= aid; i++){
     items.push(i);

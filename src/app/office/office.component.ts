@@ -4,6 +4,8 @@ import {OfficeService } from './office.service';
 import { ToastrService } from 'ngx-toastr';
 import { ITreeOptions, TreeComponent, TreeModel, TreeNode, TREE_ACTIONS } from '@circlon/angular-tree-component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 @Injectable({
   providedIn: 'root' // just before your class
 })
@@ -39,10 +41,11 @@ export class OfficeComponent implements OnInit,AfterViewInit {
 
   officeForm!: FormGroup
   srchForm: FormGroup;
+  darid:any;
 
  
 
-  constructor(private RS: OfficeService, private toastr: ToastrService,private modalService: BsModalService) {
+  constructor(private RS: OfficeService, private toastr: ToastrService,private modalService: BsModalService,private _Activatedroute:ActivatedRoute) {
     this.srchForm = new FormGroup({
       orgid: new FormControl(''),
     });
@@ -52,7 +55,14 @@ export class OfficeComponent implements OnInit,AfterViewInit {
   ngOnInit(): void {
     this.pagination.perPage = this.perPages[0];
     this.getOrgLists();
-    // this.getTree();
+    this.darid=this._Activatedroute.snapshot.paramMap.get("id");
+    if(this.darid==0){
+      this.darid="";
+    }
+    this.srchForm.patchValue({
+      orgid: this.darid
+    });
+    this.getTree(this.darid);
   }
 
   ngAfterViewInit(){
@@ -165,7 +175,7 @@ export class OfficeComponent implements OnInit,AfterViewInit {
 
   modalRef:any;
   addSection(sid:any,oid:any,post:any,darbandiid:any,detailsid:any) {
-    alert(oid);
+    // alert(oid);
     this.modalRef = this.modalService.show(OfficeCrud,{initialState:{workforceid:sid,orgidint:oid,tree:this.tree,orgchange:this.orgchange,post:post,darbandiid:darbandiid,detailsid:detailsid}});
     this.modalRef.content.afterSave.subscribe(()=>{
       this.getSections();

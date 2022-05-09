@@ -28,6 +28,7 @@ import { CouncilComponent } from './council/council.component';
 import { TrialComponent } from './trial/trial.component';
 import { OfficeComponent, OfficeCrud } from "./office/office.component";
 import { TreeModule } from '@circlon/angular-tree-component';
+import { ReglistComponent } from './reglist/reglist.component';
 
 
 
@@ -50,7 +51,8 @@ import { TreeModule } from '@circlon/angular-tree-component';
     CouncilComponent,
     TrialComponent,
     OfficeComponent,
-    OfficeCrud
+    OfficeCrud,
+    ReglistComponent
 
   ],
   imports: [

@@ -25,11 +25,13 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    if (window.confirm('Are sure you want to delete this item?')) {
     this.ls.removeUserData();
     this.router.navigate(['/admin-login'])
   .then(() => {
     window.location.reload();
   });
+}
     // this.router.navigate(['/admin-login']);
 }
 
