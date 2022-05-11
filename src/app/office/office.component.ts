@@ -143,6 +143,7 @@ export class OfficeComponent implements OnInit,AfterViewInit {
   }
 
   getTree(id:any){
+    // alert(id);
     this.RS.getListTree(id).subscribe(
       (result: any) => {
         this.nodes = result.data;
