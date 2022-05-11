@@ -24,6 +24,16 @@ export class AdminLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUserinfo();
+  }
+
+  getUserinfo(){
+    if(this.ls.retriveUserData()==null){
+      // this.islogedin=0;
+    }else{
+      this.router.navigate(['/registry']);
+    }
+    // console.log(this.ls.retriveUserData());
   }
 
   submitForm(){

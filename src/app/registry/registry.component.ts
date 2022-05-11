@@ -138,6 +138,7 @@ createItem(id = null) {
   let upd = this.model;
   if (id != "" && id != null) {
     this.RS.update(id, upd).subscribe(result => {
+    
       this.toastr.success('Item Successfully Updated!', 'Success');
       //this.groupForm.reset();
       // this.regForm =this.fb.group(this.formLayout);
@@ -146,9 +147,11 @@ createItem(id = null) {
       this.toastr.error(error.message, 'Error');
     });
   } else {
-    this.RS.create(upd).subscribe(result => {
+    this.RS.create(upd).subscribe(
+      (result:any) => {
+     
       this.toastr.success('Item Successfully Saved!', 'Success');
-      this.router.navigate(['/darbandi']);
+      this.router.navigate(['/darbandi/'+result.data]);
       //this.groupForm.reset();
       // this.regForm =this.fb.group(this.formLayout);
       // this.getList();

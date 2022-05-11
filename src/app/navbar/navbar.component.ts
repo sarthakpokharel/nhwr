@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../admin-login/login.service';
+import { RegistryService } from '../registry/registry.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,10 +10,33 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   islogedin:any;
-  constructor(private ls: LoginService,private router:Router) { }
+  constructor(private ls: LoginService,private router:Router,private RS: RegistryService) { }
 
   ngOnInit(): void {
     this.getUserinfo();
+    this.getProvinces();
+  }
+
+  getProvinces(){
+    this.RS.getProvinces().subscribe(
+      (result: any) => {
+        // this.provinces = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        console.log(error.error.message);
+        if(error.error.message=="Token Exprired" ||error.error.message=="Illigal token"){
+          this.ls.removeUserData();
+          // window.location.reload();
+          this.router.navigate(['/']);
+         
+          // .then(() => {
+          //   window.location.reload();
+          // });
+        }
+        // this.toastr.error(error.error, 'Error');
+      }
+    );
   }
 
   getUserinfo(){

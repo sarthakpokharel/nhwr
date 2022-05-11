@@ -1,3 +1,3 @@
 export const AppConfig = {
-    baseUrl: 'http://localhost:8091/'
+    baseUrl: 'http://182.93.95.238:8081/'
 };
