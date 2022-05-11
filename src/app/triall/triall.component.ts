@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { RegistryService } from './user-register.service'
-
+import { RegistryService } from '../user-register/user-register.service'
 @Component({
-  selector: 'app-user-register',
-  templateUrl: './user-register.component.html',
-  styleUrls: ['./user-register.component.scss']
+  selector: 'app-triall',
+  templateUrl: './triall.component.html',
+  styleUrls: ['./triall.component.scss']
 })
-export class UserRegisterComponent implements OnInit {
+export class TriallComponent implements OnInit {
 
   registerForm!: FormGroup;
   registerFormLayout!: any;
@@ -30,15 +29,12 @@ export class UserRegisterComponent implements OnInit {
 
       municipality: [],
       ward: [],
-      orgid: []
+      orgid: [555555]
     }
 
     this.registerForm = fb.group(this.registerFormLayout)
   }
 
-  formReset(){
-    this.registerForm = this.fb.group(this.registerFormLayout)
-  }
 
   ngOnInit(): void {
     this.rs.getProvinces().subscribe(

@@ -37,9 +37,9 @@ a {
     background: #fff;
     //padding: 30px;
     width: 90%;
-    max-width: 700px;
+    max-width: 450px;
     position: relative;
-    padding: 25px;
+    padding: 0px;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     text-align: center;
@@ -94,8 +94,6 @@ a {
   }
 
   select{
-    margin-left: 10px !important;
-    width: 95% !important;
     background-color: #f6f6f6;
     border: none;
     color: #838383;
@@ -139,7 +137,7 @@ a {
     display: inline-block;
     font-size: 16px;
     margin: 5px;
-    width: 95%;
+    width: 85%;
     border: 2px solid #f6f6f6;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -169,7 +167,7 @@ a {
     display: inline-block;
     font-size: 16px;
     margin: 5px;
-    width: 95%;
+    width: 85%;
     border: 2px solid #f6f6f6;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;

@@ -11,106 +11,149 @@
     <!-- Login Form -->
 
     <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="submitForm()">
-      <input type="text" formControlName = "id" hidden>
-      <input type="text" class="fadeIn second" placeholder="username" formControlName="username">
-      <span style="color: red;"
-        *ngIf="registerForm.controls.username && registerForm.controls.username.invalid && registerForm.controls.username.touched">
-        *Required Field
-      </span>
+      <input type="text" formControlName="id" hidden>
 
-      <input type="password" class="fadeIn third" placeholder="password" formControlName="password">
-      <span style="color: red;"
-        *ngIf="registerForm.controls.password && registerForm.controls.password.invalid && registerForm.controls.password.touched">
-        Passwords must match and be Minimum eight characters, 
-        at least one uppercase letter, one lowercase letter, one number and one special character
-      </span>
-      <input type="password" id="password" class="fadeIn third" placeholder="re-enter password"
-        formControlName="rpassword">
-      <span style="color: red;"
-        *ngIf="registerForm.controls.rpassword && registerForm.controls.rpassword.invalid && registerForm.controls.rpassword.touched">
-        Passwords must match and be Minimum eight characters, 
-        at least one uppercase letter, one lowercase letter, one number and one special character
-      </span>
-      <input type="text" class="fadeIn second" placeholder="surname" formControlName="surname">
-      <span style="color: red;"
-        *ngIf="registerForm.controls.surname && registerForm.controls.surname.invalid && registerForm.controls.surname.touched">
-        *Required Field
-      </span>
-      <input type="text" class="fadeIn second" placeholder="first name" formControlName="firstname">
-      <span style="color: red;"
-        *ngIf="registerForm.controls.firstname && registerForm.controls.firstname.invalid && registerForm.controls.firstname.touched">
-        *Required Field
-      </span>
-      <input type="text" class="fadeIn second" placeholder="email" formControlName="email">
-      <span style="color: red;"
-        *ngIf="registerForm.controls.email && registerForm.controls.email.invalid && registerForm.controls.email.touched">
-        *should be proper email format
-      </span>
-      <input type="text" class="fadeIn second" placeholder="mobile number" formControlName="mobile">
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" class="fadeIn second" placeholder="username" formControlName="username">
+          <span style="color: red;"
+            *ngIf="registerForm.controls.username && registerForm.controls.username.invalid && registerForm.controls.username.touched">
+            *Required Field
+          </span>
+        </div>
+
+        <div class="col-md-6">
+          <input type="text" class="fadeIn second" placeholder="email" formControlName="email">
+          <span style="color: red;"
+            *ngIf="registerForm.controls.email && registerForm.controls.email.invalid && registerForm.controls.email.touched">
+            *should be proper email format
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <input type="password" class="fadeIn third" placeholder="password" formControlName="password">
+          <span style="color: red;"
+            *ngIf="registerForm.controls.password && registerForm.controls.password.invalid && registerForm.controls.password.touched">
+            Passwords must match and be Minimum eight characters,
+            at least one uppercase letter, one lowercase letter, one number and one special character
+          </span>
+        </div>
+        <div class="col-md-6">
+          <input type="password" id="password" class="fadeIn third" placeholder="re-enter password"
+            formControlName="rpassword">
+          <span style="color: red;"
+            *ngIf="registerForm.controls.rpassword && registerForm.controls.rpassword.invalid && registerForm.controls.rpassword.touched">
+            Passwords must match and be Minimum eight characters,
+            at least one uppercase letter, one lowercase letter, one number and one special character
+          </span>
+        </div>
+      </div>
 
 
-      <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" #rid (change)="roles(rid.value)"
-        formControlName="role" value="null">
-        <option value="null" [selected] disabled>select role</option>
-        <option value="FWD">स्वास्थ्य सेवा विभाग</option>
-        <option value="HOD">स्वास्थ्य सेवा निर्देशनालय</option>
-        <option value="DPO">जिल्ला जनस्वास्थ्य कार्यालय</option>
-        <option value="HF">स्वास्थ्य संस्था</option>
-      </select>
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" class="fadeIn second" placeholder="surname" formControlName="surname">
+          <span style="color: red;"
+            *ngIf="registerForm.controls.surname && registerForm.controls.surname.invalid && registerForm.controls.surname.touched">
+            *Required Field
+          </span>
+        </div>
+        <div class="col-md-6">
+          <input type="text" class="fadeIn second" placeholder="first name" formControlName="firstname">
+          <span style="color: red;"
+            *ngIf="registerForm.controls.firstname && registerForm.controls.firstname.invalid && registerForm.controls.firstname.touched">
+            *Required Field
+          </span>
 
-      <span style="color: red;"
-        *ngIf="registerForm.controls.role && registerForm.controls.role.invalid && registerForm.controls.role.touched">
-        *Required Field
-      </span>
+        </div>
+      </div>
 
-      <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" #pid
-        (change)="provinceSelected(pid.value)" formControlName="province" value="null">
-        <option value="null" [selected] disabled>select province</option>
-        <option *ngFor="let items of provinces" value="{{items.pid}}">{{items.namenp}}</option>
-      </select>
-      <span style="color: red;"
-        *ngIf="registerForm.controls.province && registerForm.controls.province.invalid && registerForm.controls.province.touched">
-        *Required Field
-      </span>
 
-      <div>
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" class="fadeIn second" placeholder="mobile number" formControlName="mobile">
+        </div>
 
-        <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" #did
-          (change)="districtSelected(did.value)" [value]="null" formControlName="district">
-          <option [selected] disabled value="null">select district</option>
-          <option *ngFor="let items of district" value="{{items.districtid}}">{{items.namenp}}</option>
-        </select>
-        <span style="color: red;"
-          *ngIf="registerForm.controls.district && registerForm.controls.district.invalid && registerForm.controls.district.touched">
-          *Required Field
-        </span>
+        <div class="col-md-6">
+          <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" #rid
+            (change)="roles(rid.value)" formControlName="role" value="null">
+            <option value="null" [selected] disabled>select role</option>
+            <option value="FWD">स्वास्थ्य सेवा विभाग</option>
+            <option value="HOD">स्वास्थ्य सेवा निर्देशनालय</option>
+            <option value="DPO">जिल्ला जनस्वास्थ्य कार्यालय</option>
+            <option value="HF">स्वास्थ्य संस्था</option>
+          </select>
+
+          <span style="color: red;"
+            *ngIf="registerForm.controls.role && registerForm.controls.role.invalid && registerForm.controls.role.touched">
+            *Required Field
+          </span>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6">
+          <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" #pid
+            (change)="provinceSelected(pid.value)" formControlName="province" value="null">
+            <option value="null" [selected] disabled>select province</option>
+            <option *ngFor="let items of provinces" value="{{items.pid}}">{{items.namenp}}</option>
+          </select>
+          <span style="color: red;"
+            *ngIf="registerForm.controls.province && registerForm.controls.province.invalid && registerForm.controls.province.touched">
+            *Required Field
+          </span>
+        </div>
+        <div class="col-md-6">
+          <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" #did
+            (change)="districtSelected(did.value)" [value]="null" formControlName="district">
+            <option [selected] disabled value="null">select district</option>
+            <option *ngFor="let items of district" value="{{items.districtid}}">{{items.namenp}}</option>
+          </select>
+          <span style="color: red;"
+            *ngIf="registerForm.controls.district && registerForm.controls.district.invalid && registerForm.controls.district.touched">
+            *Required Field
+          </span>
+        </div>
       </div>
 
 
       <div *ngIf="swasthsSanstha == true">
-        <select class="fadeIn second form-select" [value]="null" style="width: 85%; margin-bottom: 5px;" #mid
-          (change)="palikaSelected(mid.value)" formControlName="municipality">
-          <option [selected] disabled value="null">select municipality</option>
-          <option *ngFor="let items of palika" value="{{items.vcid}}">{{items.namenp}}</option>
-        </select>
 
-        <span style="color: red;"
-          *ngIf="registerForm.controls.municipality && registerForm.controls.municipality.invalid && registerForm.controls.municipality.touched">
-          *Required Field
-        </span>
+        <div class="row">
+          <div class="col-md-6">
+            <select class="fadeIn second form-select" [value]="null" style="width: 85%; margin-bottom: 5px;" #mid
+              (change)="palikaSelected(mid.value)" formControlName="municipality">
+              <option [selected] disabled value="null">select municipality</option>
+              <option *ngFor="let items of palika" value="{{items.vcid}}">{{items.namenp}}</option>
+            </select>
 
-        <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" [value]="null" #wid
-          (change)="getHf(mid.value, wid.value)" formControlName="ward">
-          <option [selected] value="null" disabled>select ward</option>
-          <option *ngFor="let items of ward" value="{{items}}">{{items}}</option>
-        </select>
+            <span style="color: red;"
+              *ngIf="registerForm.controls.municipality && registerForm.controls.municipality.invalid && registerForm.controls.municipality.touched">
+              *Required Field
+            </span>
 
-        <span style="color: red;"
-          *ngIf="registerForm.controls.ward && registerForm.controls.ward.invalid && registerForm.controls.ward.touched">
-          *Required Field
-        </span>
+          </div>
+          <div class="col-md-6">
+            <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" [value]="null" #wid
+              (change)="getHf(mid.value, wid.value)" formControlName="ward">
+              <option [selected] value="null" disabled>select ward</option>
+              <option *ngFor="let items of ward" value="{{items}}">{{items}}</option>
+            </select>
 
-        <select class="fadeIn second form-select" [value]="null" style="width: 85%; margin-bottom: 5px;"
+            <span style="color: red;"
+              *ngIf="registerForm.controls.ward && registerForm.controls.ward.invalid && registerForm.controls.ward.touched">
+              *Required Field
+            </span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <select class="fadeIn second form-select" [value]="null" style="padding-left: 79px;
+            margin-right: 7px;margin-bottom: 5px;"
           formControlName="orgid">
           <option [selected] disabled value="null">select organization / health facility</option>
           <option *ngFor="let items of hf" value="{{items.id}}">{{ items.hfcode}} || {{ items.hfname}}</option>
@@ -120,7 +163,15 @@
           *ngIf="registerForm.controls.orgid && registerForm.controls.orgid.invalid && registerForm.controls.orgid.touched">
           *Required Field
         </span>
+          </div>
+        </div>
+
+        
       </div>
+
+      <br>
+
+      <input type="button" (click)="formReset()" class="fadeIn fourth" value="Reset Form" style="background-color: #c697c5;">
 
       <input type="submit" class="fadeIn fourth" value="Register User">
     </form>

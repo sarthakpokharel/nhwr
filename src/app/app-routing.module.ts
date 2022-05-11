@@ -17,6 +17,7 @@ import { TrialComponent } from './trial/trial.component';
 import { OfficeComponent } from './office/office.component';
 import { ReglistComponent } from './reglist/reglist.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { TriallComponent } from './triall/triall.component';
 
 
 
@@ -83,6 +84,10 @@ const routes: Routes = [
       {
         path: 'trial',
         component: TrialComponent
+      },
+      {
+        path: 'triall',
+        component: TriallComponent
       }
 
     ]
