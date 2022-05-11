@@ -26,7 +26,10 @@ import { DarbandiComponent } from './darbandi/darbandi.component';
 import { EmptypeComponent } from './emptype/emptype.component';
 import { CouncilComponent } from './council/council.component';
 import { TrialComponent } from './trial/trial.component';
-
+import { OfficeComponent, OfficeCrud } from "./office/office.component";
+import { TreeModule } from '@circlon/angular-tree-component';
+import { ReglistComponent } from './reglist/reglist.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 
 @NgModule({
@@ -46,8 +49,11 @@ import { TrialComponent } from './trial/trial.component';
     DarbandiComponent,
     EmptypeComponent,
     CouncilComponent,
-    TrialComponent
-
+    TrialComponent,
+    OfficeComponent,
+    OfficeCrud,
+    ReglistComponent,
+    UserRegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +64,8 @@ import { TrialComponent } from './trial/trial.component';
     HttpClientModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    TreeModule
   ],
   providers: [
     ApiService,

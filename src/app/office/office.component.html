@@ -1,0 +1,84 @@
+<!-- <div id="oas_reading" class="oas-reading"> -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"><strong>Create Darbandi Information</strong></div>
+            <div class="card-body">
+                <div class="col-md-6">
+                    <form class="form-srch" [formGroup]="srchForm">
+                    <select #orgchange class="form-control" name="orgid" formControlName="orgid" (change)="getSections()">
+                      <option value="">Select one</option>
+                      <option *ngFor=" let item of orglists " [value]="item.id">{{item.hfname}} {{item.hfcode}} {{item.orgname}}</option>
+                        
+                    </select>
+                </form>
+                </div><br><br>
+
+                
+
+                  <ul class="tree">
+                    <ng-template #recursiveList let-nodes>
+                     
+                      <li *ngFor="let item of nodes">
+                        <span  *ngIf="item.children!=null"> 
+                            <i class="fas fa-chevron-circle-down" (click)= "hideChildNodes($event)"></i>
+                            {{item.name}} {{item.officenameen}}
+
+                            &nbsp;&nbsp;
+                               
+                            <!-- <a href="javascript:void(0)" (click)="addSection(item.officeidint,item.orgidint)" title="Add Section/Subsection"><i class="fa fa-plus"></i>Add</a>
+                            &nbsp;&nbsp;
+                            <a href="javascript:void(0)" (click)="editSection(item.officeidint,item.orgidint)" title="Edit Section/Subsection"><i class="fa fa-pencil"></i>Edit</a> -->
+
+
+                          </span>
+
+                          <span  *ngIf="item.children==null"> 
+                            <i></i>
+                            {{item.name}} {{item.officenameen}}({{item.posttype}})
+
+                            &nbsp;&nbsp;
+                               
+                            <a  *ngIf="item.status==0" href="javascript:void(0)" (click)="addSection(item.workforceid,item.orgidint,item.name,item.darbandiid,item.detailsid)" title="Add Section/Subsection"><i class="fa fa-plus"></i></a>
+                            &nbsp;
+                            <a  *ngIf="item.status==1" href="javascript:void(0)" (click)="editSection(item.workforceid,item.orgidint,item.name,item.darbandiid,item.detailsid,item.empid)" title="Edit Section/Subsection"><i class="fa fa-pencil"></i></a>
+
+
+                          </span>
+                        <ul class="a show" *ngIf="item.children!=null">
+                          <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.children }"></ng-container>
+                        </ul>
+                      </li>
+                    </ng-template>
+                    <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: nodes }"></ng-container>
+                  </ul>
+              
+
+
+
+
+                <!-- <tree-root #tree [nodes]="nodes" [options]="options" (updateData)="onUpdateData($event)" >
+                    <ng-template #treeNodeTemplate let-item let-index="index">
+                        <div class="tree-node-content" >
+                            
+
+                            <div >
+                                <span>{{item.data.name}}</span> 
+                               
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                               
+                                <a href="javascript:void(0)" (click)="addSection(item,tree)" title="Add Section/Subsection"><i class="fa fa-plus"></i></a>
+                                &nbsp;&nbsp;
+                                <a href="javascript:void(0)" (click)="editSection(item,tree)" title="Edit Section/Subsection"><i class="fa fa-pencil"></i></a>
+                            </div>
+                            
+                        </div>
+                    </ng-template>
+                </tree-root> -->
+            </div>
+        </div>
+    </div>
+
+   
+    </div>

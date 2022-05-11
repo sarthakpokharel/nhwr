@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../admin-login/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -6,11 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  islogedin:any;
+  constructor(private ls: LoginService,private router:Router) { }
 
   ngOnInit(): void {
+    this.getUserinfo();
   }
+
+  getUserinfo(){
+    if(this.ls.retriveUserData()==null){
+      this.islogedin=0;
+    }else{
+      this.islogedin=1;
+    }
+    // console.log(this.ls.retriveUserData());
+  }
+
+  logout() {
+    if (window.confirm('Are sure you want to Log Out?')) {
+    this.ls.removeUserData();
+    this.router.navigate(['/admin-login'])
+  .then(() => {
+    window.location.reload();
+  });
+}
+    // this.router.navigate(['/admin-login']);
+}
 
 
   changeContent(e: any) {

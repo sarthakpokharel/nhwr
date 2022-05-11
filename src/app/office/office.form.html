@@ -1,0 +1,192 @@
+<style>
+    .form-control {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="container">
+    <br>
+    <div class="modal-header">
+        <!-- <button type="button" class="btn-close close" (click)="modalRef?.hide()"> -->
+            <!-- <h4 style="float: left;" class="modal-title pull-left">Add Details</h4> -->
+            <h4 class="modal-title pull-left" *ngIf="isEdit==1"> Edit Employee {{post}}</h4>
+            <h4 class="modal-title pull-left" *ngIf="isEdit!=1"> Add Employee {{post}}</h4>
+            <button type="button" style="float: right;" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+              </button>
+     
+
+
+    </div>
+    <div class="modal-body">
+        <form class="form-signin" [formGroup]="officeForm" (ngSubmit)="officeFormSubmit()">
+            <input type="hidden" class="form-control" name="id" formControlName="id">
+            <input type="hidden" class="form-control" name="orgidint" formControlName="orgidint">
+            <input type="hidden" class="form-control" name="workforceid" formControlName="workforceid">
+            <input type="hidden" class="form-control" name="darbandiid" formControlName="darbandiid">
+            <input type="hidden" class="form-control" name="detailsid" formControlName="detailsid">
+           
+            <div class="row col-md-12">
+                <div class="col-md-6">
+            <div class="row input-group col-md-12">
+                <div class="col-md-4 forRequired">
+                    <label>पुरा नाम  English</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="nameen" formControlName="nameen">
+                    <span style="color: red;"
+                        *ngIf="officeForm.controls.nameen && officeForm.controls.nameen.invalid && officeForm.controls.nameen.touched">Required Field</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row input-group col-md-12">
+                <div class="col-md-4">
+                    <label>पुरा नाम  नेपाली </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="namenp" formControlName="namenp">
+                    <span style="color: red;"
+                        *ngIf="officeForm.controls.namenp && officeForm.controls.namenp.invalid && officeForm.controls.namenp.touched">Required Field</span>
+                </div>
+            </div></div>
+            <div class="col-md-6">
+            <div class="row input-group col-md-12">
+                <div class="col-md-4 forRequired">
+                    <label>ठेगाना</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="address" formControlName="address">
+                    <span style="color: red;"
+                        *ngIf="officeForm.controls.address && officeForm.controls.address.invalid && officeForm.controls.address.touched">Required Field</span>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="row input-group col-md-12">
+                <div class="col-md-4">
+                    <label>इमेल</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="email" formControlName="email">
+                </div>
+            </div>
+            </div>
+            <div class="col-md-6">
+            <div class="row input-group col-md-12">
+                <div class="col-md-4">
+                    <label>फोन नं.</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="mobile" formControlName="mobile">
+                </div>
+            </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row input-group col-md-12">
+                    <div class="col-md-4">
+                        <label>नियुक्ति किसिम </label>
+                    </div>
+                    <div class="col-md-8">
+                       
+                        <select class="form-control" name="emptype" formControlName="emptype">
+                            <option value="">-- छान्नुहोस् --</option>
+                            <option *ngFor=" let item of emptype " [value]="item.id">{{ item.namenp}}</option>
+                        </select>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="row input-group col-md-12">
+                        <div class="col-md-4">
+                            <label>तह</label>
+                        </div>
+                        <div class="col-md-8">
+                            
+                            <select class="form-control" name="level" formControlName="level" >
+                                <option value="">-- छान्नुहोस् --</option>
+                                <option *ngFor=" let item of levl " [value]="item.id">{{ item.namenp}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row input-group col-md-12">
+                            <div class="col-md-4">
+                                <label>नियुक्ति मिति</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="date" class="form-control" name="apoint_date" formControlName="apoint_date">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row input-group col-md-12">
+                                <div class="col-md-4">
+                                    <label>हाजिर भएको मिति </label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="date" class="form-control" name="att_date" formControlName="att_date">
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="row input-group col-md-12">
+                                    <div class="col-md-4">
+                                        <label>शैक्षिक योग्यता </label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="education" formControlName="education">
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="row input-group col-md-12">
+                                        <div class="col-md-4">
+                                            <label>काउन्सिल </label>
+                                        </div>
+                                        <div class="col-md-8">
+                                           
+                                            <select class="form-control" name="council" formControlName="council" >
+                                                <option value="">--    छान्नुहोस् --</option>
+                                                <option *ngFor=" let item of council " [value]="item.id">{{ item.namenp}}</option>
+                                            </select>	
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row input-group col-md-12">
+                                            <div class="col-md-4">
+                                                <label>काउन्सिल नं. </label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control" name="council_no" formControlName="council_no">
+                                            </div>
+                                        </div>
+                                        </div>
+
+
+
+        </div>
+
+
+            
+            
+
+          
+            <div class="row">
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary px-4">Save</button>
+                </div>
+                <div class="col-6 text-right">
+                    <button #resetbutton type="reset" class="btn btn-danger px-4">Reset</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<!-- <div id="oas_reading" class="oas-reading"> -->
+    <div class="row">
+        
+        <div class="col-md-12">
+            <div class="card">
+    
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Workforce List
+                </div>
+    
+                <div class="card-body">
+                    <form class="form-srch" [formGroup]="srchForm">
+
+                        <div class="input-group">
+                            
+                            <input class="form-control" placeholder="search" id="srch_term" name="srch_term" type="text" formControlName="srch_term" (keyup.enter)="search()">
+    
+                            <button class="btn btn-default" type="button" (click)="search()"><i class="fa fa-search"></i></button>
+    
+                        </div>
+                    </form>
+                    <hr />
+    
+                    <table class="table table-bordered table-striped table-sm tbl-sortable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Province</th>
+                                <th>District</th>
+                                <th>Organization</th>
+    
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor=" let item of lists; let i = index; ">
+                                <td>{{item.id}}</td>
+                                <td>{{item.province}}</td>
+                                <td>{{item.district}}</td>
+                                <td>{{item.hf_name}} {{item.orgname}}</td>
+                                <td><a  title="View" [routerLink]="['/darbandi',item.id]" href="javascript:void(0)"><i
+                                            class="fa fa-eye alert-danger"></i></a>&nbsp;&nbsp;
+                                            <a href="javascript:void(0)"
+                                        (click)="download(item.id)"><i class="fa fa-download"></i></a>
+                                    </td>
+                            </tr>
+        
+                        </tbody>
+                    </table>
+
+                    <form [formGroup]="srchForm">
+                        <div class="row" style="float:right">
+                            <div class="col-md-12 smallbr">
+                                Entries <select name="entries" id="entries" formControlName="entries" (change)="search()">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select> &nbsp;&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </form>
+    
+                    <div class="col-md-6">
+                        <pagination [rotate]="true" [maxSize]="5" [totalItems]="pagination.total" [(ngModel)]="pagination.currentPage" [boundaryLinks]="true" [itemsPerPage]="pagination.perPage" (pageChanged)="paginatedData($event)"
+                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                        ></pagination>
+                      </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->

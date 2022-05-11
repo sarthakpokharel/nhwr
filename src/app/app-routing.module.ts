@@ -14,6 +14,9 @@ import { DarbandiComponent } from './darbandi/darbandi.component';
 import { EmptypeComponent } from './emptype/emptype.component';
 import { CouncilComponent } from './council/council.component';
 import { TrialComponent } from './trial/trial.component';
+import { OfficeComponent } from './office/office.component';
+import { ReglistComponent } from './reglist/reglist.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 
 
@@ -24,7 +27,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomepageComponent
+        component: AdminLoginComponent
       },
       {
         path: 'map',
@@ -35,11 +38,19 @@ const routes: Routes = [
         component: RegistryComponent
       },
       {
+        path: 'reglist',
+        component: ReglistComponent
+      },
+      {
         path: 'search',
         component: SearchComponent
       },{
         path: 'admin-login',
         component: AdminLoginComponent
+      },
+      {
+        path: 'user-register',
+        component: UserRegisterComponent
       },
       {
         path: 'group',
@@ -58,8 +69,8 @@ const routes: Routes = [
         component: PostComponent
       },
       {
-        path: 'darbandi',
-        component: DarbandiComponent
+        path: 'darbandi/:id',
+        component: OfficeComponent
       },
       {
         path: 'emptype',
