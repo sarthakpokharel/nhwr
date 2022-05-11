@@ -29,7 +29,7 @@ import { TrialComponent } from './trial/trial.component';
 import { OfficeComponent, OfficeCrud } from "./office/office.component";
 import { TreeModule } from '@circlon/angular-tree-component';
 import { ReglistComponent } from './reglist/reglist.component';
-
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 
 @NgModule({
@@ -52,8 +52,8 @@ import { ReglistComponent } from './reglist/reglist.component';
     TrialComponent,
     OfficeComponent,
     OfficeCrud,
-    ReglistComponent
-
+    ReglistComponent,
+    UserRegisterComponent,
   ],
   imports: [
     BrowserModule,

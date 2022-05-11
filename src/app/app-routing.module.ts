@@ -16,6 +16,7 @@ import { CouncilComponent } from './council/council.component';
 import { TrialComponent } from './trial/trial.component';
 import { OfficeComponent } from './office/office.component';
 import { ReglistComponent } from './reglist/reglist.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 
 
@@ -46,6 +47,10 @@ const routes: Routes = [
       },{
         path: 'admin-login',
         component: AdminLoginComponent
+      },
+      {
+        path: 'user-register',
+        component: UserRegisterComponent
       },
       {
         path: 'group',

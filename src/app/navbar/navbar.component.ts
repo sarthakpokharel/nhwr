@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    if (window.confirm('Are sure you want to log out?')) {
+    if (window.confirm('Are sure you want to Log Out?')) {
     this.ls.removeUserData();
     this.router.navigate(['/admin-login'])
   .then(() => {
