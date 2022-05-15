@@ -33,45 +33,80 @@
     <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
             <li class="nav-item 1"><a href="javascript:void(0)" class="nav-link active" aria-current="page"
-                    (click)="changeContent($event)" routerLink ="/" *ngIf="islogedin==0">Home</a></li>
-                    <li *ngIf="islogedin==1" class="nav-item 3"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink="user-register">Register User</a>
+                    (click)="changeContent($event)" routerLink="/" *ngIf="islogedin==0">Home</a></li>
+            <!-- <li *ngIf="islogedin==1" class="nav-item 3"><a href="javascript:void(0)" class="nav-link"
+                    (click)="changeContent($event)" routerLink="user-register">Register User</a>
+            </li> -->
+
+            <li class="nav-item dropdown" *ngIf="islogedin==1">
+                <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)"
+                    data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true" aria-expanded="false">User Registration</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="user-register">Register new User</a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="registered-user-list">List of Registered Users</a>
+
+                </div>
             </li>
-            <li class="nav-item 2"><a href="javascript:void(0)" class="nav-link"
-                    (click)="changeContent($event)" routerLink="/search">Search</a></li>
+
+
+
+
+
+
+
+
+            <li class="nav-item 2"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)"
+                    routerLink="/search">Search</a></li>
             <li class="nav-item 4"><a href="javascript:void(0)" class="nav-link"
                     (click)="changeContent($event)">Dashboard</a></li>
             <!-- <li class="nav-item 5" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink ="/registry">Workforce Registry</a>
             </li> -->
 
             <li class="nav-item dropdown" *ngIf="islogedin==1">
-                <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Workforce Registry</a>
+                <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)"
+                    data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Workforce
+                    Registry</a>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/registry">Registry</a>
-                  <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/reglist">Workforce List</a>
-                 
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/registry">Registry</a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/reglist">Workforce List</a>
+
                 </div>
-     </li>
-
-
-            <li class="nav-item 5" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink ="/darbandi/0">Darbandi</a>
             </li>
-            
-           
+
+
+            <li class="nav-item 5" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link"
+                    (click)="changeContent($event)" routerLink="/darbandi/0">Darbandi</a>
+            </li>
+
+
             <li class="nav-item dropdown" *ngIf="islogedin==1">
-                        <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Setup</a>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/group">Group</a>
-                          <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/subgroup">Subgroup</a>
-                          <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/level">Level</a>
-                          <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/post">Post</a>
-                          <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/emptype">Employee Type</a>
-                          <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)" routerLink ="/council">Council</a>
-                        </div>
-             </li>
-             <li class="nav-item 6"  *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link" (click)="logout()" >Logout
-            </a></li>
-            <li class="nav-item 6"  *ngIf="islogedin==0"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink ="/admin-login">Admin
-                Login</a></li>
+                <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)"
+                    data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Setup</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/group">Group</a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/subgroup">Subgroup</a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/level">Level</a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/post">Post</a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/emptype">Employee Type</a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/council">Council</a>
+                </div>
+            </li>
+            <li class="nav-item 6" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link"
+                    (click)="logout()">Logout [{{userInfo}}]
+                </a></li>
+            <li class="nav-item 6" *ngIf="islogedin==0"><a href="javascript:void(0)" class="nav-link"
+                    (click)="changeContent($event)" routerLink="/admin-login">Admin
+                    Login</a></li>
         </ul>
     </header>
 </div>
@@ -84,3 +119,26 @@
         </div>
     </div>
 </div>
+
+<ng-template #template>
+   
+    <div class="modal-body">
+      <div class="row" style="margin-left: 33px;">
+        <h4>
+            Are you sure you want to Log Out?
+        </h4>
+
+      </div>
+      <br>
+      <div class="row">
+          <button class="btn btn-danger" style="margin-left: 45px; width: 100px; box-shadow: 0 10px 60px 0 rgba(238, 39, 39, 0.4)" (click)="logout()">
+            Yes
+          </button>
+          <button class="btn btn-warning" style="margin-left: 175px; width: 100px;box-shadow: 0 10px 60px 0 rgba(245, 234, 76, 0.4)">
+            No
+          </button>
+      </div>
+
+       
+    </div>
+</ng-template>

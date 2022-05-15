@@ -94,12 +94,13 @@ a {
   }
 
   select{
-    margin-left: 10px !important;
+    margin-left: 8px !important;
+    padding: 17px 0px;
     width: 95% !important;
     background-color: #f6f6f6;
     border: none;
     color: #838383;
-    padding: 17px 91px;
+    // padding: 17px 91px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
 import { LoginService } from '../admin-login/login.service';
 import { RegistryService } from '../registry/registry.service';
 import { Router } from '@angular/router';
+import { TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +13,17 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   islogedin:any;
-  constructor(private ls: LoginService,private router:Router,private RS: RegistryService) { }
+
+  modalRef?: BsModalRef;
+  constructor(private ls: LoginService,private router:Router,private RS: RegistryService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.getUserinfo();
     this.getProvinces();
+    this.userInfo = this.ls.retriveUserData().user.username;
   }
+
+  userInfo:any
 
   getProvinces(){
     this.RS.getProvinces().subscribe(
@@ -37,6 +45,10 @@ export class NavbarComponent implements OnInit {
         // this.toastr.error(error.error, 'Error');
       }
     );
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
   getUserinfo(){
