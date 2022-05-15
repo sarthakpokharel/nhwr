@@ -22,6 +22,11 @@ export class RegistryService {
     // return this.api.update(this.path,id,data);
   }
 
+  updateSelf(id: any, data: any) {
+
+    return this.http.put(this.baseUrl + 'user-register/change-pasword-self/' + id, data);
+  }
+
   getList(perPage: string | number, page: string | number, searchTerm?: string, sortKey?: string, sortDir?: boolean) {
 
     let urlPart = '?perPage=' + perPage + '&page=' + page;

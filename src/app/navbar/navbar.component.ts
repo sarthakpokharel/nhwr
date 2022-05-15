@@ -5,6 +5,8 @@ import { RegistryService } from '../registry/registry.service';
 import { Router } from '@angular/router';
 import { TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -14,8 +16,20 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 export class NavbarComponent implements OnInit {
   islogedin:any;
 
+  changePasswordForm: any
+  changePasswordFormLayout: any;
+
   modalRef?: BsModalRef;
-  constructor(private ls: LoginService,private router:Router,private RS: RegistryService, private modalService: BsModalService) { }
+  model: any;
+  constructor(private ls: LoginService,private router:Router,private RS: RegistryService, private modalService: BsModalService, private fb: FormBuilder, private ts: ToastrService) {
+    this.changePasswordFormLayout = {
+      opassword: [null, [Validators.required]],
+      password: [null, [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]],
+      rpassword: [null, [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$')]]
+    }
+
+    this.changePasswordForm = fb.group(this.changePasswordFormLayout)
+   }
 
   ngOnInit(): void {
     this.getUserinfo();
@@ -23,7 +37,46 @@ export class NavbarComponent implements OnInit {
     this.userInfo = this.ls.retriveUserData().user.username;
   }
 
+  showPassword(e: any){
+    const el: any = e.target;
+    const element = el.parentElement?.parentElement.previousElementSibling?.firstChild
+    if (element.type == "text"){
+      el.classList.remove('bi-eye-fill');
+      el.classList.add('bi-eye-slash-fill')
+      element.type = "password";
+     
+    }  
+    else{
+      element.type = "text";
+      el.classList.remove('bi-eye-slash-fill')
+      el.classList.add('bi-eye-fill');
+      
+    }
+  }
+
   userInfo:any
+
+  changePassword(){
+    if (this.changePasswordForm.value.password == this.changePasswordForm.value.rpassword && (this.changePasswordForm.value.password!==null && this.changePasswordForm.value.rpassword!==null)){
+      this.model = this.changePasswordForm.value;
+      this.updatePassword(this.ls.retriveUserData().user.userid);
+    }
+    else{
+      this.ts.error("Passwords do not match","Error")
+    }
+  }
+
+  updatePassword(id: any){
+    let upd = this.model;
+    this.RS.updateSelf(id, upd).subscribe(result => {
+      this.ts.success('Item Successfully Updated!', 'Success');
+      this.changePasswordForm =this.fb.group(this.changePasswordFormLayout);
+      this.modalRef?.hide()
+      // this.getList();
+    }, error => {
+      this.ts.error(error.error, 'Error');
+    });
+  }
 
   getProvinces(){
     this.RS.getProvinces().subscribe(
@@ -48,7 +101,8 @@ export class NavbarComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+    this.modalRef = this.modalService.show(template,
+      Object.assign({}, { class: 'gray modal-lg' }));
   }
 
   getUserinfo(){

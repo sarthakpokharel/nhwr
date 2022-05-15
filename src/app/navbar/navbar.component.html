@@ -40,13 +40,13 @@
 
             <li class="nav-item dropdown" *ngIf="islogedin==1">
                 <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)"
-                    data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true" aria-expanded="false">User Registration</a>
+                    data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true"
+                    aria-expanded="false">User Registration</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
                         routerLink="user-register">Register new User</a>
                     <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
                         routerLink="registered-user-list">List of Registered Users</a>
-
                 </div>
             </li>
 
@@ -101,9 +101,23 @@
                         routerLink="/council">Council</a>
                 </div>
             </li>
-            <li class="nav-item 6" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link"
+
+            <!-- <li class="nav-item 6" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link"
                     (click)="logout()">Logout [{{userInfo}}]
-                </a></li>
+                </a></li> -->
+
+            <li class="nav-item dropdown" *ngIf="islogedin==1">
+                <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)"
+                    data-toggle="dropdown" href="javascript:void(0)">Profile</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    (click)="openModal(template)">Change Password</a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        (click)="logout()">Logout [{{userInfo}}]</a>
+
+                </div>
+            </li>
+
             <li class="nav-item 6" *ngIf="islogedin==0"><a href="javascript:void(0)" class="nav-link"
                     (click)="changeContent($event)" routerLink="/admin-login">Admin
                     Login</a></li>
@@ -121,24 +135,79 @@
 </div>
 
 <ng-template #template>
-   
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Change Password: {{userInfo}}</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
     <div class="modal-body">
-      <div class="row" style="margin-left: 33px;">
-        <h4>
-            Are you sure you want to Log Out?
-        </h4>
 
-      </div>
-      <br>
-      <div class="row">
-          <button class="btn btn-danger" style="margin-left: 45px; width: 100px; box-shadow: 0 10px 60px 0 rgba(238, 39, 39, 0.4)" (click)="logout()">
-            Yes
-          </button>
-          <button class="btn btn-warning" style="margin-left: 175px; width: 100px;box-shadow: 0 10px 60px 0 rgba(245, 234, 76, 0.4)">
-            No
-          </button>
-      </div>
+        <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
 
-       
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Old Password</label>
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="password" formControlName="opassword">
+                    <span style="color: red;"
+                        *ngIf="changePasswordForm.controls.opassword && changePasswordForm.controls.opassword.invalid && changePasswordForm.controls.opassword.touched">
+                        *Required Field
+                    </span>
+                </div>
+                <div class="col-md-1 mt-1">
+                    <a (click)="showPassword($event)">
+                        <i class="bi bi-eye-slash-fill fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>New Password</label>
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="password" formControlName="password">
+                    <span style="color: red;"
+                        *ngIf="changePasswordForm.controls.password && changePasswordForm.controls.password.invalid && changePasswordForm.controls.password.touched">
+                        Passwords must match and be Minimum eight characters,
+                        at least one uppercase letter, one lowercase letter, one number and one special character
+                    </span>
+                </div>
+                <div class="col-md-1 mt-1">
+                    <a (click)="showPassword($event)">
+                        <i class="bi bi-eye-slash-fill fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Confirm Password</label>
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="password" formControlName="rpassword">
+                    <span style="color: red;"
+                        *ngIf="changePasswordForm.controls.rpassword && changePasswordForm.controls.rpassword.invalid && changePasswordForm.controls.rpassword.touched">
+                        Passwords must match and be Minimum eight characters,
+                        at least one uppercase letter, one lowercase letter, one number and one special character
+                    </span>
+                </div>
+                <div class="col-md-1 mt-1">
+                    <a (click)="showPassword($event)">
+                        <i class="bi bi-eye-slash-fill fa-lg"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <button class="btn btn-success mt-2" style="box-shadow: 0 10px 30px 0 rgba(95, 233, 95, 0.4);
+            border-radius: 5px 5px 5px 5px; float: right;">
+                Change Password
+            </button>
+
+        </form>
+    
     </div>
 </ng-template>
