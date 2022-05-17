@@ -1,0 +1,133 @@
+<!-- <div id="oas_reading" class="oas-reading"> -->
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="card">
+
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i> Registered Users List
+            </div>
+
+            <div class="card-body">
+                <form class="form-srch" [formGroup]="srchForm">
+
+                    <div class="input-group">
+
+                        <input class="form-control" placeholder="search" id="srch_term" name="srch_term" type="text"
+                            formControlName="srch_term" (keyup.enter)="search()">
+
+                        <button class="btn btn-default" type="button" (click)="search()"><i
+                                class="fa fa-search"></i></button>
+
+                    </div>
+                </form>
+                <hr />
+
+                <table class="table table-bordered table-striped table-sm tbl-sortable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Organization</th>
+                            <th>Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor=" let item of lists; let i = index; ">
+                            <td>{{item.id}}</td>
+                            <td>{{item.username}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.role}}</td>
+                            <td>{{item.hf_name}}</td>
+                            <td class="text-center"><a href="javascript:void(0)" (click)="openModal(template, item.id)"><i
+                                        class="bi bi-lock-fill fa-lg" style="color: black;"></i></a></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <form [formGroup]="srchForm">
+                    <div class="row" style="float:right">
+                        <div class="col-md-12 smallbr">
+                            Entries <select name="entries" id="entries" formControlName="entries" (change)="search()">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select> &nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                    </div>
+                </form>
+
+                <div class="col-md-6">
+                    <pagination [rotate]="true" [maxSize]="5" [totalItems]="pagination.total"
+                        [(ngModel)]="pagination.currentPage" [boundaryLinks]="true" [itemsPerPage]="pagination.perPage"
+                        (pageChanged)="paginatedData($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;"></pagination>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- </div> -->
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Change Password</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>New Password</label>
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="password" formControlName="password">
+                    <span style="color: red;"
+                        *ngIf="changePasswordForm.controls.password && changePasswordForm.controls.password.invalid && changePasswordForm.controls.password.touched">
+                        Passwords must match and be Minimum eight characters,
+                        at least one uppercase letter, one lowercase letter, one number and one special character
+                    </span>
+                </div>
+                <div class="col-md-1 mt-1">
+                    <a (click)="showPassword($event)">
+                        <i class="bi bi-eye-slash-fill fa-lg"></i>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Confirm Password</label>
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="password" formControlName="rpassword">
+                    <span style="color: red;"
+                        *ngIf="changePasswordForm.controls.rpassword && changePasswordForm.controls.rpassword.invalid && changePasswordForm.controls.rpassword.touched">
+                        Passwords must match and be Minimum eight characters,
+                        at least one uppercase letter, one lowercase letter, one number and one special character
+                    </span>
+                </div>
+                <div class="col-md-1 mt-1">
+                    <a (click)="showPassword($event)">
+                        <i class="bi bi-eye-slash-fill fa-lg"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <button class="btn btn-success mt-2" style="box-shadow: 0 10px 30px 0 rgba(95, 233, 95, 0.4);
+            border-radius: 5px 5px 5px 5px; float: right;">
+                Change Password
+            </button>
+
+        </form>
+    </div>
+</ng-template>
