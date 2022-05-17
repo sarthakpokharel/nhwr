@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
       },
       error => {
         console.log(error.error.message);
-        if(error.error.message=="Token Exprired" ||error.error.message=="Illigal token"){
+        if(error.error.message=="Token Exprired" || error.error.message=="Illigal token"){
           this.ls.removeUserData();
           // window.location.reload();
           this.router.navigate(['/']);
@@ -45,7 +45,7 @@ export class NavbarComponent implements OnInit {
     }else{
       this.islogedin=1;
     }
-    // console.log(this.ls.retriveUserData());
+    console.log(this.ls.retriveUserData());
   }
 
   logout() {

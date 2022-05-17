@@ -18,6 +18,7 @@ import { OfficeComponent } from './office/office.component';
 import { ReglistComponent } from './reglist/reglist.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { TriallComponent } from './triall/triall.component';
+import { AuthGuard, LoginGuard } from './auth.guard';
 
 
 
@@ -36,11 +37,13 @@ const routes: Routes = [
       },
       {
         path: 'registry',
-        component: RegistryComponent
+        component: RegistryComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'reglist',
-        component: ReglistComponent
+        component: ReglistComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'search',
@@ -51,35 +54,43 @@ const routes: Routes = [
       },
       {
         path: 'user-register',
-        component: UserRegisterComponent
+        component: UserRegisterComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'group',
-        component: GroupComponent
+        component: GroupComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'subgroup',
-        component: SubGroupComponent
+        component: SubGroupComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'level',
-        component: LevelComponent
+        component: LevelComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'post',
-        component: PostComponent
+        component: PostComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'darbandi/:id',
-        component: OfficeComponent
+        component: OfficeComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'emptype',
-        component: EmptypeComponent
+        component: EmptypeComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'council',
-        component: CouncilComponent
+        component: CouncilComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'trial',
