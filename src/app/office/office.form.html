@@ -26,6 +26,36 @@
             <input type="hidden" class="form-control" name="detailsid" formControlName="detailsid">
            
             <div class="row col-md-12">
+
+                <div class="col-md-6">
+                    <div class="row input-group col-md-12">
+                        <div class="col-md-4">
+                            <label>काउन्सिल </label>
+                        </div>
+                        <div class="col-md-8">
+                           
+                            <select class="form-control" name="council" formControlName="council" #cid (change)="getQualification(eid.value,cid.value)">
+                                <option value="">--    छान्नुहोस् --</option>
+                                <option *ngFor=" let item of council " [value]="item.id">{{ item.namenp}}</option>
+                            </select>	
+                            <span style="color: red;"
+                            *ngIf="officeForm.controls.council && officeForm.controls.council.invalid && officeForm.controls.council.touched">Required Field</span>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row input-group col-md-12">
+                            <div class="col-md-4">
+                                <label>काउन्सिल नं. </label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="council_no" formControlName="council_no">
+                                <span style="color: red;"
+                            *ngIf="officeForm.controls.council_no && officeForm.controls.council_no.invalid && officeForm.controls.council_no.touched">Required Field</span>
+                            </div>
+                        </div>
+                        </div>
+
                 <div class="col-md-6">
             <div class="row input-group col-md-12">
                 <div class="col-md-4 forRequired">
@@ -67,17 +97,21 @@
                     <label>इमेल</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" name="email" formControlName="email">
+                    <input type="email" class="form-control" name="email" formControlName="email">
+                    <span style="color: red;"
+                    *ngIf="officeForm.controls.email && officeForm.controls.email.invalid && officeForm.controls.email.touched">Required Field</span>
                 </div>
             </div>
             </div>
             <div class="col-md-6">
             <div class="row input-group col-md-12">
                 <div class="col-md-4">
-                    <label>फोन नं.</label>
+                    <label>मोवाइल  नं.</label>
                 </div>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" name="mobile" formControlName="mobile">
+                    <input type="number" class="form-control" name="mobile" formControlName="mobile">
+                    <span style="color: red;"
+                    *ngIf="officeForm.controls.mobile && officeForm.controls.mobile.invalid && officeForm.controls.mobile.touched">Required Field</span>
                 </div>
             </div>
             </div>
@@ -89,10 +123,12 @@
                     </div>
                     <div class="col-md-8">
                        
-                        <select class="form-control" name="emptype" formControlName="emptype">
+                        <select class="form-control" name="emptype" formControlName="emptype" #tid (change)="getPis(tid.value)">
                             <option value="">-- छान्नुहोस् --</option>
                             <option *ngFor=" let item of emptype " [value]="item.id">{{ item.namenp}}</option>
                         </select>
+                        <span style="color: red;"
+                        *ngIf="officeForm.controls.emptype && officeForm.controls.emptype.invalid && officeForm.controls.emptype.touched">Required Field</span>
                     </div>
                 </div>
                 </div>
@@ -108,6 +144,8 @@
                                 <option value="">-- छान्नुहोस् --</option>
                                 <option *ngFor=" let item of levl " [value]="item.id">{{ item.namenp}}</option>
                             </select>
+                            <span style="color: red;"
+                            *ngIf="officeForm.controls.level && officeForm.controls.level.invalid && officeForm.controls.level.touched">Required Field</span>
                         </div>
                     </div>
                     </div>
@@ -119,6 +157,8 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="date" class="form-control" name="apoint_date" formControlName="apoint_date">
+                                <span style="color: red;"
+                                *ngIf="officeForm.controls.apoint_date && officeForm.controls.apoint_date.invalid && officeForm.controls.apoint_date.touched">Required Field</span>
                             </div>
                         </div>
                         </div>
@@ -129,6 +169,8 @@
                                 </div>
                                 <div class="col-md-8">
                                     <input type="date" class="form-control" name="att_date" formControlName="att_date">
+                                    <span style="color: red;"
+                                    *ngIf="officeForm.controls.att_date && officeForm.controls.att_date.invalid && officeForm.controls.att_date.touched">Required Field</span>
                                 </div>
                             </div>
                             </div>
@@ -136,10 +178,15 @@
                             <div class="col-md-6">
                                 <div class="row input-group col-md-12">
                                     <div class="col-md-4">
-                                        <label>शैक्षिक योग्यता </label>
+                                        <label>पद संग सम्बन्धित माथिल्लो शैक्षिक योग्यता </label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="education" formControlName="education">
+                                        <select class="form-control" name="education" formControlName="education" #eid (change)="getQualification(eid.value,cid.value)" >
+                                            <option value="">--    छान्नुहोस् --</option>
+                                            <option *ngFor=" let item of elevel " [value]="item.id">{{ item.namenp}}</option>
+                                        </select>
+                                        <span style="color: red;"
+                                    *ngIf="officeForm.controls.education && officeForm.controls.education.invalid && officeForm.controls.education.touched">Required Field</span>
                                     </div>
                                 </div>
                                 </div>
@@ -147,27 +194,31 @@
                                 <div class="col-md-6">
                                     <div class="row input-group col-md-12">
                                         <div class="col-md-4">
-                                            <label>काउन्सिल </label>
+                                            <label>Qualification </label>
                                         </div>
                                         <div class="col-md-8">
-                                           
-                                            <select class="form-control" name="council" formControlName="council" >
+                                            <select class="form-control" name="qualification" formControlName="qualification" #eid  >
                                                 <option value="">--    छान्नुहोस् --</option>
-                                                <option *ngFor=" let item of council " [value]="item.id">{{ item.namenp}}</option>
-                                            </select>	
+                                                <option *ngFor=" let item of qual" [value]="item.id">{{ item.namenp}}</option>
+                                            </select>
+                                            <span style="color: red;"
+                                        *ngIf="officeForm.controls.qualification && officeForm.controls.qualification.invalid && officeForm.controls.qualification.touched">Required Field</span>
                                         </div>
                                     </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="row input-group col-md-12">
-                                            <div class="col-md-4">
-                                                <label>काउन्सिल नं. </label>
+
+                               
+                                        <div class="col-md-6" id="pisno" style="display: none;">
+                                            <div class="row input-group col-md-12">
+                                                <div class="col-md-4">
+                                                    <label>PIS Number </label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" class="form-control" name="pis" formControlName="pis">
+                                                   
+                                                </div>
                                             </div>
-                                            <div class="col-md-8">
-                                                <input type="text" class="form-control" name="council_no" formControlName="council_no">
                                             </div>
-                                        </div>
-                                        </div>
 
 
 

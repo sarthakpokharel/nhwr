@@ -79,6 +79,32 @@ export class OfficeComponent implements OnInit,AfterViewInit {
     
   }
 
+  removePost(wid:any,oid:any,post:any,darbandiid:any,detailsid:any){
+    if (window.confirm('Are sure you want to Remove the Post?')) {
+      this.RS.removePost(wid,darbandiid,detailsid,oid).subscribe((result: any) => {
+        this.toastr.success('Item Successfully Deleted!', 'Success');
+        // this.darid=this._Activatedroute.snapshot.paramMap.get("id");
+        this.getTree(wid);
+      }, (error: { error: any; }) => {
+        this.toastr.error(error.error, 'Error');
+      });
+    }
+  }
+
+  removeemp(did:any,empid:any,orgid:any){
+    // alert(orgid);
+    if (window.confirm('Are sure you want to Remove the Employee?')) {
+      this.RS.removeEmp(empid).subscribe((result: any) => {
+        this.toastr.success('Item Successfully Deleted!', 'Success');
+        // this.darid=this._Activatedroute.snapshot.paramMap.get("id");
+        this.getTree(orgid);
+      }, (error: { error: any; }) => {
+        this.toastr.error(error.error, 'Error');
+      });
+    }
+  
+  }
+
   hideAll(e: any) {
 
     var ele: HTMLElement = e.target;
@@ -173,6 +199,8 @@ export class OfficeComponent implements OnInit,AfterViewInit {
     
   }
 
+  
+
 
   modalRef:any;
   addSection(sid:any,oid:any,post:any,darbandiid:any,detailsid:any) {
@@ -186,6 +214,13 @@ export class OfficeComponent implements OnInit,AfterViewInit {
   editSection(sid:any,oid:any,post:any,darbandiid:any,detailsid:any,empid:any) {
    
     this.modalRef = this.modalService.show(OfficeCrud,{initialState:{workforceid:sid,isEdit:1,orgidint:oid,tree:this.tree,orgchange:this.orgchange,post:post,darbandiid:darbandiid,detailsid:detailsid,empid:empid}});
+    this.modalRef.content.afterSave.subscribe(()=>{
+      this.getSections();
+    });
+  }
+
+  addDarbandi(did:any,post:any){
+    this.modalRef = this.modalService.show(DarbandiCrud,{initialState:{tree:this.tree,orgchange:this.orgchange,post:post,darbandiid:did}});
     this.modalRef.content.afterSave.subscribe(()=>{
       this.getSections();
     });
@@ -231,15 +266,17 @@ export class OfficeCrud implements OnInit{
       nameen: new FormControl('', Validators.required),
       namenp: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
-      email: new FormControl(''),
-      mobile: new FormControl(''),
-      emptype: new FormControl(''),
-      level: new FormControl(''),
-      apoint_date: new FormControl(''),
-      att_date: new FormControl(''),
-      education: new FormControl(''),
-      council: new FormControl(''),
-      council_no: new FormControl(''),
+      email: new FormControl('', [Validators.required]),
+      mobile: new FormControl('', [Validators.required]),
+      emptype: new FormControl('', [Validators.required]),
+      level: new FormControl('', [Validators.required]),
+      apoint_date: new FormControl('', [Validators.required]),
+      att_date: new FormControl('', [Validators.required]),
+      education: new FormControl('', [Validators.required]),
+      council: new FormControl('', [Validators.required]),
+      council_no: new FormControl('', [Validators.required]),
+      pis: new FormControl(''),
+      qualification: new FormControl('', [Validators.required]),
       
     })
     
@@ -252,6 +289,7 @@ export class OfficeCrud implements OnInit{
     this.getEmptype();
     this.getLevel();
     this.getcouncil();
+    this.geteduLevel();
   
   }
 
@@ -268,6 +306,14 @@ export class OfficeCrud implements OnInit{
     );
  
 
+}
+
+getPis(tid:any){
+  if(tid==1 || tid==8){
+    $("#pisno").show();
+  }else{
+    $("#pisno").hide();
+  }
 }
 
 getLevel() {
@@ -300,6 +346,33 @@ getcouncil() {
 
 }
 
+geteduLevel() {
+    
+  this.RS.geteduLevel().subscribe(
+    (result: any) => {
+      this.elevel = result.data;
+      // console.log(this.provinces);
+    },
+    error => {
+      this.toastr.error(error.error, 'Error');
+    }
+  );
+
+
+}
+
+getQualification(eid:any,cid:any){
+  this.RS.getQualification(eid,cid).subscribe(
+    (result: any) => {
+      this.qual = result.data;
+      // console.log(this.provinces);
+    },
+    error => {
+      this.toastr.error(error.error, 'Error');
+    }
+  );
+}
+
   
   
   
@@ -309,6 +382,7 @@ getcouncil() {
       (result: any) => {
         this.model = result;
         this.officeForm.patchValue(result);
+        this.getQualification(result.education,result.council);
         // this.getFiles(result.headerid);
       },
       (error: any) => {
@@ -357,6 +431,95 @@ getcouncil() {
       });
     } else {
       this.RS.create(upd).subscribe(result => {
+        this.toastr.success('Item Successfully Saved!', 'Success');
+        this.officeForm.reset();
+        this.afterSave.emit();
+        this.modalRef.hide();
+        // this.closebutton.nativeElement.click();
+        // this.orgchange.nativeElement.click();
+        
+      }, error => {
+        this.toastr.error(error.error, 'Error');
+      });
+    }
+  }
+}
+
+@Component({
+  templateUrl: './darbandi.form.html',
+  styleUrls: ['./office.component.scss'],
+})
+export class DarbandiCrud implements OnInit{
+  public afterSave:EventEmitter<any>=new EventEmitter();
+  
+  [x: string]: any;
+  
+  html!: '';
+
+  
+  @Input() post:any;
+  
+  @Input() isEdit:any;
+  @Input() darbandiid:any;
+ 
+  
+  officeForm!: FormGroup
+  
+
+  constructor(public modalRef: BsModalRef, private toastr: ToastrService, private RS: OfficeService, private fb:FormBuilder,private ofc:OfficeComponent){
+    this.officeForm = new FormGroup({
+      id: new FormControl(''),
+      darbandiid: new FormControl(''),
+      post_no: new FormControl('0'),
+      post_no_karar: new FormControl('0'),
+     
+      
+    })
+    
+  }
+  model:any;
+  ngOnInit(){
+    
+  
+  }
+
+  
+  officeFormSubmit() {
+
+    if (this.officeForm.valid) {
+      if(this.isEdit!=1){
+        // this.officeForm.value.parentofficeid=this.officeid;
+      }
+    
+      // this.officeForm.value.orgidint=this.orgidint;
+      // this.officeForm.value.workforceid=this.workforceid;
+      this.officeForm.value.darbandiid=this.darbandiid;
+      // this.officeForm.value.detailsid=this.detailsid;
+      this.model = this.officeForm.value;
+      this.createItem(this.officeForm.value.id);
+    } else {
+      Object.keys(this.officeForm.controls).forEach(field => {
+        const singleFormControl = this.officeForm.get(field);
+        singleFormControl!.markAsTouched({onlySelf: true});
+      });
+    }
+  }
+
+  createItem(id = null) {
+    let upd = this.model;
+    if (id != "" && id !=null) {
+
+      // this.RS.update(id, upd).subscribe(result => {
+      //   this.toastr.success('Item Successfully Updated!', 'Success');
+      //   this.officeForm.reset();
+      //   this.afterSave.emit();
+      //   this.modalRef.hide();
+       
+      // }, error => {
+      //   this.toastr.error(error.error, 'Error');
+      // });
+    } else {
+      this.RS.createDarbandi(upd).subscribe(result => {
         this.toastr.success('Item Successfully Saved!', 'Success');
         this.officeForm.reset();
         this.afterSave.emit();

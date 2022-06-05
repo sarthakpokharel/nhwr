@@ -1,0 +1,205 @@
+<!-- <div id="oas_reading" class="oas-reading"> -->
+    <style>
+        .form-control {
+            margin-bottom: 15px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><strong>Report</strong></div>
+                <div class="card-body">
+                    <form class="form-signin" [formGroup]= "groupForm">
+                        <input type="hidden" class="form-control" name="id" formControlName="id"> 
+                        <div class="row col-md-12">
+
+                            <div class="row input-group col-md-6">
+                                <div class="col-md-4 forRequired">
+                                    <label>Organization Type</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-control" name="orgtype" #orgs  formControlName="orgtype"  (change)="getOrgField(orgs.value)">
+                                    <option value="">Select One</option>
+                                    <option value="1">Administrative Unit</option>
+                                   
+                                    <option value="4">स्वास्थ्य संस्था  </option>
+                                </select>
+                               
+        
+                                </div>
+                                </div>
+    
+                                <div id="admlevel"  class="row input-group col-md-6">
+                                    <div class="col-md-4 ">
+                                        <label>Admin Level</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="admlvl" #adm formControlName="admlvl"  (change)="changeFlag(adm.value)">
+                                        <option value="">Select One</option>
+                                        <option *ngFor=" let item of admlvl " [value]="item.id">{{ item.namenp}}</option>
+                                    </select>
+                                       
+            
+                                    </div>
+                                    </div>
+    
+                            <div class="row input-group col-md-6" id="province">
+                                <div class="col-md-4 forRequired">
+                                    <label>Province</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-control" name="provinceid" #pid formControlName="provinceid"
+                                    (change)="getDistricts(pid.value);getOffices(pid.value)">
+                                    <option value="0">National</option>
+                                    <option *ngFor="let item of provinces" [value]="item.pid">{{ item.namenp}}</option>
+                                </select>
+                                   
+        
+                                </div>
+                                </div>
+    
+                                <div class="row input-group col-md-6" id="dist">
+                                    <div class="col-md-4 forRequired">
+                                        <label>District</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select class="form-control" name="districtid" #did formControlName="districtid"
+                                        (change)="getPalika(did.value)">
+                                        <option value="0">All</option>
+                                        <option *ngFor=" let item of district " [value]="item.districtid">{{ item.namenp}}</option>
+                                    </select>
+                                       
+            
+                                    </div>
+                                    </div>
+    
+                                    <div class="row input-group col-md-6" id="munc">
+                                        <div class="col-md-4 forRequired">
+                                            <label>Municipality</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <select class="form-control" name="palika" #pal formControlName="palika"
+                                            (change)="getHf(pal.value)">
+                                            <option value="0">All</option>
+                                            <option *ngFor=" let item of palika " [value]="item.vcid">{{ item.namenp}}</option>
+                                        </select>
+                                           
+                
+                                        </div>
+                                        </div>
+    
+    
+    
+                            <div id="hfs" style="display: none;" class="row input-group col-md-6">
+                                <div class="col-md-4 forRequired">
+                                    <label>Organization/Health Facility</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-control" name="org" formControlName="org" #orgid >
+                                        <option value="0" >All</option>
+                                        <option *ngFor=" let item of hf " [value]="item.id">{{ item.namenp}}</option>
+                                      
+                                        
+                                    </select>
+                                   
+        
+                                </div>
+                                </div>
+    
+                                <div  id="office" style="display: none;" class="row input-group col-md-6" >
+                                    <div class="col-md-4 forRequired">
+                                        <label>Organization</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                       
+                                        <select class="form-control" name="officeid" #ofc  formControlName="officeid" >
+                                            <option value="0" >All</option>
+                                            <option *ngFor=" let item of hfo " [value]="item.id">{{ item.namenp}}</option>
+                                            
+                                        </select>
+                                       
+                                       
+            
+                                    </div>
+                                  
+                                    </div>
+    
+    
+                                   
+                                        
+                                         
+                                            </div>
+                      
+                        
+                        
+                    <!-- <div class="row input-group col-md-12">
+                        <div class="col-md-4 forRequired">
+                            <label>Admin Level</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" name="admlvl" formControlName="admlvl" #aid (change)="getAdmin(aid.value)">
+                                <option value="">Select one...</option>
+                                <option *ngFor=" let item of admlvl " [value]="item.id">{{ item.namenp}}</option>
+                            </select>
+                            <span style="color: red;"
+                                *ngIf="groupForm.controls.admlvl && groupForm.controls.admlvl.invalid && groupForm.controls.admlvl.touched">*Required
+                                Field
+                            </span>
+
+                        </div>
+                    </div><br>
+
+                    <div class="row input-group col-md-12" id="prov" style="display: none;">
+                        <div class="col-md-4 forRequired">
+                            <label>Province</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" name="province" formControlName="province" #pid (change)="getOffices(pid.value)">
+                                <option value="0">All</option>
+                                <option *ngFor=" let item of provinces " [value]="item.pid">{{ item.namenp}}</option>
+                            </select>
+                           
+
+                        </div>
+                    </div><br>
+                    <div class="row input-group col-md-12">
+                        <div class="col-md-4 forRequired">
+                            <label>Organization</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" name="org" formControlName="org" #org>
+                                <option value="0">All</option>
+                                <option *ngFor=" let item of hfo " [value]="item.id">{{ item.namenp}}</option>
+                            </select>
+                           
+
+                        </div>
+                    </div>
+                    <br> -->
+
+                        
+                   
+                   
+    
+                      
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary px-4" (click)="getReports(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >Export Excel</button>
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-info px-4" (click)="getReportsView(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >view</button>
+                            </div>
+                            <!-- <div class="col-6 text-right">
+                                <button type="button" (click)= "resetForm()" class="btn btn-danger px-4">Reset</button>
+                            </div> -->
+                        </div>
+    
+    
+    
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+    
+      
+    </div>
+    <!-- </div> -->

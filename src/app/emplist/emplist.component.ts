@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { EmptypeService } from './emptype.service';
+import { EmplistService } from './emplist.service';
+import { AppConfig } from '../app.config';
+
 
 @Component({
-  selector: 'app-emptype',
-  templateUrl: './emptype.component.html',
-  styleUrls: ['./emptype.component.scss']
+  selector: 'app-emplist',
+  templateUrl: './emplist.component.html',
+  styleUrls: ['./emplist.component.scss']
 })
-export class EmptypeComponent implements OnInit {
+export class EmplistComponent implements OnInit {
+
+  baseUrl: string = AppConfig.baseUrl;
+  url= this.baseUrl+'registry';
 
   groupForm!: FormGroup
 
@@ -29,13 +34,12 @@ export class EmptypeComponent implements OnInit {
   srchForm: FormGroup;
   formLayout: any;
 
-  constructor(private RS: EmptypeService, private toastr: ToastrService, private fb: FormBuilder) { 
+  constructor(private RS: EmplistService, private toastr: ToastrService, private fb: FormBuilder) { 
     
     this.formLayout = {
       id:[],
       nameen: ['',Validators.required],
       namenp: ['', [Validators.required]],
-      code: ['', [Validators.required]],
       status: ['1', [Validators.required]],
       
     }
@@ -95,6 +99,27 @@ export class EmptypeComponent implements OnInit {
 
   resetForm(){
     this.groupForm =this.fb.group(this.formLayout);
+  }
+
+  transferEmp(id :any){
+    alert(id);
+  } 
+  retire(id:any){
+    alert(id);
+  }
+  download(id:any){
+    
+    //  const h=this.RS.downloadcsv(id);
+    window.location.href = this.url+"/downloadcsv?id="+id;
+    // this.RS.downloadcsv(id).subscribe(
+    //   (result: any) => {
+    //     // this.orglists = result.data;
+    //   },
+    //   error => {
+    //     console.log(error);
+    //     this.toastr.error(error.error, 'Error');
+    //   }
+    // );
   }
 
   getList(pageno?: number | undefined) {

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { EmptypeService } from './emptype.service';
+import { HealthOfficeService } from './healthoffice.service';
 
 @Component({
-  selector: 'app-emptype',
-  templateUrl: './emptype.component.html',
-  styleUrls: ['./emptype.component.scss']
+  selector: 'app-healthoffice',
+  templateUrl: './healthoffice.component.html',
+  styleUrls: ['./healthoffice.component.scss']
 })
-export class EmptypeComponent implements OnInit {
+export class HealthOfficeComponent implements OnInit {
 
   groupForm!: FormGroup
 
@@ -28,14 +28,15 @@ export class EmptypeComponent implements OnInit {
 
   srchForm: FormGroup;
   formLayout: any;
+  samuha: any;
 
-  constructor(private RS: EmptypeService, private toastr: ToastrService, private fb: FormBuilder) { 
+  constructor(private RS: HealthOfficeService, private toastr: ToastrService, private fb: FormBuilder) { 
     
     this.formLayout = {
       id:[],
+      admlvl: ['',Validators.required],
       nameen: ['',Validators.required],
       namenp: ['', [Validators.required]],
-      code: ['', [Validators.required]],
       status: ['1', [Validators.required]],
       
     }
@@ -53,7 +54,23 @@ export class EmptypeComponent implements OnInit {
   ngOnInit(): void {
     this.pagination.perPage = this.perPages[0];
     this.getList();
+    this.getAdmlvl();
   }
+
+  getAdmlvl() {
+    
+    this.RS.getAdmlvl().subscribe(
+      (result: any) => {
+        this.samuha = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+ 
+
+}
 
   groupFormSubmit(){
     if (this.groupForm.valid) {

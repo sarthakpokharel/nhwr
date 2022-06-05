@@ -17,7 +17,12 @@ import { TrialComponent } from './trial/trial.component';
 import { OfficeComponent } from './office/office.component';
 import { ReglistComponent } from './reglist/reglist.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { HealthOfficeComponent } from './health-office/healthoffice.component';
 import { AuthGuard, LoginGuard } from './auth.guard';
+import { EmplistComponent } from './emplist/emplist.component';
+import { EdulevelComponent } from './edulevel/edulevel.component';
+import { QualificationComponent } from './qualification/qualification.component';
+import { ReportComponent } from './report/report.component';
 
 import { RegisteredUserListComponent } from './registered-user-list/registered-user-list.component';
 
@@ -47,6 +52,11 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
+        path: 'emplist',
+        component: EmplistComponent,
+        canActivate: [AuthGuard]
+      },
+      {
         path: 'search',
         component: SearchComponent
       },{
@@ -64,6 +74,11 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
+        path: 'report',
+        component: ReportComponent,
+        canActivate: [AuthGuard]
+      },
+      {
         path: 'subgroup',
         component: SubGroupComponent,
         canActivate: [AuthGuard]
@@ -74,8 +89,24 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
+        path: 'qualification',
+        component: QualificationComponent,
+        canActivate: [AuthGuard]
+      },
+      {
         path: 'post',
         component: PostComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'edulevel',
+        component: EdulevelComponent,
+        canActivate: [AuthGuard]
+      },
+
+      {
+        path: 'health-office',
+        component: HealthOfficeComponent,
         canActivate: [AuthGuard]
       },
       {

@@ -20,9 +20,8 @@
                             <div class="col-md-8">
                                 <select class="form-control" name="orgtype" #orgs  formControlName="orgtype" (change)="getOrgField(orgs.value)">
                                 <option value="">Select One</option>
-                                <option value="1">स्वास्थ्य  सेवा विभाग</option>
-                                <option value="2">स्वास्थ्य  सेवा निर्देशनालय</option>
-                                <option value="3">जिल्ला जनस्वास्थ्य  कार्यालय </option>
+                                <option value="1">Administrative Unit</option>
+                               
                                 <option value="4">स्वास्थ्य संस्था  </option>
                             </select>
                                
@@ -30,13 +29,27 @@
                             </div>
                             </div>
 
-                        <div class="row input-group col-md-6">
+                            <div *ngIf="flag==1" class="row input-group col-md-6">
+                                <div class="col-md-4 ">
+                                    <label>Admin Level</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select class="form-control" name="admlvl" #adm formControlName="admlvl" (change)="changeFlag(adm.value)">
+                                    <option value="">Select One</option>
+                                    <option *ngFor=" let item of admlvl " [value]="item.id">{{ item.namenp}}</option>
+                                </select>
+                                   
+        
+                                </div>
+                                </div>
+
+                        <div class="row input-group col-md-6" id="province">
                             <div class="col-md-4 forRequired">
                                 <label>Province</label>
                             </div>
                             <div class="col-md-8">
                                 <select class="form-control" name="provinceid" #pid formControlName="provinceid"
-                                (change)="getDistricts(pid.value)">
+                                (change)="getDistricts(pid.value);getOffices(pid.value)">
                                 <option value="">Select One</option>
                                 <option *ngFor=" let item of provinces " [value]="item.pid">{{ item.namenp}}</option>
                             </select>
@@ -45,7 +58,7 @@
                             </div>
                             </div>
 
-                            <div class="row input-group col-md-6">
+                            <div class="row input-group col-md-6" id="dist">
                                 <div class="col-md-4 forRequired">
                                     <label>District</label>
                                 </div>
@@ -60,7 +73,7 @@
                                 </div>
                                 </div>
 
-                                <div class="row input-group col-md-6">
+                                <div class="row input-group col-md-6" id="munc">
                                     <div class="col-md-4 forRequired">
                                         <label>Municipality</label>
                                     </div>
@@ -75,12 +88,12 @@
                                     </div>
                                     </div>
 
-                                    <div class="row input-group col-md-6">
+                                    <div class="row input-group col-md-6" id="ward">
                                         <div class="col-md-4 forRequired">
                                             <label>Ward No.</label>
                                         </div>
                                         <div class="col-md-8">
-                                            <select class="form-control" name="ward" #wd formControlName="ward" (change)="getHf(pal.value,wd.value)">
+                                            <select class="form-control"  name="ward" #wd formControlName="ward" (change)="getHf(pal.value,wd.value)">
                                             <option value="">Select One</option>
                                             <option *ngFor=" let item of ward " [value]="item">{{ item}}</option>
                                         </select>
@@ -96,9 +109,9 @@
                             </div>
                             <div class="col-md-8">
                                 <select class="form-control" name="org" formControlName="org" #orgid (change)="getInfo(orgid.value)">
-                                    <option value="0"  >Select Health Facility</option>
+                                    <option value="0" >Select Health Facility</option>
                                     <option *ngFor=" let item of hf " [value]="item.id">{{ item.hfcode}} {{ item.hfname}}</option>
-                                    <!-- <option value="3">HF3</option> -->
+                                  
                                     
                                 </select>
                                
@@ -106,20 +119,25 @@
                             </div>
                             </div>
 
-                            <div *ngIf="flag==1" class="row input-group col-md-6" >
+                            <div *ngIf="adm==1" class="row input-group col-md-6" >
                                 <div class="col-md-4 forRequired">
-                                    <label>Organization Name</label>
+                                    <label>Organization</label>
                                 </div>
                                 <div class="col-md-8">
                                    
-                                       <input class="form-control" type="text" name="orgname" formControlName="orgname">
+                                    <select class="form-control" name="officeid"   formControlName="officeid" >
+                                        <option value="0"  >Select one...</option>
+                                        <option *ngFor=" let item of hfo " [value]="item.id">{{ item.namenp}}</option>
+                                        
+                                    </select>
                                    
                                    
         
                                 </div>
+                              
                                 </div>
 
-                            <div class="row input-group col-md-6">
+                            <div class="row input-group col-md-6" id="auth">
                                 <div class="col-md-4 forRequired">
                                     <label>Authority</label>
                                 </div>
@@ -136,7 +154,7 @@
                                 </div>
                                 </div>
 
-                                <div class="row input-group col-md-6">
+                                <div class="row input-group col-md-6" id="alevel">
                                     <div class="col-md-4 forRequired">
                                         <label>Authority Level</label>
                                     </div>
@@ -154,7 +172,7 @@
                                     </div>
                                     </div>
 
-                                    <div class="row input-group col-md-6">
+                                    <div class="row input-group col-md-6" id="owner">
                                         <div class="col-md-4 forRequired">
                                             <label>Ownership</label>
                                         </div>
@@ -169,7 +187,7 @@
                                         </div>
                                         </div>
 
-                                        <div class="row input-group col-md-6">
+                                        <div class="row input-group col-md-6" id="ftypes">
                                             <div class="col-md-4 forRequired">
                                                 <label>Facility Type</label>
                                             </div>
@@ -183,7 +201,8 @@
                                                
                     
                                             </div>
-                                            </div></div>
+                                            </div>
+                                        </div>
                       
                        				 	<div class="col-sm-12">   स्वीकृत दरबन्दी		                                  
                                             <table id="darbandiTable" class="table table-striped table-bordered" width="100%">
@@ -196,7 +215,7 @@
                                                       <!-- <td >तह </td> -->
                                                       <td>पद </td>
                                                       <td>स्वीकृत दरबन्दी संख्या  </td>
-                                                      <td>स्वीकृत दरबन्दी भन्दा बाहिरको  संख्या  </td>
+                                                      <td>स्वीकृत दरबन्दी वाहेकको  संख्या  </td>
                                                       <!-- <td> ! </td> -->
                                                   </tr>
                                               </thead>

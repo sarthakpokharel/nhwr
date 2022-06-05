@@ -33,8 +33,6 @@
     <header class="d-flex justify-content-center py-3">
         <ul class="nav nav-pills">
             <li class="nav-item 1"><a href="javascript:void(0)" class="nav-link active" aria-current="page"
-                    (click)="changeContent($event)" routerLink ="/">Home</a></li>
-                    <li *ngIf="islogedin==1" class="nav-item 3"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink="user-register">Register User</a>
                     (click)="changeContent($event)" routerLink="/" *ngIf="islogedin==0">Home</a></li>
             <!-- <li *ngIf="islogedin==1" class="nav-item 3"><a href="javascript:void(0)" class="nav-link"
                     (click)="changeContent($event)" routerLink="user-register">Register User</a>
@@ -75,6 +73,10 @@
                         routerLink="/registry">Registry</a>
                     <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
                         routerLink="/reglist">Workforce List</a>
+                   <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/emplist">Employee List</a>
+                 <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/report">Report</a>
 
                 </div>
             </li>
@@ -101,6 +103,12 @@
                         routerLink="/emptype">Employee Type</a>
                     <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
                         routerLink="/council">Council</a>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/health-office">Health Offices</a>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/edulevel">Education Level</a>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        routerLink="/qualification">Qualification</a>
                 </div>
             </li>
 

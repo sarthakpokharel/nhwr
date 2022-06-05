@@ -80,9 +80,9 @@
           <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" #rid
             (change)="roles(rid.value)" formControlName="role" value="null">
             <option value="null" [selected] disabled>select role</option>
-            <option value="FWD">स्वास्थ्य सेवा विभाग</option>
-            <option value="HOD">स्वास्थ्य सेवा निर्देशनालय</option>
-            <option value="DPO">जिल्ला जनस्वास्थ्य कार्यालय</option>
+            <option value="Federal">संघीय</option>
+            <option value="Province">प्रदेश</option>
+            <option value="Local">स्थानीय</option>
             <option value="HF">स्वास्थ्य संस्था</option>
           </select>
 
@@ -95,9 +95,9 @@
 
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" id="pro" style="display: none;">
           <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" #pid
-            (change)="provinceSelected(pid.value)" formControlName="province" value="null">
+            (change)="provinceSelected(pid.value);getOffices(pid.value)" formControlName="province" value="null">
             <option value="null" [selected] disabled>select province</option>
             <option *ngFor="let items of provinces" value="{{items.pid}}">{{items.namenp}}</option>
           </select>
@@ -106,7 +106,7 @@
             *Required Field
           </span>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" id="dist" style="display: none;">
           <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" #did
             (change)="districtSelected(did.value)" [value]="null" formControlName="district">
             <option [selected] disabled value="null">select district</option>
@@ -120,12 +120,12 @@
       </div>
 
 
-      <div *ngIf="swasthsSanstha == true">
+      <div >
 
-        <div class="row">
+        <div class="row" id="munc" style="display: none;">
           <div class="col-md-6">
             <select class="fadeIn second form-select" [value]="null" style="width: 85%; margin-bottom: 5px;" #mid
-              (change)="palikaSelected(mid.value)" formControlName="municipality">
+              (change)="getHf(mid.value)" formControlName="municipality">
               <option [selected] disabled value="null">select municipality</option>
               <option *ngFor="let items of palika" value="{{items.vcid}}">{{items.namenp}}</option>
             </select>
@@ -136,27 +136,16 @@
             </span>
 
           </div>
-          <div class="col-md-6">
-            <select class="fadeIn second form-select" style="width: 85%; margin-bottom: 5px;" [value]="null" #wid
-              (change)="getHf(mid.value, wid.value)" formControlName="ward">
-              <option [selected] value="null" disabled>select ward</option>
-              <option *ngFor="let items of ward" value="{{items}}">{{items}}</option>
-            </select>
-
-            <span style="color: red;"
-              *ngIf="registerForm.controls.ward && registerForm.controls.ward.invalid && registerForm.controls.ward.touched">
-              *Required Field
-            </span>
-          </div>
+         
         </div>
 
-        <div class="row">
+        <div class="row" id="orgs">
           <div class="col-md-12">
             <select class="fadeIn second form-select" [value]="null" style="padding-left: 79px;
             margin-right: 7px;margin-bottom: 5px;"
           formControlName="orgid">
           <option [selected] disabled value="null">select organization / health facility</option>
-          <option *ngFor="let items of hf" value="{{items.id}}">{{ items.hfcode}} || {{ items.hfname}}</option>
+          <option *ngFor="let items of hf" value="{{items.id}}">{{ items.namenp}}</option>
         </select>
 
         <span style="color: red;"

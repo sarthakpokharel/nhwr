@@ -43,7 +43,7 @@ export class RegisteredUserListComponent implements OnInit {
   openModal(template: TemplateRef<any>, id:any) {
     this.modalRef = this.modalService.show(
       template,
-      Object.assign({}, { class: 'gray modal-lg' })
+      Object.assign({}, { class: 'gray modal-sm' })
     );
     this.currentId = id;
   }

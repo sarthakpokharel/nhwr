@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { EmptypeService } from './emptype.service';
+import { EdulevelService } from './edulevel.service';
 
 @Component({
-  selector: 'app-emptype',
-  templateUrl: './emptype.component.html',
-  styleUrls: ['./emptype.component.scss']
+  selector: 'app-edulevel',
+  templateUrl: './edulevel.component.html',
+  styleUrls: ['./edulevel.component.scss']
 })
-export class EmptypeComponent implements OnInit {
+export class EdulevelComponent implements OnInit {
 
   groupForm!: FormGroup
 
@@ -29,13 +29,12 @@ export class EmptypeComponent implements OnInit {
   srchForm: FormGroup;
   formLayout: any;
 
-  constructor(private RS: EmptypeService, private toastr: ToastrService, private fb: FormBuilder) { 
+  constructor(private RS: EdulevelService, private toastr: ToastrService, private fb: FormBuilder) { 
     
     this.formLayout = {
       id:[],
       nameen: ['',Validators.required],
       namenp: ['', [Validators.required]],
-      code: ['', [Validators.required]],
       status: ['1', [Validators.required]],
       
     }
