@@ -31,7 +31,7 @@ import { TreeModule } from '@circlon/angular-tree-component';
 import { ReglistComponent } from './reglist/reglist.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { RegisteredUserListComponent } from './registered-user-list/registered-user-list.component';
-
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,8 @@ import { RegisteredUserListComponent } from './registered-user-list/registered-u
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
     PaginationModule.forRoot(),
-    TreeModule
+    TreeModule,
+    AngularMultiSelectModule
   ],
   providers: [
     ApiService,
