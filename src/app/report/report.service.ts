@@ -5,10 +5,10 @@ import { AppConfig } from '../app.config';
 @Injectable({
   providedIn: 'root'
 })
-export class RegistryService {
+export class ReportService {
   constructor(private http: HttpClient) { }
   baseUrl: string = AppConfig.baseUrl;
-  url= this.baseUrl+'registry';
+  url= this.baseUrl+'report';
   // url = 'http://localhost:8010/group';
 
   create(data: any) {
@@ -20,11 +20,6 @@ export class RegistryService {
 
     return this.http.put(this.url + '/' + id, data);
     // return this.api.update(this.path,id,data);
-  }
-
-  updateSelf(id: any, data: any) {
-
-    return this.http.put(this.baseUrl + 'user-register/change-pasword-self/' + id, data);
   }
 
   getList(perPage: string | number, page: string | number, searchTerm?: string, sortKey?: string, sortDir?: boolean) {
@@ -55,54 +50,29 @@ export class RegistryService {
     return this.http.delete(this.url + '/' + id);
 
   }
-
+  getAdmlvl() {
+    return this.http.get(this.baseUrl + 'subgroup/get-admlvl');
+  }
   getProvinces() {
     return this.http.get(this.baseUrl + 'subgroup/get-provinces');
 }
 
-getOwnership() {
-  return this.http.get(this.baseUrl + 'subgroup/get-ownership');
+getHfo(gid:any){
+  return this.http.get(this.baseUrl + 'subgroup/get-hfo/'+gid);
 }
-
-getHftype() {
-  return this.http.get(this.baseUrl + 'subgroup/get-hftype');
+getorgs(pid:any){
+  return this.http.get(this.baseUrl + 'subgroup/get-offices/'+pid);
 }
-
+gethf(mid:any) {
+  return this.http.get(this.baseUrl + 'subgroup/get-hfbymunc?mid='+mid);
+}
 getdistrict(pid:any) {
   return this.http.get(this.baseUrl + 'subgroup/get-district/'+pid);
 }
 getpalika(did:any) {
   return this.http.get(this.baseUrl + 'subgroup/get-palika/'+did);
 }
-
-getWard(mid:any) {
-  return this.http.get(this.baseUrl + 'subgroup/get-ward/'+mid);
-}
-gethfDetails(hfid:any){
-  return this.http.get(this.baseUrl + 'subgroup/get-hf-details/'+hfid);
-}
-
-gethf(mid:any,wn:any) {
-  return this.http.get(this.baseUrl + 'subgroup/get-hf?mid='+mid+'&wn='+wn);
-}
-
-getSamuha() {
-  return this.http.get(this.baseUrl + 'subgroup/get-samuha');
-}
-getAdmlvl() {
-  return this.http.get(this.baseUrl + 'subgroup/get-admlvl');
-}
-
-getSubgroup(gid:any){
-  return this.http.get(this.baseUrl + 'subgroup/get-subgroup/'+gid);
-}
-getPost(gid:any){
-  return this.http.get(this.baseUrl + 'subgroup/get-post/'+gid);
-}
-getHfo(gid:any){
-  return this.http.get(this.baseUrl + 'subgroup/get-hfo/'+gid);
-}
-getorgs(pid:any){
-  return this.http.get(this.baseUrl + 'subgroup/get-offices/'+pid);
+getReportview(orgtype:any,admlvl:any,pid:any,did:any,pal:any,hfid:any,ofc:any){
+  return this.http.get(this.baseUrl + "registry/get-report-table?admid="+admlvl+"&pid="+pid+"&hfid="+hfid+"&did="+did+"&munc="+pal+"&ofc="+ofc+"&orgtype="+orgtype);
 }
 }

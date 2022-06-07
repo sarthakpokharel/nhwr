@@ -2,10 +2,25 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header"><strong>Create Employee Type</strong></div>
+                <div class="card-header"><strong>Create Offices</strong></div>
                 <div class="card-body">
                     <form class="form-signin" [formGroup]= "groupForm" (ngSubmit)= "groupFormSubmit()">
                         <input type="hidden" class="form-control" name="id" formControlName="id"> 
+
+                        <div class="row input-group col-md-12">
+                            <div class="col-md-4 forRequired">
+                                <label>Admin Level</label>
+                            </div>
+                            <div class="col-md-8">
+
+                                <select class="form-control" name="admlvl" formControlName="admlvl">
+                                    <option value="">Select One</option>
+                             <option *ngFor=" let item of samuha " [value]="item.id">{{ item.namenp}}</option>
+                                </select>
+                                <span style="color: red;"
+                                *ngIf="groupForm.controls.admlvl && groupForm.controls.admlvl.invalid && groupForm.controls.admlvl.touched">Required</span>
+
+                        </div></div><br>
                       
                         <div class="row input-group col-md-12">
                             <div class="col-md-4 forRequired">
@@ -28,17 +43,6 @@
                                 <input type="text" class="form-control" name="namenp" formControlName="namenp">
                                 <span style="color: red;"
                                 *ngIf="groupForm.controls.namenp && groupForm.controls.namenp.invalid && groupForm.controls.namenp.touched">Required</span>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row input-group col-md-12">
-                            <div class="col-md-4 forRequired">
-                                <label>Code</label>
-                            </div>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" name="code" formControlName="code">
-                                <span style="color: red;"
-                                    *ngIf="groupForm.controls.code && groupForm.controls.code.invalid && groupForm.controls.code.touched">Required</span>
                             </div>
                         </div>
                         <br>
@@ -87,7 +91,7 @@
             <div class="card">
     
                 <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Employee Type List
+                    <i class="fa fa-align-justify"></i> Offices List
                 </div>
     
                 <div class="card-body">
@@ -107,7 +111,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Code</th>
+                                <th>Admin level</th>
                                 <th>Name English</th>
                                 <th>Name Nepali</th>
                                 <th>Actions</th>
@@ -117,7 +121,7 @@
                         <tbody>
                             <tr *ngFor=" let item of lists; let i = index; ">
                                 <td>{{item.id}}</td>
-                                <td>{{item.code}}</td>
+                                <td>{{item.levelnamenp}}</td>
                                 <td>{{item.nameen}}</td>
                                 <td>{{item.namenp}}</td>
                                 <td><a (click)="getUpdateItem(item.id)" href="javascript:void(0)"><i

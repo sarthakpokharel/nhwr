@@ -28,9 +28,12 @@ export class RegistryComponent implements OnInit,AfterViewInit  {
   posts:any=[];
   model: any = {};
   flag:any;
+  admlvl:any;
+  adm:any;
+  hfo:any;
   public fieldArray: Array<any> = [];
   public newAttribute: any = {};
-  rid:any=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25];
+  rid:any=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50];
   rn:any=1;
   constructor(private modalService: BsModalService,private fb: FormBuilder,private RS: RegistryService,private toastr: ToastrService,private router:Router) { 
     this.formLayout = {
@@ -45,7 +48,8 @@ export class RegistryComponent implements OnInit,AfterViewInit  {
       authlevel: ['', [Validators.required]],
       ownership: ['', [Validators.required]],
       ftype: ['', [Validators.required]],
-      orgname: [''],
+      officeid: ['0'],
+      admlvl:[''],
       // groupid1: ['', [Validators.required]],
       // subgroupid1: [''],
       // post1: ['', [Validators.required]],
@@ -69,10 +73,11 @@ export class RegistryComponent implements OnInit,AfterViewInit  {
     this.getHftype();
     this.getSamuha();
     this.formControl();
+    this.getAdmlvl();
     
   }
   formControl(){
-    for(var i=1;i<=25;i++){
+    for(var i=1;i<=50;i++){
     this.regForm.addControl('groupid'+i, new FormControl('', Validators.required));
     this.regForm.addControl('subgroupid'+i, new FormControl(''));
     this.regForm.addControl('post'+i, new FormControl('', Validators.required));
@@ -85,9 +90,68 @@ export class RegistryComponent implements OnInit,AfterViewInit  {
   getOrgField(id:any){
     if(id==4){
       this.flag=0;
+      $("#ward").show();
+      $("#province").show();
+      $("#dist").show();
+      $("#munc").show();
+      $("#auth").show();
+      $("#alevel").show();
+      $("#owner").show();
+      $("#ftypes").show();
     }else{
       this.flag=1;
     }
+  }
+
+  getOffices(pid:any){
+    this.RS.getorgs(pid).subscribe(
+      (result: any) => {
+        this.hfo = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+  }
+
+  changeFlag(id:any){
+      $("#ward").hide();
+      $("#province").hide();
+      $("#dist").hide();
+      $("#munc").hide();
+      $("#auth").hide();
+      $("#alevel").hide();
+      $("#owner").hide();
+      $("#ftypes").hide();
+    this.RS.getHfo(id).subscribe(
+      (result: any) => {
+        this.hfo = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+    if(id==1){
+      this.adm=1;
+      
+    }else if(id==2){
+      this.adm=1;
+      $("#province").show();
+    }else if(id==3){
+      this.adm=1;
+      $("#province").show();
+      $("#dist").show();
+    }else if(id==4){
+      this.adm=0;
+      $("#province").show();
+      $("#dist").show();
+      $("#munc").show();
+    }else{
+      this.adm=1;
+    }
+   
   }
   
 
@@ -178,6 +242,19 @@ createItem(id = null) {
 
 }
 
+getAdmlvl(){
+  
+  this.RS.getAdmlvl().subscribe(
+    (result: any) => {
+      this.admlvl = result.data;
+      // console.log(this.provinces);
+    },
+    error => {
+      this.toastr.error(error.error, 'Error');
+    }
+  );
+}
+
 getSubgroup(gid:any,cn:any){
   this.RS.getSubgroup(gid).subscribe(
     (result: any) => {
@@ -247,20 +324,7 @@ getPost(gid:any,cn:any){
       (result: any) => {
         this.details = result.data;
         this.details=this.details[0];
-        // console.log(this.details);
-        // this.formLayout = {
-        //   authority: [this.details.type, [Validators.required]],
-        //   authlevel: [this.details.authlevel, [Validators.required]],
-        //   ownership: [this.details.ownership, [Validators.required]],
-        //   ftype: [this.details.level, [Validators.required]],
-        //   org: [this.details.hfid, [Validators.required]],
-        //   provinceid: [this.details.province, [Validators.required]],
-        //   districtid: [this.details.district, [Validators.required]],
-        //   palika: [this.details.municipality, [Validators.required]],
-        //   ward: [this.details.ward, [Validators.required]],
-          
-        // }
-        // this.regForm =this.fb.group(this.formLayout);
+        
         this.regForm.patchValue({
           authority: this.details.type, 
           authlevel: this.details.authlevel,

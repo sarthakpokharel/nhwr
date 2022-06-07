@@ -27,6 +27,10 @@ constructor(private http: HttpClient) {}
         return this.http.post(this.url,data);
         
     }
+
+    createDarbandi(data:any){
+        return this.http.post(this.url+'/addDarbandi',data);
+    }
     update(id: any, data: any) {
         return this.http.put(this.url + '/' + id, data);
         // return this.api.update(this.path,id,data);
@@ -66,6 +70,13 @@ constructor(private http: HttpClient) {}
         return this.http.delete(this.url + '/' + id);
         
     }
+    removeEmp(id:any){
+        return this.http.get(this.url + '/removeEmp/' + id);
+    }
+
+    removePost(wid:any,oid:any,did:any,detailsid:any){
+        return this.http.get(this.url + '/removePost?wid='+wid+'&oid='+detailsid+'&did='+oid+'&detailsid='+did);
+    }
 
     getOrglist(){
         return this.http.get(this.baseUrl+'subgroup/get-orgs');
@@ -86,6 +97,13 @@ constructor(private http: HttpClient) {}
       }
       getcouncil(){
         return this.http.get(this.baseUrl + 'subgroup/get-council');
+      }
+      geteduLevel(){
+        return this.http.get(this.baseUrl + 'subgroup/get-edulevel');
+      }
+
+      getQualification(eid:any,cid:any){
+        return this.http.get(this.baseUrl + 'subgroup/get-qualification?eid='+eid+'&cid='+cid);
       }
    
 }

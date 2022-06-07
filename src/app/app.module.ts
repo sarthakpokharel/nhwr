@@ -26,12 +26,18 @@ import { DarbandiComponent } from './darbandi/darbandi.component';
 import { EmptypeComponent } from './emptype/emptype.component';
 import { CouncilComponent } from './council/council.component';
 import { TrialComponent } from './trial/trial.component';
-import { OfficeComponent, OfficeCrud } from "./office/office.component";
+import { OfficeComponent, OfficeCrud ,DarbandiCrud} from "./office/office.component";
 import { TreeModule } from '@circlon/angular-tree-component';
 import { ReglistComponent } from './reglist/reglist.component';
+import { EmplistComponent } from './emplist/emplist.component';
+import { HealthOfficeComponent } from './health-office/healthoffice.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { RegisteredUserListComponent } from './registered-user-list/registered-user-list.component';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { EdulevelComponent } from './edulevel/edulevel.component';
+import { QualificationComponent } from './qualification/qualification.component';
+import { ReportComponent } from './report/report.component';
+
 
 @NgModule({
   declarations: [
@@ -53,9 +59,15 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
     TrialComponent,
     OfficeComponent,
     OfficeCrud,
+    DarbandiCrud,
     ReglistComponent,
     UserRegisterComponent,
     RegisteredUserListComponent,
+    HealthOfficeComponent,
+    EmplistComponent,
+    EdulevelComponent,
+    QualificationComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

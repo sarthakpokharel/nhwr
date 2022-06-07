@@ -5,7 +5,7 @@
             <div class="card">
     
                 <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Workforce List
+                    <i class="fa fa-align-justify"></i> Workforce Employee  List
                 </div>
     
                 <div class="card-body">
@@ -13,7 +13,7 @@
 
                         <div class="input-group">
                             
-                            <input class="form-control" placeholder="search" id="srch_term" name="srch_term" type="text" formControlName="srch_term" (keyup.enter)="search()">
+                            <input class="form-control" placeholder="Enter Council number" id="srch_term" name="srch_term" type="text" formControlName="srch_term" (keyup.enter)="search()">
     
                             <button class="btn btn-default" type="button" (click)="search()"><i class="fa fa-search"></i></button>
     
@@ -24,26 +24,32 @@
                     <table class="table table-bordered table-striped table-sm tbl-sortable">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Province</th>
-                                <th>District</th>
-                                <th>Organization</th>
+                                
+                                <th>Organization Name</th>
+                                <th>Organization Address</th>
+                                <th>Employee Name</th>
+                                <th>Employee Address</th>
+                                <th>Council</th>
+                                <th>Council No.</th>
+                                <th>Employee Type</th>
+                                <!-- <th>Actions</th> -->
     
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor=" let item of lists; let i = index; ">
-                                <td>{{item.id}}</td>
-                                <td>{{item.province}}</td>
-                                <td>{{item.district}}</td>
-                                <td>{{item.hf_name}} {{item.orgname}} {{item.vcname}}</td>
-                                <td><a  title="View" [routerLink]="['/darbandi',item.id]" href="javascript:void(0)"><i
-                                            class="fa fa-eye alert-danger"></i></a>&nbsp;&nbsp;
-                                            <a href="javascript:void(0)" title="Export to Excel"
-                                        (click)="download(item.id)"><i class="fa fa-download"></i></a>&nbsp;&nbsp;
-                                        <a href="javascript:void(0)" class="text-danger" title="Delete"
-                                        (click)="deleteItem(item.id)"><i class="fa fa-trash"></i></a>
-                                    </td>
+                                <td>{{item.orgname}} {{item.hf_name}} {{item.vcname}}</td>
+                                <td>{{item.province}} {{item.district}}</td>
+                                <td>{{item.namenp}}</td>
+                                <td>{{item.address}} </td>
+                                <td>{{item.council}} </td>
+                                <td>{{item.council_no}} </td>
+                                <td>{{item.emptype}} </td>
+                                <!-- <td><a  class="btn btn-success"  href="javascript:void(0)" (click)="transferEmp(item.id)"><i
+                                            class="fa fa-refresh"></i> Transfer</a>&nbsp;&nbsp;
+                                            <a class="btn btn-info" href="javascript:void(0)" title=""
+                                        (click)="retire(item.id)"><i class="fa fa-reply"></i> Retire</a>
+                                    </td> -->
                             </tr>
         
                         </tbody>

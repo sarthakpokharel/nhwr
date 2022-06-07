@@ -9,7 +9,7 @@
                     <form class="form-srch" [formGroup]="srchForm">
                     <select #orgchange class="form-control" name="orgid" formControlName="orgid" (change)="getSections()">
                       <option value="">Select one</option>
-                      <option *ngFor=" let item of orglists " [value]="item.id">{{item.hfname}} {{item.hfcode}} {{item.orgname}}</option>
+                      <option *ngFor=" let item of orglists " [value]="item.id">{{item.hfname}} {{item.hfcode}} {{item.orgname}} {{item.vcname}}</option>
                         
                     </select>
                 </form>
@@ -27,9 +27,9 @@
 
                             &nbsp;&nbsp;
                                
-                            <!-- <a href="javascript:void(0)" (click)="addSection(item.officeidint,item.orgidint)" title="Add Section/Subsection"><i class="fa fa-plus"></i>Add</a>
+                            <a href="javascript:void(0)" *ngIf="item.flag==0" (click)="addDarbandi(item.darbandiid,item.post)" title="Add Darbandi"><i class="fa fa-plus"></i></a>
                             &nbsp;&nbsp;
-                            <a href="javascript:void(0)" (click)="editSection(item.officeidint,item.orgidint)" title="Edit Section/Subsection"><i class="fa fa-pencil"></i>Edit</a> -->
+                            <!-- <a href="javascript:void(0)" (click)="editSection(item.officeidint,item.orgidint)" title="Edit Section/Subsection"><i class="fa fa-pencil"></i>Edit</a> -->
 
 
                           </span>
@@ -40,9 +40,10 @@
 
                             &nbsp;&nbsp;
                                
-                            <a  *ngIf="item.status==0" href="javascript:void(0)" (click)="addSection(item.workforceid,item.orgidint,item.name,item.darbandiid,item.detailsid)" title="Add Employee"><i class="fa fa-plus"></i></a>
-                            &nbsp;
-                            <a  *ngIf="item.status==1" href="javascript:void(0)" (click)="editSection(item.workforceid,item.orgidint,item.name,item.darbandiid,item.detailsid,item.empid)" title="Edit Employee"><i class="fa fa-pencil"></i></a>
+                            <a  *ngIf="item.status==0" href="javascript:void(0)" (click)="addSection(item.workforceid,item.orgidint,item.name,item.darbandiid,item.detailsid)" title="Add Employee"><i class="fa fa-plus"></i></a> &nbsp;
+                            <a  *ngIf="item.status==0" href="javascript:void(0)" class="text-danger"  (click)="removePost(item.workforceid,item.orgidint,item.name,item.darbandiid,item.detailsid)" title="Delete Post"><i class="fa fa-trash"></i></a> &nbsp;
+                            <a  *ngIf="item.status==1" href="javascript:void(0)" (click)="editSection(item.workforceid,item.orgidint,item.name,item.darbandiid,item.detailsid,item.empid)" title="Edit Employee"><i class="fa fa-pencil"></i></a>&nbsp;
+                            <a *ngIf="item.status==1" href="javascript:void(0)" class="text-danger" title="Remove employee" (click)="removeemp(item.darbandiid,item.empid,item.workforceid)"> <i class="fa fa-trash"></i></a>
 
 
                           </span>

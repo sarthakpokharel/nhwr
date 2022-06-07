@@ -13,6 +13,7 @@ export class UserRegisterComponent implements OnInit {
   registerForm!: FormGroup;
   registerFormLayout!: any;
   model: any;
+  hfo:any;
   constructor(private fb: FormBuilder, private rs: RegistryService, private ts: ToastrService) {
 
     this.registerFormLayout = {
@@ -25,8 +26,8 @@ export class UserRegisterComponent implements OnInit {
       email: ["", [Validators.email, Validators.required]],
       mobile: [""],
       role: [null, Validators.required],
-      province: [null, Validators.required],
-      district: [null, Validators.required],
+      province: [null],
+      district: [null],
 
       municipality: [],
       ward: [],
@@ -88,8 +89,8 @@ export class UserRegisterComponent implements OnInit {
     );
   }
 
-  getHf(pid: any, wn: any) {
-    this.rs.gethf(pid, wn).subscribe(
+  getHf(pid: any) {
+    this.rs.gethf(pid).subscribe(
       (result: any) => {
         this.hf = result.data;
         console.log(this.hf);
@@ -100,21 +101,62 @@ export class UserRegisterComponent implements OnInit {
     );
   }
 
-  palikaSelected(id: any) {
-    this.getWard(id)
-  }
+  // palikaSelected(id: any) {
+  //   this.getWard(id)
+  // }
 
   districtSelected(id: any) {
     this.getMunicipality(id);
   }
 
   roles(roleid: any) {
+    this.hf=[];
+    $("#pro").hide();
+    $("#dist").hide();
+    $("#munc").hide();
+    if(roleid=="Federal"){
+     
+      this.rs.getHfo(1).subscribe(
+        (result: any) => {
+          this.hf = result.data;
+          // console.log(this.provinces);
+        },
+        error => {
+          this.ts.error(error.error, 'Error');
+        }
+      );
+    }
+    if (roleid == "Province") {
+      $("#pro").show();
+    }
+    if (roleid == "Local") {
+      $("#pro").show();
+      $("#dist").show();
+      $("#munc").show();
+      $("#orgs").hide();
+    }
     if (roleid == "HF") {
+      $("#pro").show();
+      $("#dist").show();
+      $("#munc").show();
+      $("#orgs").show();
       this.swasthsSanstha = true;
-      this.registerForm.get('ward')?.setValidators(Validators.required);
+      // this.registerForm.get('ward')?.setValidators(Validators.required);
       this.registerForm.get('municipality')?.setValidators(Validators.required);
       this.registerForm.get('orgid')?.setValidators(Validators.required);
     }
+  }
+
+  getOffices(pid:any){
+    this.rs.getorgs(pid).subscribe(
+      (result: any) => {
+        this.hf = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.ts.error(error.error, 'Error');
+      }
+    );
   }
 
   submitForm() {

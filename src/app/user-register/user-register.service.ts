@@ -29,7 +29,13 @@ export class RegistryService {
     return this.http.get(this.baseUrl + 'subgroup/get-ward/' + mid);
   }
   
-  gethf(mid:any,wn:any) {
-    return this.http.get(this.baseUrl + 'subgroup/get-hf?mid='+mid+'&wn='+wn);
+  gethf(mid:any) {
+    return this.http.get(this.baseUrl + 'subgroup/get-hfbymunc?mid='+mid);
+  }
+  getHfo(gid:any){
+    return this.http.get(this.baseUrl + 'subgroup/get-hfo/'+gid);
+  }
+  getorgs(pid:any){
+    return this.http.get(this.baseUrl + 'subgroup/get-offices/'+pid);
   }
 }

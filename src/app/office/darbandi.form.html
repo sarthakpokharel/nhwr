@@ -1,0 +1,73 @@
+<style>
+    .form-control {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="container">
+    <br>
+    <div class="modal-header">
+        <!-- <button type="button" class="btn-close close" (click)="modalRef?.hide()"> -->
+            <!-- <h4 style="float: left;" class="modal-title pull-left">Add Details</h4> -->
+          
+            <h4 class="modal-title pull-left" > Add Darbandi Number for:  {{post}}</h4>
+            <button type="button" style="float: right;" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+              </button>
+     
+
+
+    </div>
+    <div class="modal-body">
+        <form class="form-signin" [formGroup]="officeForm" (ngSubmit)="officeFormSubmit()">
+            <input type="hidden" class="form-control" name="id" formControlName="id">
+            <input type="hidden" class="form-control" name="darbandiid" formControlName="darbandiid">
+           
+            <div class="row col-md-12">
+
+               
+
+                <div class="col-md-6">
+            <div class="row input-group col-md-12">
+                <div class="col-md-4 forRequired">
+                    <label>स्वीकृत दरबन्दी संख्या </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="number" min="0" class="form-control" name="post_no" formControlName="post_no" value="0">
+                    <span style="color: red;"
+                        *ngIf="officeForm.controls.post_no && officeForm.controls.post_no.invalid && officeForm.controls.post_no.touched">Required Field</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row input-group col-md-12">
+                <div class="col-md-4">
+                    <label>स्वीकृत दरबन्दी बाहेकको  संख्या  </label>
+                </div>
+                <div class="col-md-8">
+                    <input type="number" class="form-control" min="0" value="0" name="post_no_karar" formControlName="post_no_karar">
+                    <span style="color: red;"
+                        *ngIf="officeForm.controls.post_no_karar && officeForm.controls.post_no_karar.invalid && officeForm.controls.post_no_karar.touched">Required Field</span>
+                </div>
+            </div></div>
+           
+
+
+        </div>
+
+
+            
+            
+
+          
+            <div class="row">
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary px-4">Save</button>
+                </div>
+                <div class="col-6 text-right">
+                    <button #resetbutton type="reset" class="btn btn-danger px-4">Reset</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

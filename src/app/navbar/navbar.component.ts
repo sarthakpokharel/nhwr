@@ -102,7 +102,7 @@ export class NavbarComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template,
-      Object.assign({}, { class: 'gray modal-lg' }));
+      Object.assign({}, { class: 'gray modal-sm' }));
   }
 
   getUserinfo(){
