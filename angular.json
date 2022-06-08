@@ -36,7 +36,7 @@
             "styles": [
               "src/styles.scss",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/select2/dist/css/select2.min.css"
+              "node_modules/angular2-multiselect-dropdown/themes/default.theme.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

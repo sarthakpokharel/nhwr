@@ -33,6 +33,7 @@ import { EmplistComponent } from './emplist/emplist.component';
 import { HealthOfficeComponent } from './health-office/healthoffice.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { RegisteredUserListComponent } from './registered-user-list/registered-user-list.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { EdulevelComponent } from './edulevel/edulevel.component';
 import { QualificationComponent } from './qualification/qualification.component';
 import { ReportComponent } from './report/report.component';
@@ -80,7 +81,8 @@ import { ReportComponent } from './report/report.component';
     ModalModule.forRoot(),
     ToastrModule.forRoot(),
     PaginationModule.forRoot(),
-    TreeModule
+    TreeModule,
+    AngularMultiSelectModule
   ],
   providers: [
     ApiService,
