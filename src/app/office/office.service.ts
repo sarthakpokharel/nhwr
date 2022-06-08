@@ -28,6 +28,10 @@ constructor(private http: HttpClient) {}
         
     }
 
+    createpost(data:any){
+        return this.http.post(this.url+'/addpost',data);
+    }
+
     createDarbandi(data:any){
         return this.http.post(this.url+'/addDarbandi',data);
     }
@@ -104,6 +108,21 @@ constructor(private http: HttpClient) {}
 
       getQualification(eid:any,cid:any){
         return this.http.get(this.baseUrl + 'subgroup/get-qualification?eid='+eid+'&cid='+cid);
+      }
+
+      getemp(cno:any){
+        return this.http.get(this.baseUrl + 'subgroup/get-emps?cno='+cno);
+      }
+      getSamuha() {
+        return this.http.get(this.baseUrl + 'subgroup/get-samuha');
+      }
+     
+      
+      getSubgroup(gid:any){
+        return this.http.get(this.baseUrl + 'subgroup/get-subgroup/'+gid);
+      }
+      getPost(gid:any){
+        return this.http.get(this.baseUrl + 'subgroup/get-post/'+gid);
       }
    
 }

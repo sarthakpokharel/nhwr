@@ -217,8 +217,39 @@ getOrgField(id:any){
   getReportsold(admid:any,pid:any,orgid:any){
     window.location.href = this.url+"/downloadreport?admid="+admid+"&pid="+pid+"&orgid="+orgid;
   }
+  getReportsView2(orgtype:any,admlvl:any,pid:any,did:any,pal:any,hfid:any,ofc:any){
+   
+    if (this.groupForm.valid) {
+      window.open(this.url+"/getData2?admid="+admlvl+"&pid="+pid+"&hfid="+hfid+"&did="+did+"&munc="+pal+"&ofc="+ofc+"&orgtype="+orgtype, '_blank');
+    } else {
+      Object.keys(this.groupForm.controls).forEach(field => {
+        console.log(field);
+        const singleFormControl = this.groupForm.get(field);
+        singleFormControl?.markAsTouched({onlySelf: true});
+      });
+    }
+    // window.location.href = this.url+"/getData?admid="+admlvl+"&pid="+pid+"&hfid="+hfid+"&did="+did+"&munc="+pal+"&ofc="+ofc+"&orgtype="+orgtype;
+    // this.RS.getReportview(orgtype,admlvl,pid,did,pal,hfid,ofc).subscribe(
+    //   (result: any) => {
+    //     this.rep = result.data;
+    //     console.log(this.rep);
+    //   },
+    //   error => {
+    //     this.toastr.error(error.error, 'Error');
+    //   }
+    // );
+  }
   getReportsView(orgtype:any,admlvl:any,pid:any,did:any,pal:any,hfid:any,ofc:any){
-    window.open(this.url+"/getData?admid="+admlvl+"&pid="+pid+"&hfid="+hfid+"&did="+did+"&munc="+pal+"&ofc="+ofc+"&orgtype="+orgtype, '_blank');
+   
+    if (this.groupForm.valid) {
+      window.open(this.url+"/getData?admid="+admlvl+"&pid="+pid+"&hfid="+hfid+"&did="+did+"&munc="+pal+"&ofc="+ofc+"&orgtype="+orgtype, '_blank');
+    } else {
+      Object.keys(this.groupForm.controls).forEach(field => {
+        console.log(field);
+        const singleFormControl = this.groupForm.get(field);
+        singleFormControl?.markAsTouched({onlySelf: true});
+      });
+    }
     // window.location.href = this.url+"/getData?admid="+admlvl+"&pid="+pid+"&hfid="+hfid+"&did="+did+"&munc="+pal+"&ofc="+ofc+"&orgtype="+orgtype;
     // this.RS.getReportview(orgtype,admlvl,pid,did,pal,hfid,ofc).subscribe(
     //   (result: any) => {
@@ -234,6 +265,19 @@ getOrgField(id:any){
   getReports(orgtype:any,admlvl:any,pid:any,did:any,pal:any,hfid:any,ofc:any){
     if (this.groupForm.valid) {
       window.location.href = this.url+"/downloadreport?admid="+admlvl+"&pid="+pid+"&hfid="+hfid+"&did="+did+"&munc="+pal+"&ofc="+ofc+"&orgtype="+orgtype;
+    } else {
+      Object.keys(this.groupForm.controls).forEach(field => {
+        console.log(field);
+        const singleFormControl = this.groupForm.get(field);
+        singleFormControl?.markAsTouched({onlySelf: true});
+      });
+    }
+   
+  }
+
+  getReport2(orgtype:any,admlvl:any,pid:any,did:any,pal:any,hfid:any,ofc:any){
+    if (this.groupForm.valid) {
+      window.location.href = this.url+"/downloadreport2?admid="+admlvl+"&pid="+pid+"&hfid="+hfid+"&did="+did+"&munc="+pal+"&ofc="+ofc+"&orgtype="+orgtype;
     } else {
       Object.keys(this.groupForm.controls).forEach(field => {
         console.log(field);

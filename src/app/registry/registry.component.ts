@@ -74,6 +74,7 @@ export class RegistryComponent implements OnInit,AfterViewInit  {
     this.getSamuha();
     this.formControl();
     this.getAdmlvl();
+   
     
   }
   formControl(){

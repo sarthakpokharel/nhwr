@@ -184,8 +184,15 @@
                       
                         <div class="row">
                             <div class="col-6">
+                                Report1
                                 <button type="button" class="btn btn-primary px-4" (click)="getReports(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >Export Excel</button>
                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-info px-4" (click)="getReportsView(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >view</button>
+                            </div>
+
+                            <div class="col-6">
+                                Report2
+                                <button type="button" class="btn btn-primary px-4" (click)="getReport2(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >Export Excel</button>
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-info px-4" (click)="getReportsView2(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >view</button>
                             </div>
                             <!-- <div class="col-6 text-right">
                                 <button type="button" (click)= "resetForm()" class="btn btn-danger px-4">Reset</button>

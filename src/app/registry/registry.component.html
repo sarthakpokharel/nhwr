@@ -4,6 +4,8 @@
             margin-bottom: 10px;
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <div class="row">
         <div class="col-md-12">
             <div class="card" id="c1">
@@ -223,7 +225,7 @@
                                                   
                                                   <tr  *ngFor="let items of rid " id="row{{items}}" style="display: none;">
                                                       <td>
-                                                        <select class="form-control" name="groupid" #gid formControlName="groupid{{items}}" (change)="getSubgroup(gid.value,items);getPost(gid.value,items)">
+                                                        <select class="form-control select2"  tabindex="-1" aria-hidden="true" name="groupid" #gid formControlName="groupid{{items}}" (change)="getSubgroup(gid.value,items);getPost(gid.value,items)">
                                                                   
                                                                    <option value="">-- समूह  छान्नुहोस् --</option>
                                                                    <option *ngFor=" let item of samuha " [value]="item.id">{{ item.namenp}}</option>
@@ -290,4 +292,5 @@
     
        
     </div>
+   
     <!-- </div> -->
