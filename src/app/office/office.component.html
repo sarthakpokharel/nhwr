@@ -5,6 +5,7 @@
         <div class="card">
             <div class="card-header"><strong>Create Darbandi Information</strong></div>
             <div class="card-body">
+              <div class="row">
                 <div class="col-md-6">
                     <form class="form-srch" [formGroup]="srchForm">
                     <select #orgchange class="form-control" name="orgid" formControlName="orgid" (change)="getSections()">
@@ -13,11 +14,17 @@
                         
                     </select>
                 </form>
-                </div><br><br>
+                </div>
+                <div id="missing" class="col-md-6" style="display: none;">
+                  <button type="button" class="btn btn-info px-4" (click)="addMissingpost(orgchange.value)">Add Missing Post</button>
+                </div>
+                </div>
+                <br><br>
 
                 
 
                   <ul class="tree">
+                  
                     <ng-template #recursiveList let-nodes>
                      
                       <li *ngFor="let item of nodes">

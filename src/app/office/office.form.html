@@ -49,7 +49,7 @@
                                 <label>काउन्सिल नं. </label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" name="council_no" formControlName="council_no">
+                                <input type="text" class="form-control" #nmc name="council_no" (blur)="getnmc(nmc.value)" formControlName="council_no">
                                 <span style="color: red;"
                             *ngIf="officeForm.controls.council_no && officeForm.controls.council_no.invalid && officeForm.controls.council_no.touched">Required Field</span>
                             </div>
