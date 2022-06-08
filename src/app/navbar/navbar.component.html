@@ -43,9 +43,9 @@
                     data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true"
                     aria-expanded="false">User Registration</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="user-register">Register new User</a>
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="registered-user-list">List of Registered Users</a>
                 </div>
             </li>
@@ -69,13 +69,13 @@
                     data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Workforce
                     Registry</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/registry">Registry</a>
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/reglist">Workforce List</a>
-                   <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                   <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/emplist">Employee List</a>
-                 <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                 <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/report">Report</a>
 
                 </div>
@@ -91,23 +91,23 @@
                 <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)"
                     data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Setup</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/group">Group</a>
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/subgroup">Subgroup</a>
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/level">Level</a>
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/post">Post</a>
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/emptype">Employee Type</a>
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/council">Council</a>
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/health-office">Health Offices</a>
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/edulevel">Education Level</a>
-                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/qualification">Qualification</a>
                 </div>
             </li>
@@ -120,9 +120,9 @@
                 <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)"
                     data-toggle="dropdown" href="javascript:void(0)">Profile</a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                     (click)="openModal(template)">Change Password</a>
-                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContent($event)"
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         (click)="logout()">Logout [{{userInfo}}]</a>
 
                 </div>

@@ -137,4 +137,16 @@ export class NavbarComponent implements OnInit {
 
   }
 
+  changeContentDropdown(e: any){
+    var el: any = e.target;
+    var element = el.parentElement.parentElement.firstChild;
+
+    const active = document.getElementsByClassName('active');
+
+    for (var i = 0; i < active.length; i++) {
+      active[i].classList.remove('active')
+    }
+    element.classList.add('active');
+  }
+
 }
