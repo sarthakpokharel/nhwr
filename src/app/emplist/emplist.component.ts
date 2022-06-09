@@ -212,33 +212,199 @@ export class TransferCrud implements OnInit{
   
 
   constructor(public modalRef: BsModalRef, private toastr: ToastrService, private RS: EmplistService, private fb:FormBuilder,private ofc:EmplistComponent){
-    this.officeForm = new FormGroup({
-      id: new FormControl(''),
-      darbandiid: new FormControl(''),
-      post_no: new FormControl('0'),
-      post_no_karar: new FormControl('0'),
-     
+    this.formLayout = {
+      id:[],
+      orgtype: ['',Validators.required],
+      provinceid: [''],
+      districtid: [''],
+      palika: [''],
+      org: [''],
+      officeid: [''],
+      admlvl:[''],
+      empid:[]
       
-    })
+    }
+    
+    this.officeForm =fb.group(this.formLayout)
     
   }
   model:any;
   ngOnInit(){
-    
+    this.getAdmlvl();
+    this.getProvinces();
   
+  }
+
+  getHf(pid:any){
+    this.RS.gethf(pid).subscribe(
+      (result: any) => {
+        this.hf = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+  }
+
+  changeFlag(id:any){
+    $("#ward").hide();
+    $("#province").hide();
+    $("#dist").hide();
+    $("#munc").hide();
+    $("#auth").hide();
+    $("#alevel").hide();
+    $("#owner").hide();
+    $("#ftypes").hide();
+    $("#hfs").hide();
+    $("#office").hide();
+    if(id==1){
+  this.RS.getHfo(id).subscribe(
+    (result: any) => {
+      this.hfo = result.data;
+      // console.log(this.provinces);
+    },
+    error => {
+      this.toastr.error(error.error, 'Error');
+    }
+  );
+    }else{
+      this.hfo=[];
+    }
+  if(id==1){
+    this.adm=1;
+    $("#office").show();
+    
+  }else if(id==2){
+    this.adm=1;
+    $("#province").show();
+    $("#office").show();
+  }else if(id==3){
+    this.adm=1;
+    $("#office").show();
+    $("#province").show();
+    $("#dist").show();
+  }else if(id==4){
+    this.adm=0;
+    $("#province").show();
+    $("#dist").show();
+    $("#munc").show();
+  }else{
+    this.adm=1;
+    $("#office").show();
+  }
+ 
+}
+
+getOrgField(id:any){
+  if(id==4){
+    this.flag=0;
+    $("#hfs").show();
+    $("#ward").show();
+    $("#province").show();
+    $("#dist").show();
+    $("#munc").show();
+    $("#auth").show();
+    $("#alevel").show();
+    $("#owner").show();
+    $("#ftypes").show();
+    $("#admlevel").hide();
+    $("#office").hide();
+  }else{
+    this.flag=1;
+    $("#admlevel").show();
+  }
+}
+
+
+  getDistricts(pid:any){
+    this.RS.getdistrict(pid).subscribe(
+      (result: any) => {
+        this.district = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+  }
+
+  getPalika(did:any){
+    this.RS.getpalika(did).subscribe(
+      (result: any) => {
+        this.palika = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+  }
+
+  getAdmlvl(){
+  
+    this.RS.getAdmlvl().subscribe(
+      (result: any) => {
+        this.admlvl = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+  }
+
+  getProvinces(){
+    this.RS.getProvinces().subscribe(
+      (result: any) => {
+        this.provinces = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+  }
+
+  getOffices(pid:any){
+    this.RS.getorgs(pid).subscribe(
+      (result: any) => {
+        this.hfo = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+  }
+
+  getAdmin(aid:any){
+    if(aid==2){
+      $("#prov").show();
+    }else{
+      $("#prov").hide();
+    }
+    if(aid==1||aid==4){
+    this.RS.getHfo(aid).subscribe(
+      (result: any) => {
+        this.hfo = result.data;
+        // console.log(this.provinces);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+    }else{
+      this.hfo=[];
+    }
   }
 
   
   officeFormSubmit() {
 
     if (this.officeForm.valid) {
-      if(this.isEdit!=1){
-        // this.officeForm.value.parentofficeid=this.officeid;
-      }
-    
-      // this.officeForm.value.orgidint=this.orgidint;
-      // this.officeForm.value.workforceid=this.workforceid;
-      this.officeForm.value.darbandiid=this.darbandiid;
+     
+      this.officeForm.value.empid=this.empid;
       // this.officeForm.value.detailsid=this.detailsid;
       this.model = this.officeForm.value;
       this.createItem(this.officeForm.value.id);
@@ -251,31 +417,31 @@ export class TransferCrud implements OnInit{
   }
 
   createItem(id = null) {
-  //   let upd = this.model;
-  //   if (id != "" && id !=null) {
+    let upd = this.model;
+    if (id != "" && id !=null) {
 
-  //     // this.RS.update(id, upd).subscribe(result => {
-  //     //   this.toastr.success('Item Successfully Updated!', 'Success');
-  //     //   this.officeForm.reset();
-  //     //   this.afterSave.emit();
-  //     //   this.modalRef.hide();
+      // this.RS.update(id, upd).subscribe(result => {
+      //   this.toastr.success('Item Successfully Updated!', 'Success');
+      //   this.officeForm.reset();
+      //   this.afterSave.emit();
+      //   this.modalRef.hide();
        
-  //     // }, error => {
-  //     //   this.toastr.error(error.error, 'Error');
-  //     // });
-  //   } else {
-  //     this.RS.createDarbandi(upd).subscribe(result => {
-  //       this.toastr.success('Item Successfully Saved!', 'Success');
-  //       this.officeForm.reset();
-  //       this.afterSave.emit();
-  //       this.modalRef.hide();
-  //       // this.closebutton.nativeElement.click();
-  //       // this.orgchange.nativeElement.click();
+      // }, error => {
+      //   this.toastr.error(error.error, 'Error');
+      // });
+    } else {
+      this.RS.createtransfer(upd).subscribe(result => {
+        this.toastr.success('Item Successfully Saved!', 'Success');
+        this.officeForm.reset();
+        // this.afterSave.emit();
+        this.modalRef.hide();
+        // this.closebutton.nativeElement.click();
+        // this.orgchange.nativeElement.click();
         
-  //     }, error => {
-  //       this.toastr.error(error.error, 'Error');
-  //     });
-  //   }
+      }, error => {
+        this.toastr.error(error.error, 'Error');
+      });
+    }
   // }
 }
 }
