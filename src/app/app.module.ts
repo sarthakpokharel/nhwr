@@ -38,6 +38,7 @@ import { EdulevelComponent } from './edulevel/edulevel.component';
 import { QualificationComponent } from './qualification/qualification.component';
 import { ReportComponent } from './report/report.component';
 import { Trial1Component } from './trial1/trial1.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -85,7 +86,8 @@ import { Trial1Component } from './trial1/trial1.component';
     ToastrModule.forRoot(),
     PaginationModule.forRoot(),
     TreeModule,
-    AngularMultiSelectModule
+    AngularMultiSelectModule,
+    NgSelectModule
   ],
   providers: [
     ApiService,

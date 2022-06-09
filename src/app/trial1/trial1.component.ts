@@ -12,4 +12,13 @@ export class Trial1Component implements OnInit {
   ngOnInit(): void {
   }
 
+  selectedCar!: number;
+
+  cars = [
+      { id: 1, name: 'Volvo' },
+      { id: 2, name: 'Saab' },
+      { id: 3, name: 'Opel' },
+      { id: 4, name: 'Audi' },
+  ];
+
 }
