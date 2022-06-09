@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EmplistService } from './emplist.service';
 import { AppConfig } from '../app.config';
-
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+@Injectable({
+  providedIn: 'root' // just before your class
+})
 
 @Component({
   selector: 'app-emplist',
@@ -34,7 +37,7 @@ export class EmplistComponent implements OnInit {
   srchForm: FormGroup;
   formLayout: any;
 
-  constructor(private RS: EmplistService, private toastr: ToastrService, private fb: FormBuilder) { 
+  constructor(private RS: EmplistService, private toastr: ToastrService, private fb: FormBuilder,private modalService: BsModalService,) { 
     
     this.formLayout = {
       id:[],
@@ -100,12 +103,13 @@ export class EmplistComponent implements OnInit {
   resetForm(){
     this.groupForm =this.fb.group(this.formLayout);
   }
-
-  transferEmp(id :any){
-    alert(id);
+  modalRef:any;
+  transferEmp(id :any,empname:any){
+    this.modalRef = this.modalService.show(TransferCrud,{initialState:{empid:id,empname:empname}});
+   
   } 
   retire(id:any){
-    alert(id);
+    // alert(id);
   }
   download(id:any){
     
@@ -175,7 +179,7 @@ export class EmplistComponent implements OnInit {
   }
 
   deleteItem(id: any) {
-    if (window.confirm('Are sure you want to delete this item?')) {
+    if (window.confirm('Are  you sure want to delete this item?')) {
       this.RS.remove(id).subscribe((result: any) => {
         this.toastr.success('Item Successfully Deleted!', 'Success');
         this.getList();
@@ -185,4 +189,93 @@ export class EmplistComponent implements OnInit {
     }
   }
 
+}
+
+@Component({
+  templateUrl: './transfer.form.html',
+  styleUrls: ['./emplist.component.scss'],
+})
+export class TransferCrud implements OnInit{
+ 
+  
+  [x: string]: any;
+  
+  html!: '';
+
+  
+  @Input() empid:any;
+  @Input() empname:any;
+
+ 
+  
+  officeForm!: FormGroup
+  
+
+  constructor(public modalRef: BsModalRef, private toastr: ToastrService, private RS: EmplistService, private fb:FormBuilder,private ofc:EmplistComponent){
+    this.officeForm = new FormGroup({
+      id: new FormControl(''),
+      darbandiid: new FormControl(''),
+      post_no: new FormControl('0'),
+      post_no_karar: new FormControl('0'),
+     
+      
+    })
+    
+  }
+  model:any;
+  ngOnInit(){
+    
+  
+  }
+
+  
+  officeFormSubmit() {
+
+    if (this.officeForm.valid) {
+      if(this.isEdit!=1){
+        // this.officeForm.value.parentofficeid=this.officeid;
+      }
+    
+      // this.officeForm.value.orgidint=this.orgidint;
+      // this.officeForm.value.workforceid=this.workforceid;
+      this.officeForm.value.darbandiid=this.darbandiid;
+      // this.officeForm.value.detailsid=this.detailsid;
+      this.model = this.officeForm.value;
+      this.createItem(this.officeForm.value.id);
+    } else {
+      Object.keys(this.officeForm.controls).forEach(field => {
+        const singleFormControl = this.officeForm.get(field);
+        singleFormControl!.markAsTouched({onlySelf: true});
+      });
+    }
+  }
+
+  createItem(id = null) {
+  //   let upd = this.model;
+  //   if (id != "" && id !=null) {
+
+  //     // this.RS.update(id, upd).subscribe(result => {
+  //     //   this.toastr.success('Item Successfully Updated!', 'Success');
+  //     //   this.officeForm.reset();
+  //     //   this.afterSave.emit();
+  //     //   this.modalRef.hide();
+       
+  //     // }, error => {
+  //     //   this.toastr.error(error.error, 'Error');
+  //     // });
+  //   } else {
+  //     this.RS.createDarbandi(upd).subscribe(result => {
+  //       this.toastr.success('Item Successfully Saved!', 'Success');
+  //       this.officeForm.reset();
+  //       this.afterSave.emit();
+  //       this.modalRef.hide();
+  //       // this.closebutton.nativeElement.click();
+  //       // this.orgchange.nativeElement.click();
+        
+  //     }, error => {
+  //       this.toastr.error(error.error, 'Error');
+  //     });
+  //   }
+  // }
+}
 }

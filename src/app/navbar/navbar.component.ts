@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
 
   modalRef?: BsModalRef;
   model: any;
+  role:any;
   constructor(private ls: LoginService,private router:Router,private RS: RegistryService, private modalService: BsModalService, private fb: FormBuilder, private ts: ToastrService) {
     this.changePasswordFormLayout = {
       opassword: [null, [Validators.required]],
@@ -108,7 +109,13 @@ export class NavbarComponent implements OnInit {
   getUserinfo(){
     if(this.ls.retriveUserData()==null){
       this.islogedin=0;
+      this.role=0;
     }else{
+     if(this.ls.retriveUserData().user.role=="superuser"){
+      this.role=1;
+     }else{
+      this.role=0;
+     }
       this.islogedin=1;
     }
     console.log(this.ls.retriveUserData());
