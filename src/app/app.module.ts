@@ -37,6 +37,7 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { EdulevelComponent } from './edulevel/edulevel.component';
 import { QualificationComponent } from './qualification/qualification.component';
 import { ReportComponent } from './report/report.component';
+import { Trial1Component } from './trial1/trial1.component';
 
 
 
@@ -70,7 +71,8 @@ import { ReportComponent } from './report/report.component';
     TransferCrud,
     EdulevelComponent,
     QualificationComponent,
-    ReportComponent
+    ReportComponent,
+    Trial1Component
   ],
   imports: [
     BrowserModule,

@@ -52,7 +52,7 @@ export class TrialComponent implements OnInit{
     selectThis(e: any){
       var selected = document.getElementById('selection');
       var ele: HTMLElement = e.target;
-      var val = ele.getAttribute('rel')
+      var val = ele.getAttribute('type')
       selected?.setAttribute("value",val!)
       console.log(val)
       selected!.textContent = ele.textContent;
