@@ -37,4 +37,26 @@ export class TrialComponent implements OnInit{
       var search = document.getElementById('op1');
       search?.classList.toggle('show')
     }
+
+    // selectThis(e: any){
+    //   var selected = document.getElementById('selection');
+    //   var ele: HTMLElement = e.target;
+    //   var val: InnerHTML = ele.getAttribute('value')
+    //   selected?.setAttribute("value",val)
+    //   console.log(val)
+    //   selected!.textContent = ele.textContent;
+
+    //   document.getElementById('myDropdown')?.classList.toggle('show');
+    // }
+
+    selectThis(e: any){
+      var selected = document.getElementById('selection');
+      var ele: HTMLElement = e.target;
+      var val = ele.getAttribute('rel')
+      selected?.setAttribute("value",val!)
+      console.log(val)
+      selected!.textContent = ele.textContent;
+
+      document.getElementById('myDropdown')?.classList.toggle('show');
+    }
 }
