@@ -1,4 +1,15 @@
 
-
-<angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems" 
-    [settings]="dropdownSettings"></angular2-multiselect>
+<div class="dropdown">
+  <button (click)="openDropdown()" class="form-control" style="width: 250px;">-- समूह छान्नुहोस् -- <span style="float: right;"><i class="bi bi-chevron-down"></i></span></button>
+  
+  <div id="myDropdown" class="dropdown-content">
+    <input type="text" class="form-control" placeholder="Search.." id="myInput" (keyup)="filterFunction()">
+    <a class="form-control sformControl">About</a>
+    <a class="form-control sformControl">Base</a>
+    <a class="form-control sformControl">Blog</a>
+    <a class="form-control sformControl">Contact</a>
+    <a class="form-control sformControl">Custom</a>
+    <a class="form-control sformControl">Support</a>
+    <a class="form-control sformControl">Tools</a>
+  </div>
+</div>

@@ -11,25 +11,30 @@ export class TrialComponent implements OnInit{
     selectedItems: any = [];
     dropdownSettings: any = {};
     ngOnInit(){
-        this.dropdownList = [
-                              {"id":1,"itemName":"India"},
-                              {"id":2,"itemName":"Singapore"},
-                              {"id":3,"itemName":"Australia"},
-                              {"id":4,"itemName":"Canada"},
-                              {"id":5,"itemName":"South Korea"},
-                              {"id":6,"itemName":"Germany"},
-                              {"id":7,"itemName":"France"},
-                              {"id":8,"itemName":"Russia"},
-                              {"id":9,"itemName":"Italy"},
-                              {"id":10,"itemName":"Sweden"}
-                            ];
-        this.dropdownSettings = { 
-                                  singleSelection: true, 
-                                  text:"Select Countries",
-                                  selectAllText:'Select All',
-                                  unSelectAllText:'UnSelect All',
-                                  enableSearchFilter: true,
-                                  classes:"myclass custom-class"
-                                };            
+    }
+
+    openDropdown(){
+        document.getElementById("myDropdown")!.classList.toggle("show");
+    }
+
+    filterFunction() {
+      var input:any, filter, ul, li, a, i;
+      input = document.getElementById("myInput");
+      var filter = input?.value.toUpperCase();
+      var div = document.getElementById("myDropdown");
+      var a: any= div?.getElementsByTagName("a");
+      for (i = 0; i < a!.length; i++) {
+        var txtValue = a![i].textContent || a![i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          a![i].style.display = "";
+        } else {
+          a![i].style.display = "none";
+        }
+      }
+    }
+
+    showSearch(){
+      var search = document.getElementById('op1');
+      search?.classList.toggle('show')
     }
 }
