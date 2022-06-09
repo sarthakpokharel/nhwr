@@ -16,6 +16,12 @@ export class EmplistService {
     return this.http.post(this.url, data);
 
   }
+
+  createtransfer(data: any) {
+    // console.log(data);
+    return this.http.post(this.url+'/transfer', data);
+
+  }
   update(id: any, data: any) {
 
     return this.http.put(this.url + '/' + id, data);
@@ -55,4 +61,26 @@ export class EmplistService {
     return this.http.get(this.url + '/downloadcsv?id=' + id);
      
   }
+  getAdmlvl() {
+    return this.http.get(this.baseUrl + 'subgroup/get-admlvl');
+  }
+  getProvinces() {
+    return this.http.get(this.baseUrl + 'subgroup/get-provinces');
+}
+
+getHfo(gid:any){
+  return this.http.get(this.baseUrl + 'subgroup/get-hfo/'+gid);
+}
+getorgs(pid:any){
+  return this.http.get(this.baseUrl + 'subgroup/get-offices/'+pid);
+}
+gethf(mid:any) {
+  return this.http.get(this.baseUrl + 'subgroup/get-hfbymunc?mid='+mid);
+}
+getdistrict(pid:any) {
+  return this.http.get(this.baseUrl + 'subgroup/get-district/'+pid);
+}
+getpalika(did:any) {
+  return this.http.get(this.baseUrl + 'subgroup/get-palika/'+did);
+}
 }

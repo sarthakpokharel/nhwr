@@ -144,6 +144,7 @@ getOrgField(id:any){
     $("#owner").show();
     $("#ftypes").show();
     $("#admlevel").hide();
+    $("#office").hide();
   }else{
     this.flag=1;
     $("#admlevel").show();

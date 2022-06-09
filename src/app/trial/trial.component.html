@@ -1,15 +1,15 @@
 
 <div class="dropdown">
-  <button (click)="openDropdown()" id="selection" class="form-control" style="width: 250px;">-- समूह छान्नुहोस् -- <span style="float: right;"><i class="bi bi-chevron-down"></i></span></button>
+  <button (click)="openDropdown()" id="selection" class="form-control"  style="width: 250px;">-- समूह छान्नुहोस् -- <span style="float: right;"><i class="bi bi-chevron-down"></i></span></button>
   
   <div id="myDropdown" class="dropdown-content">
     <input type="text" class="form-control" placeholder="Search.." id="myInput" (keyup)="filterFunction()">
-    <a class="form-control sformControl" (click)="selectThis($event)" rel="about">About</a>
-    <a class="form-control sformControl" (click)="selectThis($event)" rel="base">Base</a>
-    <a class="form-control sformControl" (click)="selectThis($event)" rel="blog">Blog</a>
-    <a class="form-control sformControl" (click)="selectThis($event)" rel="contact">Contact</a>
-    <a class="form-control sformControl" (click)="selectThis($event)" rel="custom">Custom</a>
-    <a class="form-control sformControl" (click)="selectThis($event)" rel="Support">Support</a>
-    <a class="form-control sformControl" (click)="selectThis($event)" rel="tools">Tools</a>
+    <a class="form-control sformControl" (click)="selectThis($event);" type="about">About</a>
+    <a class="form-control sformControl" (click)="selectThis($event)" type="base">Base</a>
+    <a class="form-control sformControl" (click)="selectThis($event)" type="blog">Blog</a>
+    <a class="form-control sformControl" (click)="selectThis($event)" type="contact">Contact</a>
+    <a class="form-control sformControl" (click)="selectThis($event)" type="custom">Custom</a>
+    <a class="form-control sformControl" (click)="selectThis($event)" type="Support">Support</a>
+    <a class="form-control sformControl" (click)="selectThis($event)" type="tools">Tools</a>
   </div>
 </div>

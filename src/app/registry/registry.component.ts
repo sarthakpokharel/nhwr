@@ -112,12 +112,13 @@ this.dropdownSettings = {
     
   }
 
-  getTrial(){
-    alert("hello");
-  }
+  // getTrial(){
+  //   alert("hello");
+  // }
 
   getOrgField(id:any){
     if(id==4){
+      this.adm=0;
       this.flag=0;
       $("#ward").show();
       $("#province").show();
