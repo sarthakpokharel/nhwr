@@ -25,6 +25,7 @@ import { QualificationComponent } from './qualification/qualification.component'
 import { ReportComponent } from './report/report.component';
 
 import { RegisteredUserListComponent } from './registered-user-list/registered-user-list.component';
+import { Trial1Component } from './trial1/trial1.component';
 
 
 
@@ -127,6 +128,10 @@ const routes: Routes = [
       {
         path: 'trial',
         component: TrialComponent
+      },
+      {
+        path: 'trial1',
+        component: Trial1Component
       },
       {
         path: 'registered-user-list',

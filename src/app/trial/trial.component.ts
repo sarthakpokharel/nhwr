@@ -56,7 +56,10 @@ export class TrialComponent implements OnInit{
       var selected = document.getElementById('selection');
       var ele: HTMLElement = e.target;
       var val = ele.getAttribute('type')
+<<<<<<< HEAD
       alert(val);
+=======
+>>>>>>> 3f0ec5e90a91dbdcbc1eeb47bcae594528f2fbef
       selected?.setAttribute("value",val!)
       console.log(val)
       selected!.textContent = ele.textContent;
