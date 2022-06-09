@@ -38,7 +38,7 @@
                     (click)="changeContent($event)" routerLink="user-register">Register User</a>
             </li> -->
 
-            <li class="nav-item dropdown" *ngIf="islogedin==1">
+            <li class="nav-item dropdown" *ngIf="role==1">
                 <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)"
                     data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true"
                     aria-expanded="false">User Registration</a>
@@ -90,7 +90,7 @@
             </li>
 
 
-            <li class="nav-item dropdown" *ngIf="islogedin==1">
+            <li class="nav-item dropdown" *ngIf="role==1">
                 <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)"
                     data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Setup</a>
                 <div class="dropdown-menu">

@@ -31,6 +31,9 @@ export class RegistryComponent implements OnInit,AfterViewInit  {
   admlvl:any;
   adm:any;
   hfo:any;
+  dropdownList: any = [];
+  selectedItems: any = [];
+  dropdownSettings: any = {};
   public fieldArray: Array<any> = [];
   public newAttribute: any = {};
   rid:any=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50];
@@ -50,6 +53,7 @@ export class RegistryComponent implements OnInit,AfterViewInit  {
       ftype: ['', [Validators.required]],
       officeid: ['0'],
       admlvl:[''],
+      trial:['']
       // groupid1: ['', [Validators.required]],
       // subgroupid1: [''],
       // post1: ['', [Validators.required]],
@@ -74,6 +78,26 @@ export class RegistryComponent implements OnInit,AfterViewInit  {
     this.getSamuha();
     this.formControl();
     this.getAdmlvl();
+    this.dropdownList = [
+      {"id":1,"itemName":"India"},
+      {"id":2,"itemName":"Singapore"},
+      {"id":3,"itemName":"Australia"},
+      {"id":4,"itemName":"Canada"},
+      {"id":5,"itemName":"South Korea"},
+      {"id":6,"itemName":"Germany"},
+      {"id":7,"itemName":"France"},
+      {"id":8,"itemName":"Russia"},
+      {"id":9,"itemName":"Italy"},
+      {"id":10,"itemName":"Sweden"}
+    ];
+this.dropdownSettings = { 
+          singleSelection: true, 
+          text:"Select Countries",
+          selectAllText:'Select All',
+          unSelectAllText:'UnSelect All',
+          enableSearchFilter: true,
+          classes:"myclass custom-class"
+        };            
    
     
   }
@@ -86,6 +110,10 @@ export class RegistryComponent implements OnInit,AfterViewInit  {
     this.regForm.addControl('post_count_karar'+i, new FormControl('0', Validators.required));
     }
     
+  }
+
+  getTrial(){
+    alert("hello");
   }
 
   getOrgField(id:any){
