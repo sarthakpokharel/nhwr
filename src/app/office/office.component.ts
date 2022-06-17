@@ -6,6 +6,7 @@ import { ITreeOptions, TreeComponent, TreeModel, TreeNode, TREE_ACTIONS } from '
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+// declare const NepDatePicker: any;
 @Injectable({
   providedIn: 'root' // just before your class
 })
@@ -214,6 +215,7 @@ export class OfficeComponent implements OnInit,AfterViewInit {
   addSection(sid:any,oid:any,post:any,darbandiid:any,detailsid:any) {
     // alert(oid);
     this.modalRef = this.modalService.show(OfficeCrud,{initialState:{workforceid:sid,orgidint:oid,tree:this.tree,orgchange:this.orgchange,post:post,darbandiid:darbandiid,detailsid:detailsid}});
+    this.modalRef.setClass('modal-xl');
     this.modalRef.content.afterSave.subscribe(()=>{
       this.getSections();
     });
@@ -222,6 +224,7 @@ export class OfficeComponent implements OnInit,AfterViewInit {
   editSection(sid:any,oid:any,post:any,darbandiid:any,detailsid:any,empid:any) {
    
     this.modalRef = this.modalService.show(OfficeCrud,{initialState:{workforceid:sid,isEdit:1,orgidint:oid,tree:this.tree,orgchange:this.orgchange,post:post,darbandiid:darbandiid,detailsid:detailsid,empid:empid}});
+    this.modalRef.setClass('modal-xl');
     this.modalRef.content.afterSave.subscribe(()=>{
       this.getSections();
     });
@@ -229,6 +232,7 @@ export class OfficeComponent implements OnInit,AfterViewInit {
 
   addDarbandi(did:any,post:any){
     this.modalRef = this.modalService.show(DarbandiCrud,{initialState:{tree:this.tree,orgchange:this.orgchange,post:post,darbandiid:did}});
+    this.modalRef.setClass('modal-xl');
     this.modalRef.content.afterSave.subscribe(()=>{
       this.getSections();
     });
@@ -236,6 +240,7 @@ export class OfficeComponent implements OnInit,AfterViewInit {
 
   addMissingpost(wid:any){
     this.modalRef = this.modalService.show(PostCrud,{initialState:{tree:this.tree,orgchange:this.orgchange,workforceid:wid}});
+    this.modalRef.setClass('modal-xl');
     this.modalRef.content.afterSave.subscribe(()=>{
       this.getSections();
     });
@@ -270,9 +275,11 @@ export class OfficeCrud implements OnInit{
   
   officeForm!: FormGroup;
   emps:any;
+  transfer:any;
   
 
   constructor(public modalRef: BsModalRef, private toastr: ToastrService, private RS: OfficeService, private fb:FormBuilder,private ofc:OfficeComponent){
+    // NepDatePicker.createCalendar(document.getElementById('apoint_date'));
     this.officeForm = new FormGroup({
       id: new FormControl(''),
       workforceid: new FormControl(''),
@@ -292,6 +299,7 @@ export class OfficeCrud implements OnInit{
       council: new FormControl('', [Validators.required]),
       council_no: new FormControl('', [Validators.required]),
       pis: new FormControl(''),
+      tid: new FormControl(''),
       qualification: new FormControl('', [Validators.required]),
       
     })
@@ -299,6 +307,8 @@ export class OfficeCrud implements OnInit{
   }
   model:any;
   ngOnInit(){
+    
+    //  NepDatePicker.createCalendar(document.getElementById('apoint_date'));
     if(this.isEdit==1){
       this.getUpdateItem(this.empid);
     }
@@ -306,7 +316,46 @@ export class OfficeCrud implements OnInit{
     this.getLevel();
     this.getcouncil();
     this.geteduLevel();
+    this.getTransfer(this.workforceid);
+
+
   
+  }
+
+  getTransfer(wid:any){
+    this.RS.getTransfer(wid).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.transfer=result.data;
+     
+        // this.officeForm.value.tid=this.transfer[0].tid;
+        // this.emps = result.data[0];
+        // this.officeForm.patchValue(this.emps);
+        // console.log(this.emps);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
+  }
+
+  patchemployee(tid:any,empid:any){
+    this.RS.getEmpinfo(tid,empid).subscribe(
+      (result: any) => {
+        console.log(result);
+        this.emps = result.data[0];
+        this.officeForm.patchValue(this.emps);
+       this.getQualification(this.emps.education,this.emps.council);
+        // this.emps = result.data[0];
+        this.officeForm.patchValue(this.emps);
+        $("#tid").val(tid);
+        // this.officeForm.value.tid=tid;
+        // console.log(tid);
+      },
+      error => {
+        this.toastr.error(error.error, 'Error');
+      }
+    );
   }
 
   getnmc(cno:any){

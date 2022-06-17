@@ -3,6 +3,12 @@
         margin-bottom: 10px;
     }
 </style>
+
+<script src="../nepdate/nepali-date-picker.js"></script>
+<script>
+    NepDatePicker.createCalendar(document.getElementById('pick-date-example'));
+</script>
+
 <div class="container">
     <br>
     <div class="modal-header">
@@ -10,13 +16,15 @@
             <!-- <h4 style="float: left;" class="modal-title pull-left">Add Details</h4> -->
             <h4 class="modal-title pull-left" *ngIf="isEdit==1"> Edit Employee {{post}}</h4>
             <h4 class="modal-title pull-left" *ngIf="isEdit!=1"> Add Employee {{post}}</h4>
+            
             <button type="button" style="float: right;" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
                 <span aria-hidden="true" class="visually-hidden">&times;</span>
-              </button>
-     
-
+              </button><br>
 
     </div>
+    <div *ngIf="isEdit!=1">
+        <div  *ngFor=" let item of transfer "><a href="javascript:void(0)" (click)="patchemployee(item.tid,item.empid)" >{{item.empname}}</a>(Transfered)</div>
+        </div>
     <div class="modal-body">
         <form class="form-signin" [formGroup]="officeForm" (ngSubmit)="officeFormSubmit()">
             <input type="hidden" class="form-control" name="id" formControlName="id">
@@ -24,6 +32,7 @@
             <input type="hidden" class="form-control" name="workforceid" formControlName="workforceid">
             <input type="hidden" class="form-control" name="darbandiid" formControlName="darbandiid">
             <input type="hidden" class="form-control" name="detailsid" formControlName="detailsid">
+            <input type="hidden" class="form-control" name="tid" formControlName="tid">
            
             <div class="row col-md-12">
 
@@ -156,7 +165,7 @@
                                 <label>नियुक्ति मिति</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="date" class="form-control" name="apoint_date" formControlName="apoint_date">
+                                <input type="text" class="form-control" name="apoint_date" id="apoint_date" formControlName="apoint_date">
                                 <span style="color: red;"
                                 *ngIf="officeForm.controls.apoint_date && officeForm.controls.apoint_date.invalid && officeForm.controls.apoint_date.touched">Required Field</span>
                             </div>
@@ -191,16 +200,20 @@
                                 </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="row input-group col-md-12">
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <label>Qualification </label>
                                         </div>
                                         <div class="col-md-8">
-                                            <select class="form-control" name="qualification" formControlName="qualification" #eid  >
+                                              <ng-select name="qualification" #eid formControlName="qualification" >
+                                                <ng-option  [value]="">--    छान्नुहोस् --</ng-option>
+                                    <ng-option *ngFor="let item of qual" [value]="item.id">{{item.namenp}}</ng-option>
+                                 </ng-select>
+                                            <!-- <select class="form-control" name="qualification" formControlName="qualification" #eid  >
                                                 <option value="">--    छान्नुहोस् --</option>
                                                 <option *ngFor=" let item of qual" [value]="item.id">{{ item.namenp}}</option>
-                                            </select>
+                                            </select> -->
                                             <span style="color: red;"
                                         *ngIf="officeForm.controls.qualification && officeForm.controls.qualification.invalid && officeForm.controls.qualification.touched">Required Field</span>
                                         </div>
@@ -241,3 +254,4 @@
         </form>
     </div>
 </div>
+

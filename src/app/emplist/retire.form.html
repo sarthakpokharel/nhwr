@@ -1,0 +1,70 @@
+<style>
+    .form-control {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="container">
+    <br>
+    <div class="modal-header">
+        <!-- <button type="button" class="btn-close close" (click)="modalRef?.hide()"> -->
+            <!-- <h4 style="float: left;" class="modal-title pull-left">Add Details</h4> -->
+          
+            <h4 class="modal-title pull-left" >Retire Employee:  {{empname}}</h4>
+            <button type="button" style="float: right;" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                <span aria-hidden="true" class="visually-hidden">&times;</span>
+              </button>
+     
+
+
+    </div>
+    <div class="modal-body">
+        <form class="form-signin" [formGroup]= "officeForm" (ngSubmit)= "officeFormSubmit()">
+            <input type="hidden" class="form-control" name="id" formControlName="id">
+            <input type="hidden" class="form-control" name="empid" formControlName="empid">
+            <input type="hidden" class="form-control" name="wid" formControlName="wid">
+           
+            <div class="row col-md-12">
+                <div class="row input-group col-md-6">
+                    <div class="col-md-4 forRequired">
+                        <label>Retired Date</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input class="form-control" type="date" name="retire_date"   formControlName="retire_date" >
+                        
+
+                    </div>
+                    </div>
+                         
+                             
+           
+
+          
+            <div class="row input-group col-md-6">
+                <div class="col-md-4 forRequired">
+                    <label>Remarks(if any)</label>
+                </div>
+                <div class="col-md-8">
+                    <input class="form-control" type="text" name="remarks"   formControlName="remarks" >
+                    
+
+                </div>
+                </div>
+                     
+                         
+       
+    </div>
+            
+
+          
+            <div class="row">
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary px-4">Save</button>
+                </div>
+                <div class="col-6 text-right">
+                    <button #resetbutton type="reset" class="btn btn-danger px-4">Reset</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

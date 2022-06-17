@@ -4,8 +4,7 @@
             margin-bottom: 10px;
         }
     </style>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
     <div class="row">
         <div class="col-md-12">
             <div class="card" id="c1">
@@ -22,8 +21,7 @@
                             <div class="col-md-8">
                                 <select class="form-control" name="orgtype" #orgs  formControlName="orgtype" (change)="getOrgField(orgs.value)">
                                 <option value="">Select One</option>
-                                <option value="1">Administrative Unit</option>
-                               
+                                <option value="1">प्रशासनिक एकाइ</option>
                                 <option value="4">स्वास्थ्य संस्था  </option>
                             </select>
                                
@@ -54,6 +52,9 @@
                                 <label>Province</label>
                             </div>
                             <div class="col-md-8">
+                                <!-- <ng-select name="provinceid" #pid formControlName="provinceid"  (change)="getDistricts($event);getOffices($event)">
+                                    <ng-option *ngFor="let car of cars" [value]="car.id">{{car.name}}</ng-option>
+                                 </ng-select> -->
                                 <select class="form-control" name="provinceid" #pid formControlName="provinceid"
                                 (change)="getDistricts(pid.value);getOffices(pid.value)">
                                 <option value="">Select One</option>
@@ -221,7 +222,7 @@
                                                       <!-- <td >तह </td> -->
                                                       <td>पद </td>
                                                       <td>स्वीकृत दरबन्दी संख्या  </td>
-                                                      <td>स्वीकृत दरबन्दी वाहेकको  संख्या  </td>
+                                                      <td> दरबन्दी वाहेकको कार्यरत  संख्या  </td>
                                                       <!-- <td> ! </td> -->
                                                   </tr>
                                               </thead>
@@ -229,12 +230,13 @@
                                                   
                                                   <tr  *ngFor="let items of rid " id="row{{items}}" style="display: none;">
                                                       <td>
-                                                        <select class="form-control select2"  tabindex="-1" aria-hidden="true" name="groupid" #gid formControlName="groupid{{items}}" (change)="getSubgroup(gid.value,items);getPost(gid.value,items)">
+                                                        <select class="form-control"   name="groupid" #gid formControlName="groupid{{items}}" (change)="getSubgroup(gid.value,items);getPost(gid.value,items)">
                                                                   
                                                                    <option value="">-- समूह  छान्नुहोस् --</option>
                                                                    <option *ngFor=" let item of samuha " [value]="item.id">{{ item.namenp}}</option>
                                                                     
-                                                        </select></td>
+                                                        </select>
+                                                    </td>
                                                     <td>
                                                     <select name="subgroupid"  class="form-control" formControlName="subgroupid{{items}}" >
                                                     

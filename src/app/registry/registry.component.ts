@@ -68,6 +68,18 @@ export class RegistryComponent implements OnInit,AfterViewInit  {
     $("#row1").show();
     
   }
+  selectedCar!: number;
+
+  cars = [
+      { id: 1, name: 'Volvo' },
+      { id: 2, name: 'Saab' },
+      { id: 3, name: 'Opel' },
+      { id: 4, name: 'Audi' },
+  ];
+
+  gettrail(e:any){
+    console.log(e);
+  }
 
   
 

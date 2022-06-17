@@ -1,4 +1,4 @@
-import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { Component, Injectable, Input,EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EmplistService } from './emplist.service';
@@ -104,12 +104,20 @@ export class EmplistComponent implements OnInit {
     this.groupForm =this.fb.group(this.formLayout);
   }
   modalRef:any;
-  transferEmp(id :any,empname:any){
-    this.modalRef = this.modalService.show(TransferCrud,{initialState:{empid:id,empname:empname}});
+  transferEmp(id :any,empname:any,wid:any){
+    this.modalRef = this.modalService.show(TransferCrud,{initialState:{empid:id,empname:empname,wid:wid}});
+    this.modalRef.setClass('modal-xl');
+    this.modalRef.content.afterSave.subscribe(()=>{
+      this.getList();
+    });
    
   } 
-  retire(id:any){
-    // alert(id);
+  retire(id :any,empname:any,wid:any){
+    this.modalRef = this.modalService.show(RetireCrud,{initialState:{empid:id,empname:empname,wid:wid}});
+    this.modalRef.setClass('modal-xl');
+    this.modalRef.content.afterSave.subscribe(()=>{
+      this.getList();
+    });
   }
   download(id:any){
     
@@ -196,7 +204,7 @@ export class EmplistComponent implements OnInit {
   styleUrls: ['./emplist.component.scss'],
 })
 export class TransferCrud implements OnInit{
- 
+  public afterSave:EventEmitter<any>=new EventEmitter();
   
   [x: string]: any;
   
@@ -205,6 +213,7 @@ export class TransferCrud implements OnInit{
   
   @Input() empid:any;
   @Input() empname:any;
+  @Input() wid:any;
 
  
   
@@ -218,10 +227,11 @@ export class TransferCrud implements OnInit{
       provinceid: [''],
       districtid: [''],
       palika: [''],
-      org: [''],
-      officeid: [''],
+      org: ['0'],
+      officeid: ['0'],
       admlvl:[''],
-      empid:[]
+      empid:[],
+      wid:[]
       
     }
     
@@ -405,6 +415,7 @@ getOrgField(id:any){
     if (this.officeForm.valid) {
      
       this.officeForm.value.empid=this.empid;
+      this.officeForm.value.wid=this.wid;
       // this.officeForm.value.detailsid=this.detailsid;
       this.model = this.officeForm.value;
       this.createItem(this.officeForm.value.id);
@@ -433,7 +444,94 @@ getOrgField(id:any){
       this.RS.createtransfer(upd).subscribe(result => {
         this.toastr.success('Item Successfully Saved!', 'Success');
         this.officeForm.reset();
-        // this.afterSave.emit();
+        this.afterSave.emit();
+        this.modalRef.hide();
+        // this.closebutton.nativeElement.click();
+        // this.orgchange.nativeElement.click();
+        
+      }, error => {
+        this.toastr.error(error.error, 'Error');
+      });
+    }
+  // }
+}
+}
+
+@Component({
+  templateUrl: './retire.form.html',
+  styleUrls: ['./emplist.component.scss'],
+})
+export class RetireCrud implements OnInit{
+  public afterSave:EventEmitter<any>=new EventEmitter();
+  
+  [x: string]: any;
+  
+  html!: '';
+
+  
+  @Input() empid:any;
+  @Input() empname:any;
+  @Input() wid:any;
+
+ 
+  
+  officeForm!: FormGroup
+  
+
+  constructor(public modalRef: BsModalRef, private toastr: ToastrService, private RS: EmplistService, private fb:FormBuilder,private ofc:EmplistComponent){
+    this.formLayout = {
+      id:[],
+      retire_date: ['',Validators.required],
+      remarks: [''],
+      empid:[],
+      wid:[]
+      
+    }
+    
+    this.officeForm =fb.group(this.formLayout)
+    
+  }
+  model:any;
+  ngOnInit(){
+    // this.getAdmlvl();
+    // this.getProvinces();
+  
+  }
+  officeFormSubmit() {
+
+    if (this.officeForm.valid) {
+     
+      this.officeForm.value.empid=this.empid;
+      this.officeForm.value.wid=this.wid;
+      // this.officeForm.value.detailsid=this.detailsid;
+      this.model = this.officeForm.value;
+      this.createItem(this.officeForm.value.id);
+    } else {
+      Object.keys(this.officeForm.controls).forEach(field => {
+        const singleFormControl = this.officeForm.get(field);
+        singleFormControl!.markAsTouched({onlySelf: true});
+      });
+    }
+  }
+
+  createItem(id = null) {
+    let upd = this.model;
+    if (id != "" && id !=null) {
+
+      // this.RS.update(id, upd).subscribe(result => {
+      //   this.toastr.success('Item Successfully Updated!', 'Success');
+      //   this.officeForm.reset();
+      //   this.afterSave.emit();
+      //   this.modalRef.hide();
+       
+      // }, error => {
+      //   this.toastr.error(error.error, 'Error');
+      // });
+    } else {
+      this.RS.createRetire(upd).subscribe(result => {
+        this.toastr.success('Item Successfully Saved!', 'Success');
+        this.officeForm.reset();
+        this.afterSave.emit();
         this.modalRef.hide();
         // this.closebutton.nativeElement.click();
         // this.orgchange.nativeElement.click();

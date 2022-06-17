@@ -21,4 +21,8 @@ export class Trial1Component implements OnInit {
       { id: 4, name: 'Audi' },
   ];
 
+  gettrail(e:any){
+    console.log(e);
+  }
+
 }

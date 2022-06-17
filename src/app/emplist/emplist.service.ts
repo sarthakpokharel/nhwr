@@ -22,6 +22,9 @@ export class EmplistService {
     return this.http.post(this.url+'/transfer', data);
 
   }
+  createRetire(data:any){
+    return this.http.post(this.url+'/retire', data);
+  }
   update(id: any, data: any) {
 
     return this.http.put(this.url + '/' + id, data);

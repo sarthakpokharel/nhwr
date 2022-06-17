@@ -113,6 +113,12 @@ constructor(private http: HttpClient) {}
       getemp(cno:any){
         return this.http.get(this.baseUrl + 'subgroup/get-emps?cno='+cno);
       }
+      getEmpinfo(tid:any,empid:any){
+        return this.http.get(this.baseUrl + 'subgroup/get-empinfo?empid='+empid);
+      }
+      getTransfer(wid:any){
+        return this.http.get(this.baseUrl + 'subgroup/get-transfer?wid='+wid);
+      }
       getSamuha() {
         return this.http.get(this.baseUrl + 'subgroup/get-samuha');
       }

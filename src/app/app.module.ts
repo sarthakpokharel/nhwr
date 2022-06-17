@@ -29,7 +29,7 @@ import { TrialComponent } from './trial/trial.component';
 import { OfficeComponent, OfficeCrud ,DarbandiCrud,PostCrud} from "./office/office.component";
 import { TreeModule } from '@circlon/angular-tree-component';
 import { ReglistComponent } from './reglist/reglist.component';
-import { EmplistComponent,TransferCrud } from './emplist/emplist.component';
+import { EmplistComponent,TransferCrud,RetireCrud } from './emplist/emplist.component';
 import { HealthOfficeComponent } from './health-office/healthoffice.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { RegisteredUserListComponent } from './registered-user-list/registered-user-list.component';
@@ -64,6 +64,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     OfficeCrud,
     PostCrud,
     DarbandiCrud,
+    RetireCrud,
     ReglistComponent,
     UserRegisterComponent,
     RegisteredUserListComponent,
