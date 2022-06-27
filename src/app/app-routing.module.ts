@@ -23,6 +23,9 @@ import { EmplistComponent } from './emplist/emplist.component';
 import { EdulevelComponent } from './edulevel/edulevel.component';
 import { QualificationComponent } from './qualification/qualification.component';
 import { ReportComponent } from './report/report.component';
+import { Report2Component } from './report/report2.component';
+import { PivotComponent } from './pivot/pivot.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { RegisteredUserListComponent } from './registered-user-list/registered-user-list.component';
 import { Trial1Component } from './trial1/trial1.component';
@@ -75,8 +78,23 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'report',
+        path: 'report1',
         component: ReportComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'report2',
+        component: Report2Component,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'pivot',
+        component: PivotComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
         canActivate: [AuthGuard]
       },
       {

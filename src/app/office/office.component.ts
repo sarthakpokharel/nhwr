@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Injectable, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Injectable, Input, OnInit, Output, ViewChild,AfterViewChecked } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import {OfficeService } from './office.service';
 import { ToastrService } from 'ngx-toastr';
@@ -6,7 +6,9 @@ import { ITreeOptions, TreeComponent, TreeModel, TreeNode, TREE_ACTIONS } from '
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+// declare var NepDatePicker: { createCalendar: (arg0: HTMLElement | null) => void; };
 // declare const NepDatePicker: any;
+declare var NepDatePicker: any;
 @Injectable({
   providedIn: 'root' // just before your class
 })
@@ -52,6 +54,9 @@ export class OfficeComponent implements OnInit,AfterViewInit {
     });
     this.nodes=[];
   }
+  // ngAfterViewInit(): void {
+  //   throw new Error('Method not implemented.');
+  // }
 
   ngOnInit(): void {
     this.pagination.perPage = this.perPages[0];
@@ -82,7 +87,7 @@ export class OfficeComponent implements OnInit,AfterViewInit {
   }
 
   removePost(wid:any,oid:any,post:any,darbandiid:any,detailsid:any){
-    if (window.confirm('Are sure you want to Remove the Post?')) {
+    if (window.confirm('Are  you sure? you want to Remove the Post?')) {
       this.RS.removePost(wid,darbandiid,detailsid,oid).subscribe((result: any) => {
         this.toastr.success('Item Successfully Deleted!', 'Success');
         // this.darid=this._Activatedroute.snapshot.paramMap.get("id");
@@ -258,7 +263,8 @@ export class OfficeComponent implements OnInit,AfterViewInit {
   templateUrl: './office.form.html',
   styleUrls: ['./office.component.scss'],
 })
-export class OfficeCrud implements OnInit{
+
+export class OfficeCrud implements OnInit,AfterViewChecked,AfterViewInit{
   public afterSave:EventEmitter<any>=new EventEmitter();
   
   [x: string]: any;
@@ -276,6 +282,8 @@ export class OfficeCrud implements OnInit{
   officeForm!: FormGroup;
   emps:any;
   transfer:any;
+  ethnic:any;
+  // NepDatePicker: any;
   
 
   constructor(public modalRef: BsModalRef, private toastr: ToastrService, private RS: OfficeService, private fb:FormBuilder,private ofc:OfficeComponent){
@@ -301,18 +309,27 @@ export class OfficeCrud implements OnInit{
       pis: new FormControl(''),
       tid: new FormControl(''),
       qualification: new FormControl('', [Validators.required]),
+      gender: new FormControl('', [Validators.required]),
+      dob: new FormControl('', [Validators.required]),
+      ethnicity: new FormControl('', [Validators.required]),
       
     })
     
   }
+  ngAfterViewInit(): void {
+    NepDatePicker.createCalendar(document.getElementById('apoint_date'));
+    NepDatePicker.createCalendar(document.getElementById('att_date'));
+    NepDatePicker.createCalendar(document.getElementById('dob'));
+  }
   model:any;
   ngOnInit(){
-    
+    // NepDatePicker.createCalendar(document.getElementById('apoint_date'));
     //  NepDatePicker.createCalendar(document.getElementById('apoint_date'));
     if(this.isEdit==1){
       this.getUpdateItem(this.empid);
     }
     this.getEmptype();
+    this.getEthnicity();
     this.getLevel();
     this.getcouncil();
     this.geteduLevel();
@@ -320,6 +337,9 @@ export class OfficeCrud implements OnInit{
 
 
   
+  }
+  ngAfterViewChecked() {
+    // createCalendar(document.getElementById('apoint_date'));
   }
 
   getTransfer(wid:any){
@@ -383,6 +403,21 @@ export class OfficeCrud implements OnInit{
       }
     );
  
+
+}
+
+getEthnicity() {
+    
+  this.RS.getEthnicity().subscribe(
+    (result: any) => {
+      this.ethnic = result.data;
+      // console.log(this.provinces);
+    },
+    error => {
+      this.toastr.error(error.error, 'Error');
+    }
+  );
+
 
 }
 
@@ -461,6 +496,9 @@ getQualification(eid:any,cid:any){
         this.model = result;
         this.officeForm.patchValue(result);
         this.getQualification(result.education,result.council);
+        if(result.emptype==1||result.emptype==8){
+          $("#pisno").show();
+        }
         // this.getFiles(result.headerid);
       },
       (error: any) => {

@@ -96,6 +96,10 @@ constructor(private http: HttpClient) {}
     getEmptype(){
         return this.http.get(this.baseUrl + 'subgroup/get-emptype');
       }
+
+      getEthnicity(){
+        return this.http.get(this.baseUrl + 'subgroup/get-ethincity');
+      }
       getLevel(){
         return this.http.get(this.baseUrl + 'subgroup/get-level');
       }

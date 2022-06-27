@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><strong>Organization wise Report</strong></div>
+                <div class="card-header"><strong>Post Type Report</strong></div>
                 <div class="card-body">
                     <form class="form-signin" [formGroup]= "groupForm">
                         <input type="hidden" class="form-control" name="id" formControlName="id"> 
@@ -50,9 +50,7 @@
                                 <div class="col-md-8">
                                     <select class="form-control" name="provinceid" #pid formControlName="provinceid"
                                     (change)="getDistricts(pid.value);getOffices(pid.value)">
-                                    <option value="0">All Province</option>
-                                    <option value="100">All District</option>
-                                    <option value="200">All Palika</option>
+                                    <option value="0">National</option>
                                     <option *ngFor="let item of provinces" [value]="item.pid">{{ item.namenp}}</option>
                                 </select>
                                    
@@ -185,17 +183,17 @@
     
                       
                         <div class="row">
-                            <div class="col-6">
-                               
+                            <!-- <div class="col-6">
+                                Report1
                                 <button type="button" class="btn btn-primary px-4" (click)="getReports(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >Export Excel</button>
                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-info px-4" (click)="getReportsView(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >view</button>
-                            </div>
+                            </div> -->
 
-                            <!-- <div class="col-6">
-                                Report2
+                            <div class="col-6">
+                              
                                 <button type="button" class="btn btn-primary px-4" (click)="getReport2(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >Export Excel</button>
                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-info px-4" (click)="getReportsView2(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >view</button>
-                            </div> -->
+                            </div>
                             <!-- <div class="col-6 text-right">
                                 <button type="button" (click)= "resetForm()" class="btn btn-danger px-4">Reset</button>
                             </div> -->

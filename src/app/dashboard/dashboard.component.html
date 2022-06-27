@@ -1,0 +1,175 @@
+<!-- <div id="oas_reading" class="oas-reading"> -->
+    <style>
+        .form-control {
+            margin-bottom: 15px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><strong>Dashboard</strong></div>
+                <div class="card-body">
+                 
+                  Health Workers
+                  <div class="row mb-3">
+                    <div class="col-xl-3 col-sm-6 py-2">
+                        <div class="card bg-success text-white">
+                            <div class="card-body bg-success">
+                                <div class="rotate">
+                                    <i class="fa fa-user fa-4x"></i>
+                                </div>
+                                <h5 class="text-uppercase">संघिय </h5>
+                                <h1 class="display-6">{{sangh}}</h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-sm-6 py-2">
+                      <div class="card bg-danger text-white">
+                          <div class="card-body bg-danger">
+                              <div class="rotate">
+                                  <i class="fa fa-users fa-4x"></i>
+                              </div>
+                              <h5 class="text-uppercase">प्रादेशिक </h5>
+                              <h1 class="display-6">{{pradesh}}</h1>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-xl-3 col-sm-6 py-2">
+                    <div class="card bg-info text-white">
+                        <div class="card-body bg-info">
+                            <div class="rotate">
+                                <i class="fa fa-industry fa-4x"></i>
+                            </div>
+                            <h5 class="text-uppercase">स्थानीय </h5>
+                            <h1 class="display-6">{{local}}</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-6 py-2">
+                  <div class="card bg-warning text-white">
+                      <div class="card-body bg-warning">
+                          <div class="rotate">
+                              <i class="fa fa-hospital-o fa-4x"></i>
+                          </div>
+                          <h5 class="text-uppercase">स्वास्थ्य संस्था  </h5>
+                          <h1 class="display-6">{{hf}}</h1>
+                      </div>
+                  </div>
+              </div>
+
+
+                </div>
+
+                <div class="row col-md-12">
+                  <div class="card col-md-6">
+                    <div class="card-header"><strong>Darbandi information</strong></div>
+                    <div class="card-body">
+               
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                          <thead class="thead-inverse">
+                              <tr>
+                                  <th>Province</th>
+                                  <th>Sanctioned Darbandi</th>
+                                  <th>Fullfilled</th>
+                                  
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>Province No. 1</td>
+                                  <td>{{sanctioned.p1d}}</td>
+                                  <td>{{sanctioned.p1w}}</td>
+                                 
+                              </tr>
+
+                              <tr>
+                                <td>Madesh Pradesh</td>
+                                <td>{{sanctioned.p2d}}</td>
+                                <td>{{sanctioned.p2w}}</td>
+                               
+                            </tr>
+
+                            <tr>
+                              <td>Bagmati Pradesh</td>
+                              <td>{{sanctioned.p3d}}</td>
+                              <td>{{sanctioned.p3w}}</td>
+                             
+                          </tr>
+
+                          <tr>
+                            <td>Gandaki Pradesh</td>
+                            <td>{{sanctioned.p4d}}</td>
+                            <td>{{sanctioned.p4w}}</td>
+                           
+                        </tr>
+
+                        <tr>
+                          <td>Lumbini Pradesh</td>
+                          <td>{{sanctioned.p5d}}</td>
+                          <td>{{sanctioned.p5w}}</td>
+                         
+                      </tr>
+
+                      <tr>
+                        <td>Karnali Pradesh</td>
+                        <td>{{sanctioned.p6d}}</td>
+                        <td>{{sanctioned.p6w}}</td>
+                       
+                    </tr>
+
+                    <tr>
+                      <td>Sudurpashchim Pradesh</td>
+                      <td>{{sanctioned.p7d}}</td>
+                      <td>{{sanctioned.p7w}}</td>
+                     
+                  </tr>
+                              </tbody>
+                              </table>
+                              </div>
+                  </div>
+
+              
+            </div>
+
+            <div class="card col-md-6">
+              <div class="card-header"><strong>Ethnicity information</strong></div>
+              <div class="card-body">
+         
+              <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>Ethnicity</th>
+                            <th>Total no.</th>
+                           
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor=" let item of ethnicity ">
+                            <td>{{item.name}}</td>
+                            <td>{{item.count}}</td>
+                           
+                           
+                        </tr></tbody>
+                        </table>
+                        </div>
+                        </div>
+                        </div>
+
+
+            </div>
+            </div>
+           
+        </div>
+    
+       
+                   
+                  
+      
+    </div>
+    <!-- </div> -->

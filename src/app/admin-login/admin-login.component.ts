@@ -31,7 +31,7 @@ export class AdminLoginComponent implements OnInit {
     if(this.ls.retriveUserData()==null){
       // this.islogedin=0;
     }else{
-      this.router.navigate(['/registry']);
+      this.router.navigate(['/dashboard']);
     }
     // console.log(this.ls.retriveUserData());
   }
@@ -43,7 +43,7 @@ export class AdminLoginComponent implements OnInit {
         
         this.ls.storeUserData(data.data);
         // this.router.navigate(['/registry']);
-        this.router.navigate(['/registry'])
+        this.router.navigate(['/dashboard'])
   .then(() => {
     window.location.reload();
   });

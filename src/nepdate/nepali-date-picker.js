@@ -240,12 +240,15 @@ var NepDatePicker = {
                 }
             }
         }
+        // console.log(this.aaja);
+        if(this.aaja!=null){
         var aajaArray = this.aaja.split('/');
         this.aaja = aajaArray[0] 
             + "/" +(aajaArray[1].toString().length==1?"0"+aajaArray[1]:aajaArray[1])
             + "/" + (aajaArray[2].toString().length==1?"0"+aajaArray[2]:aajaArray[2]);
             this.getObject("caldiv35").innerHTML = this.aaja;
             this.getObject("caldiv35").title = today;
+        }
     },
     retriveDate: function(activedive) {
 
@@ -283,8 +286,10 @@ var NepDatePicker = {
             "y": off.top + window.scrollY
         };
         this.getObject("ndp-nepali-box").style.position = "absolute";
-        this.getObject("ndp-nepali-box").style.top = (co.y + a.offsetHeight) + 'px';
-        this.getObject("ndp-nepali-box").style.left = co.x + 'px';
+        // this.getObject("ndp-nepali-box").style.top = 'px';
+        // this.getObject("ndp-nepali-box").style.left = 'px';
+        // this.getObject("ndp-nepali-box").style.top = (co.y + a.offsetHeight) + 'px';
+        // this.getObject("ndp-nepali-box").style.left = co.x + 'px';
         if (this.getObject("ndp-nepali-box").style.display == "block") {
             this.getObject("ndp-nepali-box").style.display = "none";
         } else {
@@ -298,10 +303,10 @@ var NepDatePicker = {
     createCalendar: function(mj) {
         if (this.getObject("ndp-nepali-box") == null) {
 			var calHtml = this.prepareCalHtml();
-            document.body.appendChild(calHtml);
+            document.forms.fname.appendChild(calHtml);
             var dpdiv = document.createElement('div');
             dpdiv.id="divdropdown";
-            document.body.appendChild(dpdiv);
+            document.forms.fname.appendChild(dpdiv);
         }
         mj.classList.remove('calinputclick');
         mj.classList.remove('calinputhover');

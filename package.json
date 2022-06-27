@@ -21,6 +21,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@circlon/angular-tree-component": "^11.0.4",
     "@ng-select/ng-select": "^8.3.0",
+    "@sajanm/nepali-date-picker": "^3.7.0",
     "angular2-multiselect-dropdown": "^5.0.4",
     "bootstrap": "^4.5.3",
     "bootstrap-icons": "^1.8.1",

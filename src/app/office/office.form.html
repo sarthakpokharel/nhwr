@@ -4,10 +4,9 @@
     }
 </style>
 
-<script src="../nepdate/nepali-date-picker.js"></script>
-<script>
-    NepDatePicker.createCalendar(document.getElementById('pick-date-example'));
-</script>
+
+<body>
+
 
 <div class="container">
     <br>
@@ -26,7 +25,7 @@
         <div  *ngFor=" let item of transfer "><a href="javascript:void(0)" (click)="patchemployee(item.tid,item.empid)" >{{item.empname}}</a>(Transfered)</div>
         </div>
     <div class="modal-body">
-        <form class="form-signin" [formGroup]="officeForm" (ngSubmit)="officeFormSubmit()">
+        <form class="form-signin" [formGroup]="officeForm" (ngSubmit)="officeFormSubmit()" >
             <input type="hidden" class="form-control" name="id" formControlName="id">
             <input type="hidden" class="form-control" name="orgidint" formControlName="orgidint">
             <input type="hidden" class="form-control" name="workforceid" formControlName="workforceid">
@@ -89,6 +88,36 @@
                 </div>
             </div></div>
             <div class="col-md-6">
+                <div class="row input-group col-md-12">
+                    <div class="col-md-4">
+                        <label>लिङ्ग </label>
+                    </div>
+                    <div class="col-md-8">
+                       
+                        <select class="form-control" name="gender" formControlName="gender" >
+                            <option value="">-- छान्नुहोस् --</option>
+                            <option  value="Male">Male</option>
+                            <option  value="Female">Female</option>
+                            <option  value="Others">Others</option>
+                        </select>
+                        <span style="color: red;"
+                        *ngIf="officeForm.controls.gender && officeForm.controls.gender.invalid && officeForm.controls.gender.touched">Required Field</span>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row input-group col-md-12">
+                        <div class="col-md-4 forRequired">
+                            <label>जन्म मिति </label>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="dob" id="dob" formControlName="dob">
+                            <span style="color: red;"
+                                *ngIf="officeForm.controls.dob && officeForm.controls.dob.invalid && officeForm.controls.dob.touched">Required Field</span>
+                        </div>
+                    </div>
+                    </div>
+            <div class="col-md-6">
             <div class="row input-group col-md-12">
                 <div class="col-md-4 forRequired">
                     <label>ठेगाना</label>
@@ -124,6 +153,23 @@
                 </div>
             </div>
             </div>
+            <form name="fname"></form>
+            <div class="col-md-6">
+                <div class="row input-group col-md-12">
+                    <div class="col-md-4">
+                        <label>जातियता </label>
+                    </div>
+                    <div class="col-md-8">
+                       
+                        <select class="form-control" name="ethnicity" formControlName="ethnicity">
+                            <option value="">-- छान्नुहोस् --</option>
+                            <option *ngFor=" let item of ethnic " [value]="item.id">{{ item.name}}</option>
+                        </select>
+                        <span style="color: red;"
+                        *ngIf="officeForm.controls.ethnicity && officeForm.controls.ethnicity.invalid && officeForm.controls.ethnicity.touched">Required Field</span>
+                    </div>
+                </div>
+                </div>
 
             <div class="col-md-6">
                 <div class="row input-group col-md-12">
@@ -177,12 +223,13 @@
                                     <label>हाजिर भएको मिति </label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="date" class="form-control" name="att_date" formControlName="att_date">
+                                    <input type="text" class="form-control" name="att_date" id="att_date" formControlName="att_date">
                                     <span style="color: red;"
                                     *ngIf="officeForm.controls.att_date && officeForm.controls.att_date.invalid && officeForm.controls.att_date.touched">Required Field</span>
                                 </div>
                             </div>
                             </div>
+                           
 
                             <div class="col-md-6">
                                 <div class="row input-group col-md-12">
@@ -218,7 +265,7 @@
                                         *ngIf="officeForm.controls.qualification && officeForm.controls.qualification.invalid && officeForm.controls.qualification.touched">Required Field</span>
                                         </div>
                                     </div>
-                                    </div>
+                                    </div><br><br>
 
                                
                                         <div class="col-md-6" id="pisno" style="display: none;">
@@ -255,3 +302,4 @@
     </div>
 </div>
 
+</body>

@@ -24,7 +24,7 @@
                     <table class="table table-bordered table-striped table-sm tbl-sortable">
                         <thead>
                             <tr>
-                                
+                                <th>Employee code</th>
                                 <th>Organization Name</th>
                                 <th>Organization Address</th>
                                 <th>Employee Name</th>
@@ -38,6 +38,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor=" let item of lists; let i = index; ">
+                                <td>{{item.code}}</td>
                                 <td>{{item.orgname}} {{item.hf_name}} {{item.vcname}}</td>
                                 <td>{{item.province}} {{item.district}}</td>
                                 <td>{{item.namenp}}</td>

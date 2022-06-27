@@ -1,0 +1,247 @@
+<!-- <div id="oas_reading" class="oas-reading"> -->
+    <style>
+        .form-control {
+            margin-bottom: 15px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><strong>Pivot table</strong></div>
+                <div class="card-body">
+                    <form class="form-signin" [formGroup]= "groupForm">
+                        <input type="hidden" class="form-control" name="id" formControlName="id"> 
+                        <!-- <div class="panel-group">
+                            <div class="panel panel-default">
+                              <div class="panel-heading">
+                                <h4 class="panel-title">
+                                  <a data-toggle="collapse" href="#collapse1">Row</a>
+                                </h4>
+                              </div>
+                              <div id="collapse1" class="panel-collapse collapse">
+                                <div class="col-md-6">
+                                <select class="form-control" name="row" formControlName="row" #row (change)="getFilter(row.value)">
+                                    <option value="">Select one..</option>
+                                    <option value="province">Province</option>
+                                    <option value="district">District</option>
+                                    <option value="palika">Palika</option>
+                                    <option value="post">Post</option>
+                                </select>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse2">Column</a>
+                                  </h4>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse">
+                                  <div class="col-md-6">
+                                    <select class="form-control" name="column" formControlName="column" #column>
+                                        <option value="">Select one..</option>
+                                        <option value="post">Post</option>
+                                        <option value="emptype">Employee Type</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="panel panel-default">
+                                <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse3">Filter</a>
+                                  </h4>
+                                </div>
+                                <div id="collapse3" class="panel-collapse collapse">
+                                  <div class="col-md-6">
+                                    <select class="form-control" name="filter" formControlName="filter" #filter>
+                                        <option value="">Select one..</option>
+                                        <option *ngFor=" let item of filters " [value]="item.pid">{{ item.namenp}}</option>
+                                     
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="panel panel-default">
+                                <div class="panel-heading">
+                                  <h4 class="panel-title">
+                                    <a data-toggle="collapse" href="#collapse4">Type</a>
+                                  </h4>
+                                </div>
+                                <div id="collapse4" class="panel-collapse collapse">
+                                  <div class="col-md-6">
+                                    <select class="form-control" name="type" formControlName="type" #type>
+                                        <option value="">Select one..</option>
+                                        <option value="1">संघीय</option>
+                                        <option value="2">प्रदेश</option>
+                                        <option value="4">स्थानीय</option>
+                                        <option value="5">स्वास्थ्य संस्था </option>
+                                      
+                                     
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                          </div> -->
+                        <!-- <div class="row col-md-12">
+                            <div class="row col-md-6">&nbsp;&nbsp;&nbsp; Row
+                            <div class="col-md-12">
+                                <select class="form-control" name="row" formControlName="row" #row>
+                                    <option value="">Select one..</option>
+                                    <option value="province">Province</option>
+                                    <option value="district">District</option>
+                                    <option value="palika">Palika</option>
+                                    <option value="post">Post</option>
+                                </select>
+                            </div>
+                        </div>
+                            <div class="row col-md-6">&nbsp;&nbsp;&nbsp; Column
+                            <div class="col-md-12">
+                                <select class="form-control" name="column" formControlName="column" #column>
+                                    <option value="">Select one..</option>
+                                    <option value="post">Post</option>
+                                    <option value="emptype">Employee Type</option>
+                                </select>
+                            </div>
+                        </div>            
+                       </div> -->
+                      
+                        
+                        
+                    <!-- <div class="row input-group col-md-12">
+                        <div class="col-md-4 forRequired">
+                            <label>Admin Level</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" name="admlvl" formControlName="admlvl" #aid (change)="getAdmin(aid.value)">
+                                <option value="">Select one...</option>
+                                <option *ngFor=" let item of admlvl " [value]="item.id">{{ item.namenp}}</option>
+                            </select>
+                            <span style="color: red;"
+                                *ngIf="groupForm.controls.admlvl && groupForm.controls.admlvl.invalid && groupForm.controls.admlvl.touched">*Required
+                                Field
+                            </span>
+
+                        </div>
+                    </div><br>
+
+                    <div class="row input-group col-md-12" id="prov" style="display: none;">
+                        <div class="col-md-4 forRequired">
+                            <label>Province</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" name="province" formControlName="province" #pid (change)="getOffices(pid.value)">
+                                <option value="0">All</option>
+                                <option *ngFor=" let item of provinces " [value]="item.pid">{{ item.namenp}}</option>
+                            </select>
+                           
+
+                        </div>
+                    </div><br>
+                    <div class="row input-group col-md-12">
+                        <div class="col-md-4 forRequired">
+                            <label>Organization</label>
+                        </div>
+                        <div class="col-md-8">
+                            <select class="form-control" name="org" formControlName="org" #org>
+                                <option value="0">All</option>
+                                <option *ngFor=" let item of hfo " [value]="item.id">{{ item.namenp}}</option>
+                            </select>
+                           
+
+                        </div>
+                    </div>
+                    <br> -->
+
+                    <div class="col-lg-6">
+                        <div id="accordion" role="tablist" aria-multiselectable="true">
+                          <div class="card">
+                            <div class="card-header" role="tab" id="headingOne"  data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                  Row
+                            </div>
+                            <div id="collapseOne" class="card-block collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                <div>
+                                <select class="form-control" name="row" formControlName="row" #row (change)="getFilter(row.value)">
+                                    <option value="">Select one..</option>
+                                    <option value="province">Province</option>
+                                    <option value="district">District</option>
+                                    <option value="palika">Palika</option>
+                                    <option value="post">Post</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="card-header" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                 Column
+                            </div>
+                            <div id="collapseTwo" class="card-block collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                <select class="form-control" name="column" formControlName="column" #column>
+                                    <option value="">Select one..</option>
+                                    <option value="post">Post</option>
+                                    <option value="emptype">Employee Type</option>
+                                </select>
+                            </div>
+                            <div class="card-header" role="tab" id="headingThree"  data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                 Filter
+                            </div>
+                            <div id="collapseThree" class="card-block collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <select class="form-control" name="filter" formControlName="filter" #filter>
+                                    <option value="">Select one..</option>
+                                    <option *ngFor=" let item of filters " [value]="item.pid">{{ item.namenp}}</option>
+                                 
+                                </select>
+                            </div>
+
+                            <div class="card-header" role="tab" id="headingThree"  data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Type
+                           </div>
+                           <div id="collapseFour" class="card-block collapse" role="tabpanel" aria-labelledby="headingFour">
+                            <select class="form-control" name="type" formControlName="type" #type>
+                                <option value="">Select one..</option>
+                                <option value="1">संघीय</option>
+                                <option value="2">प्रदेश</option>
+                                <option value="4">स्थानीय</option>
+                                <option value="5">स्वास्थ्य संस्था </option>
+                              
+                             
+                            </select>
+                           </div>
+
+
+                          </div>
+                        </div>
+                        </div>
+                   
+                        
+    
+                      
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-6">
+                               
+                                <button type="button" class="btn btn-primary px-4" (click)="getReports(row.value,column.value,filter.value,type.value)" >Export Excel</button>
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-info px-4" (click)="getReportsView(row.value,column.value,filter.value,type.value)" >view</button>
+                            </div>
+
+                            <!-- <div class="col-6">
+                                Report2
+                                <button type="button" class="btn btn-primary px-4" (click)="getReport2(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >Export Excel</button>
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-info px-4" (click)="getReportsView2(orgs.value,adm.value,pid.value,did.value,pal.value,orgid.value,ofc.value)" >view</button>
+                            </div> -->
+                            <!-- <div class="col-6 text-right">
+                                <button type="button" (click)= "resetForm()" class="btn btn-danger px-4">Reset</button>
+                            </div> -->
+                        </div>
+    
+    
+    
+                    </form>
+                </div>
+            </div>
+        </div>
+    
+    
+      
+    </div>
+    <!-- </div> -->

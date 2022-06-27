@@ -37,8 +37,11 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { EdulevelComponent } from './edulevel/edulevel.component';
 import { QualificationComponent } from './qualification/qualification.component';
 import { ReportComponent } from './report/report.component';
+import { Report2Component } from './report/report2.component';
 import { Trial1Component } from './trial1/trial1.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PivotComponent } from './pivot/pivot.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -74,7 +77,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     EdulevelComponent,
     QualificationComponent,
     ReportComponent,
-    Trial1Component
+    Report2Component,
+    Trial1Component,
+    PivotComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

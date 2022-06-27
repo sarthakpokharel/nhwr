@@ -159,9 +159,9 @@ this.dropdownSettings = {
 
   changeFlag(id:any){
       $("#ward").hide();
-      $("#province").hide();
-      $("#dist").hide();
-      $("#munc").hide();
+      // $("#province").hide();
+      // $("#dist").hide();
+      // $("#munc").hide();
       $("#auth").hide();
       $("#alevel").hide();
       $("#owner").hide();

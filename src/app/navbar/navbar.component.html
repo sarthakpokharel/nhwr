@@ -59,7 +59,7 @@
 
             <li style="display: none;" class="nav-item 2"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)"
                     routerLink="/search">Search</a></li>
-            <li style="display: none;" class="nav-item 4"><a href="javascript:void(0)" class="nav-link"
+            <li *ngIf="islogedin==1"  class="nav-item 4"><a href="javascript:void(0)" routerLink="/dashboard" class="nav-link"
                     (click)="changeContent($event)">Dashboard</a></li>
             <!-- <li class="nav-item 5" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link" (click)="changeContent($event)" routerLink ="/registry">Workforce Registry</a>
             </li> -->
@@ -75,11 +75,12 @@
                         routerLink="/reglist">Workforce List</a>
                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
                         routerLink="/emplist">Employee List</a>
-                 <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
-                        routerLink="/report">Report</a>
+                 <!-- <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
+                        routerLink="/report">Report</a> -->
 
                 </div>
             </li>
+
             <li class="nav-item 5" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link"
                 (click)="changeContent($event)" routerLink="/registry">New Registry</a>
         </li>
@@ -87,6 +88,20 @@
 
             <li class="nav-item 5" *ngIf="islogedin==1"><a href="javascript:void(0)" class="nav-link"
                     (click)="changeContent($event)" routerLink="/darbandi/0">Darbandi</a>
+            </li>
+
+            <li class="nav-item dropdown"  *ngIf="role==1">
+                <a class="nav-link dropdown-toggle" aria-current="page" (click)="changeContent($event)"
+                    data-toggle="dropdown" href="javascript:void(0)">Report</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
+                    routerLink="/report1">Organization Report</a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
+                    routerLink="/report2">Post Report</a>
+                    <a class="dropdown-item" href="javascript:void(0)" (click)="changeContentDropdown($event)"
+                    routerLink="/pivot">Pivot Table</a>
+
+                </div>
             </li>
 
 

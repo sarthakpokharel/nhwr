@@ -131,12 +131,16 @@
                                     <label>Organization</label>
                                 </div>
                                 <div class="col-md-8">
+                                    <ng-select name="officeid"  formControlName="officeid" >
+                                        <ng-option  [value]="0">--    छान्नुहोस् --</ng-option>
+                            <ng-option *ngFor="let item of hfo" [value]="item.id">{{item.nameen}}</ng-option>
+                         </ng-select>
                                    
-                                    <select class="form-control" name="officeid"   formControlName="officeid" >
+                                    <!-- <select class="form-control" name="officeid"   formControlName="officeid" >
                                         <option value="0"  >Select one...</option>
                                         <option *ngFor=" let item of hfo " [value]="item.id">{{ item.namenp}}</option>
                                         
-                                    </select>
+                                    </select> -->
                                    
                                    
         
